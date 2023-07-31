@@ -2,7 +2,12 @@ import * as si from "simple-icons";
 import { z } from "zod";
 
 import { tag } from "~/svg";
-import type { PropsWithChildren, Element, Component, RootComponent } from "~/svg";
+import type {
+  Component,
+  Element,
+  PropsWithChildren,
+  RootComponent,
+} from "~/svg";
 
 type Color =
   | "gray"
@@ -35,7 +40,10 @@ type Color =
   | "gold";
 type Theme = "dark" | "light";
 
-type ColorObject = Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12, string>;
+type ColorObject = Record<
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12,
+  string
+>;
 
 const BANK = {
   gray: {
@@ -908,17 +916,26 @@ const COLOR = Object.keys(BANK) as unknown as [
   "yellow",
   "amber",
   "bronze",
-  "gold"
+  "gold",
 ];
 const COLOR_DEFAULT = "gray" satisfies Color;
 
 const THEME = ["dark", "light"] as const satisfies readonly Theme[];
 const THEME_DEFAULT = "dark" satisfies Theme;
 
-const select = (color: Color = COLOR_DEFAULT, theme: Theme = THEME_DEFAULT): ColorObject => BANK[color][theme];
+const select = (
+  color: Color = COLOR_DEFAULT,
+  theme: Theme = THEME_DEFAULT,
+): ColorObject => BANK[color][theme];
 
-const ColorSchema = z.enum(COLOR, { invalid_type_error: "Invalid color", required_error: "Required color" }).default(COLOR_DEFAULT);
-const ThemeSchema = z.enum(THEME, { invalid_type_error: "Invalid theme", required_error: "Required theme" }).default(THEME_DEFAULT);
+const ColorSchema = z.enum(COLOR, {
+  invalid_type_error: "Invalid color",
+  required_error: "Required color",
+}).default(COLOR_DEFAULT);
+const ThemeSchema = z.enum(THEME, {
+  invalid_type_error: "Invalid theme",
+  required_error: "Required theme",
+}).default(THEME_DEFAULT);
 
 type BaseProps = {
   /**
@@ -942,7 +959,9 @@ type SizeProps = {
   h?: number;
 };
 
-const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
+const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
+  { c, t, w, h, children },
+) => {
   const color = select(c, t);
 
   const width = 20;
@@ -955,7 +974,9 @@ const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, 
       justifyContent: "center",
       width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
       height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
-      backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
+      backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${
+        color[2]
+      })`,
       color: color[11],
       border: `1px solid ${color[7]}`,
       borderRadius: "0.6rem",
@@ -966,7 +987,9 @@ const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, 
   });
 };
 
-const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
+const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
+  { c, t, w, h, children },
+) => {
   const color = select(c, t);
 
   const width = 32;
@@ -980,7 +1003,9 @@ const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t,
       padding: "0.1rem 0.4rem",
       width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
       height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
-      backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
+      backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${
+        color[2]
+      })`,
       color: color[11],
       border: `1px solid ${color[7]}`,
       borderRadius: "0.6rem",
@@ -991,7 +1016,9 @@ const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t,
   });
 };
 
-const Icon: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
+const Icon: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
+  { c, t, w, h, children },
+) => {
   const color = select(c, t);
 
   const width = 22;
@@ -1010,27 +1037,26 @@ const Icon: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w
   });
 };
 
-const createLucideIcon =
-  (
-    children: Element[]
-  ): Component<{
-    s?: string | number;
-    c?: string;
-  }> =>
-  ({ s = 20, c = "currentColor" }) => {
-    return tag("svg", {
-      role: "img",
-      viewBox: "0 0 24 24",
-      width: s,
-      height: s,
-      fill: "none",
-      stroke: c,
-      strokeWidth: 2,
-      strokeLinecap: "round",
-      strokeLinejoin: "round",
-      children,
-    });
-  };
+const createLucideIcon = (
+  children: Element[],
+): Component<{
+  s?: string | number;
+  c?: string;
+}> =>
+({ s = 20, c = "currentColor" }) => {
+  return tag("svg", {
+    role: "img",
+    viewBox: "0 0 24 24",
+    width: s,
+    height: s,
+    fill: "none",
+    stroke: c,
+    strokeWidth: 2,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    children,
+  });
+};
 
 const LucideIcons = {
   activity: createLucideIcon([tag("path", { d: "M22 12h-4l-3 9L9 3l-3 9H2" })]),
@@ -1039,7 +1065,10 @@ const LucideIcons = {
     tag("line", { x1: "18", x2: "18", y1: "20", y2: "4" }),
     tag("line", { x1: "6", x2: "6", y1: "20", y2: "16" }),
   ]),
-  code: createLucideIcon([tag("polyline", { points: "16 18 22 12 16 6" }), tag("polyline", { points: "8 6 2 12 8 18" })]),
+  code: createLucideIcon([
+    tag("polyline", { points: "16 18 22 12 16 6" }),
+    tag("polyline", { points: "8 6 2 12 8 18" }),
+  ]),
   coffee: createLucideIcon([
     tag("path", { d: "M17 8h1a4 4 0 1 1 0 8h-1" }),
     tag("path", { d: "M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" }),
@@ -1047,10 +1076,16 @@ const LucideIcons = {
     tag("line", { x1: "10", x2: "10", y1: "2", y2: "4" }),
     tag("line", { x1: "14", x2: "14", y1: "2", y2: "4" }),
   ]),
-  command: createLucideIcon([tag("path", { d: "M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" })]),
+  command: createLucideIcon([
+    tag("path", {
+      d: "M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3",
+    }),
+  ]),
   compass: createLucideIcon([
     tag("circle", { cx: "12", cy: "12", r: "10" }),
-    tag("polygon", { points: "16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" }),
+    tag("polygon", {
+      points: "16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76",
+    }),
   ]),
   component: createLucideIcon([
     tag("path", { d: "M5.5 8.5 9 12l-3.5 3.5L2 12l3.5-3.5Z" }),
@@ -1068,7 +1103,10 @@ const LucideIcons = {
     tag("path", { d: "m14 6 7.7 7.7" }),
     tag("path", { d: "m8 6 8 8" }),
   ]),
-  copyright: createLucideIcon([tag("circle", { cx: "12", cy: "12", r: "10" }), tag("path", { d: "M15 9.354a4 4 0 1 0 0 5.292" })]),
+  copyright: createLucideIcon([
+    tag("circle", { cx: "12", cy: "12", r: "10" }),
+    tag("path", { d: "M15 9.354a4 4 0 1 0 0 5.292" }),
+  ]),
   cpu: createLucideIcon([
     tag("rect", { x: "4", y: "4", width: "16", height: "16", rx: "2" }),
     tag("rect", { x: "9", y: "9", width: "6", height: "6" }),
@@ -1102,16 +1140,32 @@ const LucideIcons = {
     tag("path", { d: "M8 8v12" }),
     tag("path", { d: "M4 4v16" }),
   ]),
-  "line-chart": createLucideIcon([tag("path", { d: "M3 3v18h18" }), tag("path", { d: "m19 9-5 5-4-4-3 3" })]),
-  link: createLucideIcon([
-    tag("path", { d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" }),
-    tag("path", { d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" }),
+  "line-chart": createLucideIcon([
+    tag("path", { d: "M3 3v18h18" }),
+    tag("path", { d: "m19 9-5 5-4-4-3 3" }),
   ]),
-  moon: createLucideIcon([tag("path", { d: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" })]),
-  "pie-chart": createLucideIcon([tag("path", { d: "M21.21 15.89A10 10 0 1 1 8 2.83" }), tag("path", { d: "M22 12A10 10 0 0 0 12 2v10z" })]),
+  link: createLucideIcon([
+    tag("path", {
+      d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71",
+    }),
+    tag("path", {
+      d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71",
+    }),
+  ]),
+  moon: createLucideIcon([
+    tag("path", { d: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" }),
+  ]),
+  "pie-chart": createLucideIcon([
+    tag("path", { d: "M21.21 15.89A10 10 0 1 1 8 2.83" }),
+    tag("path", { d: "M22 12A10 10 0 0 0 12 2v10z" }),
+  ]),
   rocket: createLucideIcon([
-    tag("path", { d: "M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" }),
-    tag("path", { d: "m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" }),
+    tag("path", {
+      d: "M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z",
+    }),
+    tag("path", {
+      d: "m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z",
+    }),
     tag("path", { d: "M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" }),
     tag("path", { d: "M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" }),
   ]),
@@ -1124,12 +1178,22 @@ const LucideIcons = {
   ]),
   server: createLucideIcon([
     tag("rect", { width: "20", height: "8", x: "2", y: "2", rx: "2", ry: "2" }),
-    tag("rect", { width: "20", height: "8", x: "2", y: "14", rx: "2", ry: "2" }),
+    tag("rect", {
+      width: "20",
+      height: "8",
+      x: "2",
+      y: "14",
+      rx: "2",
+      ry: "2",
+    }),
     tag("line", { x1: "6", x2: "6.01", y1: "6", y2: "6" }),
     tag("line", { x1: "6", x2: "6.01", y1: "18", y2: "18" }),
   ]),
   star: createLucideIcon([
-    tag("polygon", { points: "12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" }),
+    tag("polygon", {
+      points:
+        "12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2",
+    }),
   ]),
   sun: createLucideIcon([
     tag("circle", { cx: "12", cy: "12", r: "4" }),
@@ -1175,7 +1239,7 @@ const LUCIDE_ICON = Object.keys(LucideIcons) as unknown as [
   `server`,
   `star`,
   `sun`,
-  `upload`
+  `upload`,
 ];
 const LUCIDE_ICON_DEFAULT = "code" satisfies LucideIcon;
 
@@ -1186,26 +1250,26 @@ const LucideIconSchema = z
   })
   .default(LUCIDE_ICON_DEFAULT);
 
-const isLucideIcon = (value?: unknown): value is LucideIcon => LUCIDE_ICON.includes(String(value) as LucideIcon);
+const isLucideIcon = (value?: unknown): value is LucideIcon =>
+  LUCIDE_ICON.includes(String(value) as LucideIcon);
 
-const createSimpleIcon =
-  (
-    d: string
-  ): Component<{
-    s?: string | number;
-    c?: string;
-  }> =>
-  ({ s = 20, c = "currentColor" }) => {
-    return tag("svg", {
-      role: "img",
-      viewBox: "0 0 24 24",
-      width: s,
-      height: s,
-      fill: c,
-      stroke: "none",
-      children: tag("path", { d }),
-    });
-  };
+const createSimpleIcon = (
+  d: string,
+): Component<{
+  s?: string | number;
+  c?: string;
+}> =>
+({ s = 20, c = "currentColor" }) => {
+  return tag("svg", {
+    role: "img",
+    viewBox: "0 0 24 24",
+    width: s,
+    height: s,
+    fill: c,
+    stroke: "none",
+    children: tag("path", { d }),
+  });
+};
 
 const SimpleIcons = {
   adonisjs: createSimpleIcon(si.siAdonisjs.path),
@@ -1432,7 +1496,7 @@ const SIMPLE_ICON = Object.keys(SimpleIcons) as unknown as [
   `windows`,
   `xampp`,
   `youtube`,
-  `zod`
+  `zod`,
 ];
 const SIMPLE_ICON_DEFAULT = "github" satisfies SimpleIcon;
 
@@ -1443,8 +1507,9 @@ const SimpleIconSchema = z
   })
   .default(SIMPLE_ICON_DEFAULT);
 
-const isSimpleIcon = (value?: unknown): value is SimpleIcon => SIMPLE_ICON.includes(String(value) as SimpleIcon);
+const isSimpleIcon = (value?: unknown): value is SimpleIcon =>
+  SIMPLE_ICON.includes(String(value) as SimpleIcon);
 
-export { ColorSchema, ThemeSchema, LucideIconSchema, SimpleIconSchema };
+export { ColorSchema, LucideIconSchema, SimpleIconSchema, ThemeSchema };
 export { Badge, Button, Icon, LucideIcons, SimpleIcons };
 export { isLucideIcon, isSimpleIcon };

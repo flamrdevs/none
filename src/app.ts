@@ -3,10 +3,22 @@ import { cors } from "hono/cors";
 import { compress } from "hono/compress";
 import { logger } from "hono/logger";
 
+import ky from "ky";
 import { z } from "zod";
 
 import svg, { tag } from "~/svg";
-import { ColorSchema, ThemeSchema, LucideIconSchema, SimpleIconSchema, Badge, Button, Icon, LucideIcons, SimpleIcons } from "~/ui";
+import {
+  Badge,
+  Button,
+  ColorSchema,
+  Icon,
+  LucideIcons,
+  LucideIconSchema,
+  SimpleIcons,
+  SimpleIconSchema,
+  ThemeSchema,
+} from "~/ui";
+import { cache } from "~/utils";
 
 const hono = (fn: (hono: Hono) => Hono = (x) => x) => fn(new Hono());
 
@@ -18,6 +30,90 @@ app.use("*", compress());
 if (process.env.NODE_ENV === "development") {
   app.use("*", logger());
 }
+
+app.route(
+  "/npm",
+  hono((x) => {
+    const PackageNameSchema = z
+      .string({
+        required_error: "Package name is required",
+        invalid_type_error: "Package name must be a string",
+      })
+      .regex(/^(?:@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/, {
+        message: "Invalid NPM package name",
+      })
+      .regex(/^(?!.*-$)[\s\S]*$/, {
+        message: "Package name cannot end with a hyphen",
+      });
+
+    type PackageItem = z.infer<typeof PackageItemSchema>;
+    const PackageItemSchema = z.object({
+      name: z.string(),
+      version: z.string(),
+      description: z.string().optional(),
+      license: z.string().optional(),
+    });
+
+    const PackageItemCache = cache<PackageItem>();
+
+    const getPackageItem = async (name: string): Promise<PackageItem> => {
+      let cached = PackageItemCache.get(name);
+      if (cached) return cached;
+      return PackageItemCache.set(
+        name,
+        await PackageItemSchema.parseAsync(
+          await ky.get(`https://registry.npmjs.org/${name}/latest`).json(),
+        ),
+      );
+    };
+
+    const BasicNPMQuerySchema = z.object({
+      c: ColorSchema,
+      t: ThemeSchema,
+      n: PackageNameSchema,
+    });
+
+    x.get("/v", async (ctx) => {
+      const { c, t, n } = await BasicNPMQuerySchema.parseAsync(
+        ctx.req.query(),
+      );
+
+      const v = (await getPackageItem(n)).version;
+
+      return await svg(
+        ctx,
+        {
+          _: "npm/v",
+          c,
+          t,
+          n,
+        },
+        () => Badge({ c, t, w: v.length * 9 + 11, children: v }),
+      );
+    });
+
+    x.get("/l", async (ctx) => {
+      const { c, t, n } = await BasicNPMQuerySchema.parseAsync(
+        ctx.req.query(),
+      );
+
+      const l = (await getPackageItem(n)).license ?? "UNLICENSED";
+
+      return await svg(
+        ctx,
+        {
+          _: "npm/l",
+          c,
+          t,
+          n,
+        },
+        () => Badge({ c, t, w: l.length * 9 + 11, children: l }),
+      );
+    });
+
+    return x;
+  }),
+);
 
 app.route(
   "/ui",
@@ -32,7 +128,9 @@ app.route(
         });
 
         x.get("/", async (ctx) => {
-          const { c, t, e } = await BadgeQuerySchema.parseAsync(ctx.req.query());
+          const { c, t, e } = await BadgeQuerySchema.parseAsync(
+            ctx.req.query(),
+          );
 
           return await svg(
             ctx,
@@ -42,12 +140,12 @@ app.route(
               t,
               e,
             },
-            () => Badge({ c, t, w: e.length * 9 + 11, children: e })
+            () => Badge({ c, t, w: e.length * 9 + 11, children: e }),
           );
         });
 
         return x;
-      })
+      }),
     );
 
     x.route(
@@ -60,7 +158,9 @@ app.route(
         });
 
         x.get("/", async (ctx) => {
-          const { c, t, e } = await ButtonQuerySchema.parseAsync(ctx.req.query());
+          const { c, t, e } = await ButtonQuerySchema.parseAsync(
+            ctx.req.query(),
+          );
 
           return await svg(
             ctx,
@@ -70,7 +170,7 @@ app.route(
               t,
               e,
             },
-            () => Button({ c, t, w: e.length * 10 + 44, children: e })
+            () => Button({ c, t, w: e.length * 10 + 44, children: e }),
           );
         });
 
@@ -82,7 +182,9 @@ app.route(
         });
 
         x.get("/lucide", async (ctx) => {
-          const { c, t, i, e } = await ButtonLucideQuerySchema.parseAsync(ctx.req.query());
+          const { c, t, i, e } = await ButtonLucideQuerySchema.parseAsync(
+            ctx.req.query(),
+          );
 
           return await svg(
             ctx,
@@ -121,7 +223,7 @@ app.route(
                     }),
                   ],
                 }),
-              })
+              }),
           );
         });
 
@@ -133,7 +235,9 @@ app.route(
         });
 
         x.get("/simple", async (ctx) => {
-          const { c, t, i, e } = await ButtonSimpleQuerySchema.parseAsync(ctx.req.query());
+          const { c, t, i, e } = await ButtonSimpleQuerySchema.parseAsync(
+            ctx.req.query(),
+          );
 
           return await svg(
             ctx,
@@ -172,12 +276,12 @@ app.route(
                     }),
                   ],
                 }),
-              })
+              }),
           );
         });
 
         return x;
-      })
+      }),
     );
 
     x.route(
@@ -190,7 +294,9 @@ app.route(
         });
 
         x.get("/lucide", async (ctx) => {
-          const { c, t, i } = await IconLucideQuerySchema.parseAsync(ctx.req.query());
+          const { c, t, i } = await IconLucideQuerySchema.parseAsync(
+            ctx.req.query(),
+          );
 
           return await svg(
             ctx,
@@ -200,7 +306,7 @@ app.route(
               t,
               i,
             },
-            () => Icon({ c, t, children: LucideIcons[i]({}) })
+            () => Icon({ c, t, children: LucideIcons[i]({}) }),
           );
         });
 
@@ -211,7 +317,9 @@ app.route(
         });
 
         x.get("/simple", async (ctx) => {
-          const { c, t, i } = await IconSimpleQuerySchema.parseAsync(ctx.req.query());
+          const { c, t, i } = await IconSimpleQuerySchema.parseAsync(
+            ctx.req.query(),
+          );
 
           return await svg(
             ctx,
@@ -221,12 +329,12 @@ app.route(
               t,
               i,
             },
-            () => Icon({ c, t, children: SimpleIcons[i]({}) })
+            () => Icon({ c, t, children: SimpleIcons[i]({}) }),
           );
         });
 
         return x;
-      })
+      }),
     );
 
     x.route(
@@ -239,7 +347,9 @@ app.route(
         });
 
         x.get("/", async (ctx) => {
-          const { c, t, e } = await IconButtonQuerySchema.parseAsync(ctx.req.query());
+          const { c, t, e } = await IconButtonQuerySchema.parseAsync(
+            ctx.req.query(),
+          );
 
           return await svg(
             ctx,
@@ -249,7 +359,7 @@ app.route(
               t,
               e,
             },
-            () => Button({ c, t, children: e })
+            () => Button({ c, t, children: e }),
           );
         });
 
@@ -260,7 +370,9 @@ app.route(
         });
 
         x.get("/lucide", async (ctx) => {
-          const { c, t, i } = await IconButtonLucideQuerySchema.parseAsync(ctx.req.query());
+          const { c, t, i } = await IconButtonLucideQuerySchema.parseAsync(
+            ctx.req.query(),
+          );
 
           return await svg(
             ctx,
@@ -270,7 +382,7 @@ app.route(
               t,
               i,
             },
-            () => Button({ c, t, children: LucideIcons[i]({}) })
+            () => Button({ c, t, children: LucideIcons[i]({}) }),
           );
         });
 
@@ -281,7 +393,9 @@ app.route(
         });
 
         x.get("/simple", async (ctx) => {
-          const { c, t, i } = await IconButtonSimpleQuerySchema.parseAsync(ctx.req.query());
+          const { c, t, i } = await IconButtonSimpleQuerySchema.parseAsync(
+            ctx.req.query(),
+          );
 
           return await svg(
             ctx,
@@ -291,16 +405,16 @@ app.route(
               t,
               i,
             },
-            () => Button({ c, t, children: SimpleIcons[i]({}) })
+            () => Button({ c, t, children: SimpleIcons[i]({}) }),
           );
         });
 
         return x;
-      })
+      }),
     );
 
     return x;
-  })
+  }),
 );
 
 app.get("/", (ctx) => ctx.json({ name: "none" }));
