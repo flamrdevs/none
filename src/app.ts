@@ -59,7 +59,7 @@ app.route(
           return await svg(
             ctx,
             {
-              _: "ui/button",
+              _: "ui/button/simple",
               c,
               t,
               i,
@@ -146,7 +146,7 @@ app.route(
           return await svg(
             ctx,
             {
-              _: "ui/icon-button",
+              _: "ui/icon-button/simple",
               c,
               t,
               i,
