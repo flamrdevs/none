@@ -2,7 +2,7 @@ import * as si from "simple-icons";
 import { z } from "zod";
 
 import { tag } from "~/svg";
-import type { PropsWithChildren, Component, RootComponent } from "~/svg";
+import type { PropsWithChildren, Element, Component, RootComponent } from "~/svg";
 
 type Color =
   | "gray"
@@ -880,7 +880,7 @@ const BANK = {
   },
 } satisfies Record<Color, Record<Theme, ColorObject>>;
 
-const COLOR = [
+const COLOR = Object.keys(BANK) as unknown as [
   "gray",
   "mauve",
   "slate",
@@ -908,12 +908,12 @@ const COLOR = [
   "yellow",
   "amber",
   "bronze",
-  "gold",
-] as const satisfies readonly Color[];
-const COLOR_DEFAULT = COLOR[0];
+  "gold"
+];
+const COLOR_DEFAULT = "gray" satisfies Color;
 
 const THEME = ["dark", "light"] as const satisfies readonly Theme[];
-const THEME_DEFAULT = THEME[0];
+const THEME_DEFAULT = "dark" satisfies Theme;
 
 const select = (color: Color = COLOR_DEFAULT, theme: Theme = THEME_DEFAULT): ColorObject => BANK[color][theme];
 
@@ -1006,26 +1006,204 @@ const Icon: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w
       padding: "0.1rem 0.4rem",
       width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
       height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
-      color: color[9],
+      color: color[11],
     },
     children,
   });
 };
+
+const createLucideIcon =
+  (
+    children: Element[]
+  ): Component<{
+    s?: string | number;
+    c?: string;
+  }> =>
+  ({ s = 20, c = "currentColor" }) => {
+    return tag("svg", {
+      role: "img",
+      viewBox: "0 0 24 24",
+      width: s,
+      height: s,
+      fill: "none",
+      stroke: c,
+      strokeWidth: 2,
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      children,
+    });
+  };
+
+const LucideIcons = {
+  activity: createLucideIcon([tag("path", { d: "M22 12h-4l-3 9L9 3l-3 9H2" })]),
+  "bar-chart": createLucideIcon([
+    tag("line", { x1: "12", x2: "12", y1: "20", y2: "10" }),
+    tag("line", { x1: "18", x2: "18", y1: "20", y2: "4" }),
+    tag("line", { x1: "6", x2: "6", y1: "20", y2: "16" }),
+  ]),
+  code: createLucideIcon([tag("polyline", { points: "16 18 22 12 16 6" }), tag("polyline", { points: "8 6 2 12 8 18" })]),
+  coffee: createLucideIcon([
+    tag("path", { d: "M17 8h1a4 4 0 1 1 0 8h-1" }),
+    tag("path", { d: "M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" }),
+    tag("line", { x1: "6", x2: "6", y1: "2", y2: "4" }),
+    tag("line", { x1: "10", x2: "10", y1: "2", y2: "4" }),
+    tag("line", { x1: "14", x2: "14", y1: "2", y2: "4" }),
+  ]),
+  command: createLucideIcon([tag("path", { d: "M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" })]),
+  compass: createLucideIcon([
+    tag("circle", { cx: "12", cy: "12", r: "10" }),
+    tag("polygon", { points: "16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" }),
+  ]),
+  component: createLucideIcon([
+    tag("path", { d: "M5.5 8.5 9 12l-3.5 3.5L2 12l3.5-3.5Z" }),
+    tag("path", { d: "m12 2 3.5 3.5L12 9 8.5 5.5 12 2Z" }),
+    tag("path", { d: "M18.5 8.5 22 12l-3.5 3.5L15 12l3.5-3.5Z" }),
+    tag("path", { d: "m12 15 3.5 3.5L12 22l-3.5-3.5L12 15Z" }),
+  ]),
+  construction: createLucideIcon([
+    tag("rect", { x: "2", y: "6", width: "20", height: "8", rx: "1" }),
+    tag("path", { d: "M17 14v7" }),
+    tag("path", { d: "M7 14v7" }),
+    tag("path", { d: "M17 3v3" }),
+    tag("path", { d: "M7 3v3" }),
+    tag("path", { d: "M10 14 2.3 6.3" }),
+    tag("path", { d: "m14 6 7.7 7.7" }),
+    tag("path", { d: "m8 6 8 8" }),
+  ]),
+  copyright: createLucideIcon([tag("circle", { cx: "12", cy: "12", r: "10" }), tag("path", { d: "M15 9.354a4 4 0 1 0 0 5.292" })]),
+  cpu: createLucideIcon([
+    tag("rect", { x: "4", y: "4", width: "16", height: "16", rx: "2" }),
+    tag("rect", { x: "9", y: "9", width: "6", height: "6" }),
+    tag("path", { d: "M15 2v2" }),
+    tag("path", { d: "M15 20v2" }),
+    tag("path", { d: "M2 15h2" }),
+    tag("path", { d: "M2 9h2" }),
+    tag("path", { d: "M20 15h2" }),
+    tag("path", { d: "M20 9h2" }),
+    tag("path", { d: "M9 2v2" }),
+    tag("path", { d: "M9 20v2" }),
+  ]),
+  database: createLucideIcon([
+    tag("ellipse", { cx: "12", cy: "5", rx: "9", ry: "3" }),
+    tag("path", { d: "M3 5V19A9 3 0 0 0 21 19V5" }),
+    tag("path", { d: "M3 12A9 3 0 0 0 21 12" }),
+  ]),
+  download: createLucideIcon([
+    tag("path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" }),
+    tag("polyline", { points: "7 10 12 15 17 10" }),
+    tag("line", { x1: "12", x2: "12", y1: "15", y2: "3" }),
+  ]),
+  layers: createLucideIcon([
+    tag("polygon", { points: "12 2 2 7 12 12 22 7 12 2" }),
+    tag("polyline", { points: "2 17 12 22 22 17" }),
+    tag("polyline", { points: "2 12 12 17 22 12" }),
+  ]),
+  library: createLucideIcon([
+    tag("path", { d: "m16 6 4 14" }),
+    tag("path", { d: "M12 6v14" }),
+    tag("path", { d: "M8 8v12" }),
+    tag("path", { d: "M4 4v16" }),
+  ]),
+  "line-chart": createLucideIcon([tag("path", { d: "M3 3v18h18" }), tag("path", { d: "m19 9-5 5-4-4-3 3" })]),
+  link: createLucideIcon([
+    tag("path", { d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" }),
+    tag("path", { d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" }),
+  ]),
+  moon: createLucideIcon([tag("path", { d: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" })]),
+  "pie-chart": createLucideIcon([tag("path", { d: "M21.21 15.89A10 10 0 1 1 8 2.83" }), tag("path", { d: "M22 12A10 10 0 0 0 12 2v10z" })]),
+  rocket: createLucideIcon([
+    tag("path", { d: "M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" }),
+    tag("path", { d: "m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" }),
+    tag("path", { d: "M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" }),
+    tag("path", { d: "M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" }),
+  ]),
+  scale: createLucideIcon([
+    tag("path", { d: "m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" }),
+    tag("path", { d: "m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" }),
+    tag("path", { d: "M7 21h10" }),
+    tag("path", { d: "M12 3v18" }),
+    tag("path", { d: "M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" }),
+  ]),
+  server: createLucideIcon([
+    tag("rect", { width: "20", height: "8", x: "2", y: "2", rx: "2", ry: "2" }),
+    tag("rect", { width: "20", height: "8", x: "2", y: "14", rx: "2", ry: "2" }),
+    tag("line", { x1: "6", x2: "6.01", y1: "6", y2: "6" }),
+    tag("line", { x1: "6", x2: "6.01", y1: "18", y2: "18" }),
+  ]),
+  star: createLucideIcon([
+    tag("polygon", { points: "12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" }),
+  ]),
+  sun: createLucideIcon([
+    tag("circle", { cx: "12", cy: "12", r: "4" }),
+    tag("path", { d: "M12 2v2" }),
+    tag("path", { d: "M12 20v2" }),
+    tag("path", { d: "m4.93 4.93 1.41 1.41" }),
+    tag("path", { d: "m17.66 17.66 1.41 1.41" }),
+    tag("path", { d: "M2 12h2" }),
+    tag("path", { d: "M20 12h2" }),
+    tag("path", { d: "m6.34 17.66-1.41 1.41" }),
+    tag("path", { d: "m19.07 4.93-1.41 1.41" }),
+  ]),
+  upload: createLucideIcon([
+    tag("path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" }),
+    tag("polyline", { points: "17 8 12 3 7 8" }),
+    tag("line", { x1: "12", x2: "12", y1: "3", y2: "15" }),
+  ]),
+};
+
+type LucideIcon = keyof typeof LucideIcons;
+
+const LUCIDE_ICON = Object.keys(LucideIcons) as unknown as [
+  `activity`,
+  `bar-chart`,
+  `code`,
+  `coffee`,
+  `command`,
+  `compass`,
+  `component`,
+  `construction`,
+  `copyright`,
+  `cpu`,
+  `database`,
+  `download`,
+  `layers`,
+  `library`,
+  `line-chart`,
+  `link`,
+  `moon`,
+  `pie-chart`,
+  `rocket`,
+  `scale`,
+  `server`,
+  `star`,
+  `sun`,
+  `upload`
+];
+const LUCIDE_ICON_DEFAULT = "code" satisfies LucideIcon;
+
+const LucideIconSchema = z
+  .enum(LUCIDE_ICON, {
+    required_error: "Icon is required",
+    invalid_type_error: "Invalid icon",
+  })
+  .default(LUCIDE_ICON_DEFAULT);
+
+const isLucideIcon = (value?: unknown): value is LucideIcon => LUCIDE_ICON.includes(String(value) as LucideIcon);
 
 const createSimpleIcon =
   (
     d: string
   ): Component<{
     s?: string | number;
-    f?: string;
+    c?: string;
   }> =>
-  ({ s = 20, f = "currentColor" }) => {
+  ({ s = 20, c = "currentColor" }) => {
     return tag("svg", {
       role: "img",
       viewBox: "0 0 24 24",
       width: s,
       height: s,
-      fill: f,
+      fill: c,
       stroke: "none",
       children: tag("path", { d }),
     });
@@ -1269,6 +1447,6 @@ const SimpleIconSchema = z
 
 const isSimpleIcon = (value?: unknown): value is SimpleIcon => SIMPLE_ICON.includes(String(value) as SimpleIcon);
 
-export { ColorSchema, ThemeSchema, SimpleIconSchema };
-export { Badge, Button, Icon, SimpleIcons };
-export { isSimpleIcon };
+export { ColorSchema, ThemeSchema, LucideIconSchema, SimpleIconSchema };
+export { Badge, Button, Icon, LucideIcons, SimpleIcons };
+export { isLucideIcon, isSimpleIcon };

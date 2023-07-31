@@ -6,7 +6,7 @@ import { logger } from "hono/logger";
 import { z } from "zod";
 
 import svg, { tag } from "~/svg";
-import { ColorSchema, ThemeSchema, SimpleIconSchema, Badge, Button, SimpleIcons } from "~/ui";
+import { ColorSchema, ThemeSchema, LucideIconSchema, SimpleIconSchema, Badge, Button, Icon, LucideIcons, SimpleIcons } from "~/ui";
 
 const hono = (fn: (hono: Hono) => Hono = (x) => x) => fn(new Hono());
 
@@ -74,6 +74,57 @@ app.route(
           );
         });
 
+        const ButtonLucideQuerySchema = z.object({
+          c: ColorSchema,
+          t: ThemeSchema,
+          i: LucideIconSchema,
+          e: z.string().min(2).max(48).default("github"),
+        });
+
+        x.get("/lucide", async (ctx) => {
+          const { c, t, i, e } = await ButtonLucideQuerySchema.parseAsync(ctx.req.query());
+
+          return await svg(
+            ctx,
+            {
+              _: "ui/button/lucide",
+              c,
+              t,
+              i,
+              e,
+            },
+            () =>
+              Button({
+                c,
+                t,
+                w: e.length * 10 + 58,
+                children: tag("div", {
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 10,
+                    paddingRight: 2,
+                  },
+                  children: [
+                    tag("div", {
+                      style: {
+                        display: "flex",
+                      },
+                      children: LucideIcons[i]({}),
+                    }),
+                    tag("div", {
+                      style: {
+                        display: "flex",
+                      },
+                      children: e,
+                    }),
+                  ],
+                }),
+              })
+          );
+        });
+
         const ButtonSimpleQuerySchema = z.object({
           c: ColorSchema,
           t: ThemeSchema,
@@ -130,6 +181,55 @@ app.route(
     );
 
     x.route(
+      "/icon",
+      hono((x) => {
+        const IconLucideQuerySchema = z.object({
+          c: ColorSchema,
+          t: ThemeSchema,
+          i: LucideIconSchema,
+        });
+
+        x.get("/lucide", async (ctx) => {
+          const { c, t, i } = await IconLucideQuerySchema.parseAsync(ctx.req.query());
+
+          return await svg(
+            ctx,
+            {
+              _: "ui/icon/lucide",
+              c,
+              t,
+              i,
+            },
+            () => Icon({ c, t, children: LucideIcons[i]({}) })
+          );
+        });
+
+        const IconSimpleQuerySchema = z.object({
+          c: ColorSchema,
+          t: ThemeSchema,
+          i: SimpleIconSchema,
+        });
+
+        x.get("/simple", async (ctx) => {
+          const { c, t, i } = await IconSimpleQuerySchema.parseAsync(ctx.req.query());
+
+          return await svg(
+            ctx,
+            {
+              _: "ui/icon/simple",
+              c,
+              t,
+              i,
+            },
+            () => Icon({ c, t, children: SimpleIcons[i]({}) })
+          );
+        });
+
+        return x;
+      })
+    );
+
+    x.route(
       "/icon-button",
       hono((x) => {
         const IconButtonQuerySchema = z.object({
@@ -150,6 +250,27 @@ app.route(
               e,
             },
             () => Button({ c, t, children: e })
+          );
+        });
+
+        const IconButtonLucideQuerySchema = z.object({
+          c: ColorSchema,
+          t: ThemeSchema,
+          i: LucideIconSchema,
+        });
+
+        x.get("/lucide", async (ctx) => {
+          const { c, t, i } = await IconButtonLucideQuerySchema.parseAsync(ctx.req.query());
+
+          return await svg(
+            ctx,
+            {
+              _: "ui/icon-button/lucide",
+              c,
+              t,
+              i,
+            },
+            () => Button({ c, t, children: LucideIcons[i]({}) })
           );
         });
 
