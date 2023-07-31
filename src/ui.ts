@@ -941,6 +941,34 @@ type SizeProps = {
   h?: number;
 };
 
+const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
+  const color = select(c, t);
+
+  const width = 20;
+  const height = 20;
+
+  return {
+    type: "div",
+    props: {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "0.1rem 0.4rem",
+        width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
+        height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
+        backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
+        color: color[11],
+        border: `1px solid ${color[7]}`,
+        borderRadius: "0.6rem",
+        fontSize: 18,
+        fontWeight: 500,
+      },
+      children,
+    },
+  };
+};
+
 const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
   const color = select(c, t);
 
@@ -1258,5 +1286,5 @@ const SimpleIconSchema = z
 const isSimpleIcon = (value?: unknown): value is SimpleIcon => SIMPLE_ICON.includes(String(value) as SimpleIcon);
 
 export { ColorSchema, ThemeSchema, SimpleIconSchema };
-export { Button, Icon, SimpleIcons };
+export { Badge, Button, Icon, SimpleIcons };
 export { isSimpleIcon };

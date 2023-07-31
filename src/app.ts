@@ -6,7 +6,7 @@ import { logger } from "hono/logger";
 import { z } from "zod";
 
 import svg from "~/svg";
-import { ColorSchema, ThemeSchema, SimpleIconSchema, Button, SimpleIcons } from "~/ui";
+import { ColorSchema, ThemeSchema, SimpleIconSchema, Badge, Button, SimpleIcons } from "~/ui";
 
 const hono = (fn: (hono: Hono) => Hono = (x) => x) => fn(new Hono());
 
@@ -22,6 +22,34 @@ if (process.env.NODE_ENV === "development") {
 app.route(
   "/ui",
   hono((x) => {
+    x.route(
+      "/badge",
+      hono((x) => {
+        const BadgeQuerySchema = z.object({
+          c: ColorSchema,
+          t: ThemeSchema,
+          e: z.string().min(2).max(48).default("badge"),
+        });
+
+        x.get("/", async (ctx) => {
+          const { c, t, e } = await BadgeQuerySchema.parseAsync(ctx.req.query());
+
+          return await svg(
+            ctx,
+            {
+              _: "ui/badge",
+              c,
+              t,
+              e,
+            },
+            () => Badge({ c, t, w: e.length * 9.5 + 18, children: e })
+          );
+        });
+
+        return x;
+      })
+    );
+
     x.route(
       "/button",
       hono((x) => {
