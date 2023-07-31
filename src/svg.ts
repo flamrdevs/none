@@ -85,6 +85,7 @@ type SVGFunction = (
   context: Context,
   query: Record<string, string>,
   element: () => RootElement,
+  options?: { expires?: number },
 ) => Promise<Response>;
 
 const tag = <P extends Record<string, any>>(type: Tag, props: P) => ({
@@ -138,7 +139,7 @@ const img = await (async () => {
 
 const svg = await (async () => {
   const c = cache<string>();
-  return (async (context, query, element) => {
+  return (async (context, query, element, options) => {
     let headers: Record<string, string> = {
       "content-type": "image/svg+xml",
       "x-cache": "true",
@@ -157,7 +158,11 @@ const svg = await (async () => {
       return context.body(cached, 200, headers);
     }
     headers["x-cache"] = "false";
-    return context.body(c.set(key, await img(element())), 200, headers);
+    return context.body(
+      c.set(key, await img(element()), options?.expires),
+      200,
+      headers,
+    );
   }) as SVGFunction;
 })();
 

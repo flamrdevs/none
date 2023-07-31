@@ -136,6 +136,8 @@ app.route(
 app.route(
   "/ui",
   hono((x) => {
+    const expires = 24 * 60 * 60 * 1000;
+
     x.route(
       "/badge",
       hono((x) => {
@@ -159,6 +161,7 @@ app.route(
               e,
             },
             () => Badge({ c, t, w: e.length * 9 + 11, children: e }),
+            { expires },
           );
         });
 
@@ -189,6 +192,7 @@ app.route(
               e,
             },
             () => Button({ c, t, w: e.length * 10 + 44, children: e }),
+            { expires },
           );
         });
 
@@ -242,6 +246,7 @@ app.route(
                   ],
                 }),
               }),
+            { expires },
           );
         });
 
@@ -295,6 +300,7 @@ app.route(
                   ],
                 }),
               }),
+            { expires },
           );
         });
 
@@ -325,6 +331,7 @@ app.route(
               i,
             },
             () => Icon({ c, t, children: LucideIcons[i]({}) }),
+            { expires },
           );
         });
 
@@ -348,6 +355,7 @@ app.route(
               i,
             },
             () => Icon({ c, t, children: SimpleIcons[i]({}) }),
+            { expires },
           );
         });
 
@@ -378,6 +386,7 @@ app.route(
               e,
             },
             () => Button({ c, t, children: e }),
+            { expires },
           );
         });
 
@@ -401,6 +410,7 @@ app.route(
               i,
             },
             () => Button({ c, t, children: LucideIcons[i]({}) }),
+            { expires },
           );
         });
 
@@ -424,6 +434,7 @@ app.route(
               i,
             },
             () => Button({ c, t, children: SimpleIcons[i]({}) }),
+            { expires },
           );
         });
 

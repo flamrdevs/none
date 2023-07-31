@@ -1,4 +1,4 @@
-const cache = <T>(dex: number = 86400000) => {
+const cache = <T>(dex: number = 24 * 60 * 60 * 1000) => {
   type Item = {
     e: number;
     v: T;
