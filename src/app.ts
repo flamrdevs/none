@@ -3,10 +3,11 @@ import { cors } from "hono/cors";
 import { compress } from "hono/compress";
 import { logger } from "hono/logger";
 
-import ky from "ky";
 import { z } from "zod";
 
 import svg, { tag } from "~/svg";
+import { getPackageItem, PackageNameSchema } from "~/npm";
+import { getBundleItem } from "~/bundlejs";
 import {
   Badge,
   Button,
@@ -18,7 +19,6 @@ import {
   SimpleIconSchema,
   ThemeSchema,
 } from "~/ui";
-import { cache } from "~/utils";
 
 const hono = (fn: (hono: Hono) => Hono = (x) => x) => fn(new Hono());
 
@@ -34,39 +34,6 @@ if (process.env.NODE_ENV === "development") {
 app.route(
   "/npm",
   hono((x) => {
-    const PackageNameSchema = z
-      .string({
-        required_error: "Package name is required",
-        invalid_type_error: "Package name must be a string",
-      })
-      .regex(/^(?:@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/, {
-        message: "Invalid NPM package name",
-      })
-      .regex(/^(?!.*-$)[\s\S]*$/, {
-        message: "Package name cannot end with a hyphen",
-      });
-
-    type PackageItem = z.infer<typeof PackageItemSchema>;
-    const PackageItemSchema = z.object({
-      name: z.string(),
-      version: z.string(),
-      description: z.string().optional(),
-      license: z.string().optional(),
-    });
-
-    const PackageItemCache = cache<PackageItem>();
-
-    const getPackageItem = async (name: string): Promise<PackageItem> => {
-      let cached = PackageItemCache.get(name);
-      if (cached) return cached;
-      return PackageItemCache.set(
-        name,
-        await PackageItemSchema.parseAsync(
-          await ky.get(`https://registry.npmjs.org/${name}/latest`).json(),
-        ),
-      );
-    };
-
     const BasicNPMQuerySchema = z.object({
       c: ColorSchema,
       t: ThemeSchema,
@@ -108,6 +75,57 @@ app.route(
           n,
         },
         () => Badge({ c, t, w: l.length * 9 + 11, children: l }),
+      );
+    });
+
+    return x;
+  }),
+);
+
+app.route(
+  "/bundlejs",
+  hono((x) => {
+    const BasicBundleJSQuerySchema = z.object({
+      c: ColorSchema,
+      t: ThemeSchema,
+      n: PackageNameSchema,
+    });
+
+    x.get("/m", async (ctx) => {
+      const { c, t, n } = await BasicBundleJSQuerySchema.parseAsync(
+        ctx.req.query(),
+      );
+
+      const s = (await getBundleItem(n)).size.uncompressedSize;
+
+      return await svg(
+        ctx,
+        {
+          _: "bundlejs/m",
+          c,
+          t,
+          n,
+        },
+        () => Badge({ c, t, w: s.length * 9 + 11, children: s }),
+      );
+    });
+
+    x.get("/mz", async (ctx) => {
+      const { c, t, n } = await BasicBundleJSQuerySchema.parseAsync(
+        ctx.req.query(),
+      );
+
+      const s = (await getBundleItem(n)).size.compressedSize;
+
+      return await svg(
+        ctx,
+        {
+          _: "bundlejs/mz",
+          c,
+          t,
+          n,
+        },
+        () => Badge({ c, t, w: s.length * 9 + 11, children: s }),
       );
     });
 
