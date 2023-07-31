@@ -404,7 +404,6 @@ svg generation
   </picture>
 </p>
 
-
 #### Lucide
 
 <p align="left">
@@ -420,5 +419,45 @@ svg generation
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button/simple?t=dark&i=github">
     <img alt="icon-button" src="https://none.deno.dev/ui/icon-button/simple?t=light&i=github" hspace="1">
+  </picture>
+</p>
+
+## NPM
+
+### Version
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/v?t=dark&n=@klass/core">
+    <img alt="version" src="https://none.deno.dev/npm/v?t=light&n=@klass/core" hspace="1">
+  </picture>
+</p>
+
+### License
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/l?t=dark&n=@klass/core">
+    <img alt="license" src="https://none.deno.dev/npm/l?t=light&n=@klass/core" hspace="1">
+  </picture>
+</p>
+
+## BundleJS
+
+### Min
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/bundlejs/m?t=dark&n=@klass/core">
+    <img alt="version" src="https://none.deno.dev/bundlejs/m?t=light&n=@klass/core" hspace="1">
+  </picture>
+</p>
+
+### Min + Gzip
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/bundlejs/mz?t=dark&n=@klass/core">
+    <img alt="license" src="https://none.deno.dev/bundlejs/mz?t=light&n=@klass/core" hspace="1">
   </picture>
 </p>
