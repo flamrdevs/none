@@ -7,6 +7,9 @@ devDependencies:
   hono:
     specifier: ^3.3.4
     version: 3.3.4
+  ky:
+    specifier: ^0.33.3
+    version: 0.33.3
   satori:
     specifier: ^0.10.1
     version: 0.10.1
@@ -654,6 +657,11 @@ packages:
   /joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
     engines: {node: '>=10'}
+    dev: true
+
+  /ky@0.33.3:
+    resolution: {integrity: sha512-CasD9OCEQSFIam2U8efFK81Yeg8vNMTBUqtMOHlrcWQHqUX3HeCl9Dr31u4toV7emlH8Mymk5+9p0lL6mKb/Xw==}
+    engines: {node: '>=14.16'}
     dev: true
 
   /lilconfig@2.1.0:

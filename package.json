@@ -11,6 +11,7 @@
   "devDependencies": {
     "@types/node": "^20.4.5",
     "hono": "^3.3.4",
+    "ky": "^0.33.3",
     "satori": "^0.10.1",
     "simple-icons": "^9.8.0",
     "terser": "^5.19.2",
