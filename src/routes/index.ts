@@ -22,6 +22,21 @@ export const npm = hono((x) => {
     n: PackageNameSchema,
   });
 
+  x.route(
+    "/api",
+    hono((x) => {
+      const PackageItemQuerySchema = z.object({
+        n: PackageNameSchema,
+      });
+
+      x.get("/item", async (ctx) => {
+        const { n } = await PackageItemQuerySchema.parseAsync(ctx.req.query());
+        return ctx.json(await getPackageItem(n));
+      });
+      return x;
+    }),
+  );
+
   x.get("/v", async (ctx) => {
     const { c, t, n } = await BasicNPMQuerySchema.parseAsync(
       ctx.req.query(),
@@ -69,6 +84,21 @@ export const bundlejs = hono((x) => {
     t: ThemeSchema,
     n: PackageNameSchema,
   });
+
+  x.route(
+    "/api",
+    hono((x) => {
+      const BundleItemQuerySchema = z.object({
+        n: PackageNameSchema,
+      });
+
+      x.get("/item", async (ctx) => {
+        const { n } = await BundleItemQuerySchema.parseAsync(ctx.req.query());
+        return ctx.json(await getBundleItem(n));
+      });
+      return x;
+    }),
+  );
 
   x.get("/m", async (ctx) => {
     const { c, t, n } = await BasicBundleJSQuerySchema.parseAsync(
