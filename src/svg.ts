@@ -91,11 +91,11 @@ const img = await (async () => {
 
   return (async ({ type, props }) => {
     const { width, height } = props.style;
-    (props.style.width = props.style.height = "100%" as unknown as number),
-      (props.style.fontFamily = "Source Code Pro"),
-      (props.style.fontSize = 16),
-      (props.style.fontStyle = "normal"),
-      (props.style.fontWeight = 400);
+    props.style.width = props.style.height = "100%" as unknown as number;
+    if (typeof props.style.fontFamily === "undefined") props.style.fontFamily = "Source Code Pro";
+    if (typeof props.style.fontSize === "undefined") props.style.fontSize = 16;
+    if (typeof props.style.fontStyle === "undefined") props.style.fontStyle = "normal";
+    if (typeof props.style.fontWeight === "undefined") props.style.fontWeight = 400;
     return await satori({ type, props, key: "img" }, { fonts, width, height });
   }) as ImgFunction;
 })();

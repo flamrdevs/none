@@ -42,7 +42,7 @@ app.route(
               t,
               e,
             },
-            () => Badge({ c, t, w: e.length * 9.5 + 18, children: e })
+            () => Badge({ c, t, w: e.length * 9 + 11, children: e })
           );
         });
 
@@ -70,7 +70,7 @@ app.route(
               t,
               e,
             },
-            () => Button({ c, t, w: e.length * 10 + 38, children: e })
+            () => Button({ c, t, w: e.length * 10 + 44, children: e })
           );
         });
 
