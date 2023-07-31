@@ -1,8 +1,20 @@
 <p align="center">
-  <img src="https://none.deno.dev/ui/icon-button?e=n" />
-  <img src="https://none.deno.dev/ui/icon-button?e=o" />
-  <img src="https://none.deno.dev/ui/icon-button?e=n" />
-  <img src="https://none.deno.dev/ui/icon-button?e=e" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?t=dark&e=n">
+    <img alt="button" src="https://none.deno.dev/ui/icon-button?t=light&e=n" hspace="1">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?t=dark&e=o">
+    <img alt="button" src="https://none.deno.dev/ui/icon-button?t=light&e=o" hspace="1">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?t=dark&e=n">
+    <img alt="button" src="https://none.deno.dev/ui/icon-button?t=light&e=n" hspace="1">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?t=dark&e=e">
+    <img alt="button" src="https://none.deno.dev/ui/icon-button?t=light&e=e" hspace="1">
+  </picture>
 </p>
 
 # none
