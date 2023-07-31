@@ -67,7 +67,7 @@ type RootComponent<P extends {} = {}> = (props: P) => RootElement;
 type ImgFunction = (element: RootElement) => Promise<string>;
 type SVGFunction = (context: Context, query: Record<string, string>, element: () => RootElement) => Promise<Response>;
 
-const h = <P extends Record<string, any>>(type: Tag, props: P) => ({ type, props });
+const tag = <P extends Record<string, any>>(type: Tag, props: P) => ({ type, props });
 
 const img = await (async () => {
   type FontOptions = SatoriOptions["fonts"][number];
@@ -129,5 +129,5 @@ const svg = await (async () => {
 })();
 
 export type { PropsWithChildren, PropsWithOptionalChildren, Element, RootElement, Component, RootComponent };
-export { h, img };
+export { tag, img };
 export default svg;
