@@ -6,7 +6,7 @@ import { logger } from "hono/logger";
 import { z } from "zod";
 
 import svg from "~/svg";
-import { ColorSchema, ThemeSchema, Button } from "~/ui";
+import { ColorSchema, ThemeSchema, SimpleIconSchema, Button, SimpleIcons } from "~/ui";
 
 const hono = (fn: (hono: Hono) => Hono = (x) => x) => fn(new Hono());
 
@@ -46,6 +46,66 @@ app.route(
           );
         });
 
+        const ButtonSimpleQuerySchema = z.object({
+          c: ColorSchema,
+          t: ThemeSchema,
+          i: SimpleIconSchema,
+          e: z.string().min(2).max(48).default("github"),
+        });
+
+        x.get("/simple", async (ctx) => {
+          const { c, t, i, e } = await ButtonSimpleQuerySchema.parseAsync(ctx.req.query());
+
+          return await svg(
+            ctx,
+            {
+              _: "ui/button",
+              c,
+              t,
+              i,
+              e,
+            },
+            () =>
+              Button({
+                c,
+                t,
+                w: e.length * 10 + 58,
+                children: {
+                  type: "div",
+                  props: {
+                    style: {
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: 10,
+                      paddingRight: 2,
+                    },
+                    children: [
+                      {
+                        type: "div",
+                        props: {
+                          style: {
+                            display: "flex",
+                          },
+                          children: SimpleIcons[i]({}),
+                        },
+                      },
+                      {
+                        type: "div",
+                        props: {
+                          style: {
+                            display: "flex",
+                          },
+                          children: e,
+                        },
+                      },
+                    ],
+                  },
+                },
+              })
+          );
+        });
+
         return x;
       })
     );
@@ -71,6 +131,27 @@ app.route(
               e,
             },
             () => Button({ c, t, children: e })
+          );
+        });
+
+        const IconButtonSimpleQuerySchema = z.object({
+          c: ColorSchema,
+          t: ThemeSchema,
+          i: SimpleIconSchema,
+        });
+
+        x.get("/simple", async (ctx) => {
+          const { c, t, i } = await IconButtonSimpleQuerySchema.parseAsync(ctx.req.query());
+
+          return await svg(
+            ctx,
+            {
+              _: "ui/icon-button",
+              c,
+              t,
+              i,
+            },
+            () => Button({ c, t, children: SimpleIcons[i]({}) })
           );
         });
 
