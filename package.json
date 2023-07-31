@@ -12,6 +12,7 @@
     "@types/node": "^20.4.5",
     "hono": "^3.3.4",
     "satori": "^0.10.1",
+    "simple-icons": "^9.8.0",
     "terser": "^5.19.2",
     "tsup": "^7.1.0",
     "typescript": "^5.1.6",

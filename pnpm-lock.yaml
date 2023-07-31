@@ -10,6 +10,9 @@ devDependencies:
   satori:
     specifier: ^0.10.1
     version: 0.10.1
+  simple-icons:
+    specifier: ^9.8.0
+    version: 9.8.0
   terser:
     specifier: ^5.19.2
     version: 5.19.2
@@ -874,6 +877,11 @@ packages:
 
   /signal-exit@3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
+    dev: true
+
+  /simple-icons@9.8.0:
+    resolution: {integrity: sha512-xVHfr+souquvsKoqYzfgEoQeZSt1i8ka9botwc81wGZ9VNOc2xr96GPz1ziycpX+vHLuZFlgibYcqCzJZeCPfg==}
+    engines: {node: '>=0.12.18'}
     dev: true
 
   /slash@3.0.0:
