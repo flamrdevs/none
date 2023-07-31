@@ -1,6 +1,7 @@
 import * as si from "simple-icons";
 import { z } from "zod";
 
+import { tag } from "~/svg";
 import type { PropsWithChildren, Component, RootComponent } from "~/svg";
 
 type Color =
@@ -947,26 +948,23 @@ const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, 
   const width = 20;
   const height = 20;
 
-  return {
-    type: "div",
-    props: {
-      style: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "0.1rem 0.4rem",
-        width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
-        height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
-        backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
-        color: color[11],
-        border: `1px solid ${color[7]}`,
-        borderRadius: "0.6rem",
-        fontSize: 18,
-        fontWeight: 500,
-      },
-      children,
+  return tag("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "0.1rem 0.4rem",
+      width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
+      height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
+      backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
+      color: color[11],
+      border: `1px solid ${color[7]}`,
+      borderRadius: "0.6rem",
+      fontSize: 18,
+      fontWeight: 500,
     },
-  };
+    children,
+  });
 };
 
 const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
@@ -975,26 +973,23 @@ const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t,
   const width = 32;
   const height = 32;
 
-  return {
-    type: "div",
-    props: {
-      style: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "0.1rem 0.4rem",
-        width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
-        height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
-        backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
-        color: color[11],
-        border: `1px solid ${color[7]}`,
-        borderRadius: "0.6rem",
-        fontSize: 20,
-        fontWeight: 500,
-      },
-      children,
+  return tag("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "0.1rem 0.4rem",
+      width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
+      height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
+      backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
+      color: color[11],
+      border: `1px solid ${color[7]}`,
+      borderRadius: "0.6rem",
+      fontSize: 20,
+      fontWeight: 500,
     },
-  };
+    children,
+  });
 };
 
 const Icon: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
@@ -1003,21 +998,18 @@ const Icon: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w
   const width = 22;
   const height = 22;
 
-  return {
-    type: "div",
-    props: {
-      style: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "0.1rem 0.4rem",
-        width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
-        height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
-        color: color[9],
-      },
-      children,
+  return tag("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "0.1rem 0.4rem",
+      width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
+      height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
+      color: color[9],
     },
-  };
+    children,
+  });
 };
 
 const createSimpleIcon =
@@ -1028,23 +1020,15 @@ const createSimpleIcon =
     f?: string;
   }> =>
   ({ s = 20, f = "currentColor" }) => {
-    return {
-      type: "svg",
-      props: {
-        role: "img",
-        viewBox: "0 0 24 24",
-        width: s,
-        height: s,
-        fill: f,
-        stroke: "none",
-        children: {
-          type: "path",
-          props: {
-            d,
-          },
-        },
-      },
-    };
+    return tag("svg", {
+      role: "img",
+      viewBox: "0 0 24 24",
+      width: s,
+      height: s,
+      fill: f,
+      stroke: "none",
+      children: tag("path", { d }),
+    });
   };
 
 const SimpleIcons = {

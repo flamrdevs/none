@@ -5,7 +5,7 @@ import { logger } from "hono/logger";
 
 import { z } from "zod";
 
-import svg from "~/svg";
+import svg, { tag } from "~/svg";
 import { ColorSchema, ThemeSchema, SimpleIconSchema, Badge, Button, SimpleIcons } from "~/ui";
 
 const hono = (fn: (hono: Hono) => Hono = (x) => x) => fn(new Hono());
@@ -98,38 +98,29 @@ app.route(
                 c,
                 t,
                 w: e.length * 10 + 58,
-                children: {
-                  type: "div",
-                  props: {
-                    style: {
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: 10,
-                      paddingRight: 2,
-                    },
-                    children: [
-                      {
-                        type: "div",
-                        props: {
-                          style: {
-                            display: "flex",
-                          },
-                          children: SimpleIcons[i]({}),
-                        },
-                      },
-                      {
-                        type: "div",
-                        props: {
-                          style: {
-                            display: "flex",
-                          },
-                          children: e,
-                        },
-                      },
-                    ],
+                children: tag("div", {
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 10,
+                    paddingRight: 2,
                   },
-                },
+                  children: [
+                    tag("div", {
+                      style: {
+                        display: "flex",
+                      },
+                      children: SimpleIcons[i]({}),
+                    }),
+                    tag("div", {
+                      style: {
+                        display: "flex",
+                      },
+                      children: e,
+                    }),
+                  ],
+                }),
               })
           );
         });
