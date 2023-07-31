@@ -26,6 +26,7 @@ type CSSProperties = Partial<{
   flexShrink: SafeCSSValue;
   flexWrap: SafeCSSValue<"wrap">;
   overflow: SafeCSSValue<"hidden">;
+  gap: SafeCSSValue;
   margin: SafeCSSValue;
   marginTop: SafeCSSValue;
   marginRight: SafeCSSValue;
