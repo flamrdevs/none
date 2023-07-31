@@ -172,6 +172,7 @@ app.onError((error, ctx) => {
   let message: string = "Internal server error";
 
   if (error instanceof z.ZodError) {
+    status = 400;
     message = error.issues.at(0)?.message ?? "Validation Error";
   } else if (error instanceof Error) {
     message = error.message;
