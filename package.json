@@ -1,0 +1,21 @@
+{
+  "name": "none",
+  "version": "0.0.0",
+  "description": "svg generation",
+  "type": "module",
+  "scripts": {
+    "dev": "tsup --env.NODE_ENV development",
+    "build": "tsup --env.NODE_ENV production",
+    "preview": "cd dist && deno run -A main.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.5",
+    "hono": "^3.3.4",
+    "satori": "^0.10.1",
+    "terser": "^5.19.2",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6",
+    "yoga-wasm-web": "^0.3.3",
+    "zod": "^3.21.4"
+  }
+}
