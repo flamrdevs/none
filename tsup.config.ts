@@ -25,24 +25,24 @@ export default defineConfig(({ env }) => {
     },
     ...(DEV
       ? (() => {
-          let is = false;
-          return {
-            onSuccess: async () => {
-              if (is) return;
-              is = true;
-              const e = exec("cd dist && deno run -A --watch main.js");
-              e.stdout?.on("data", (x) => {
-                process.stdout.write(x.toString());
-              });
-              e.stderr?.on("data", (x) => {
-                process.stderr.write(x.toString());
-              });
-              e.on("exit", (code) => {
-                process.exit(typeof code === "number" ? code : 1);
-              });
-            },
-          };
-        })()
+        let run = false;
+        return {
+          onSuccess: async () => {
+            if (run) return;
+            run = true;
+            const e = exec("cd dist && deno run -A --watch main.js");
+            e.stdout?.on("data", (x) => {
+              process.stdout.write(x.toString());
+            });
+            e.stderr?.on("data", (x) => {
+              process.stderr.write(x.toString());
+            });
+            e.on("exit", (code) => {
+              process.exit(typeof code === "number" ? code : 1);
+            });
+          },
+        };
+      })()
       : {}),
   };
 });
