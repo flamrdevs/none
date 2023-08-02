@@ -14,8 +14,8 @@ devDependencies:
     specifier: ^0.263.0
     version: 0.263.0
   satori:
-    specifier: ^0.10.1
-    version: 0.10.1
+    specifier: ^0.10.2
+    version: 0.10.2
   simple-icons:
     specifier: ^9.8.0
     version: 9.8.0
@@ -862,8 +862,8 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /satori@0.10.1:
-    resolution: {integrity: sha512-F4bTCkDp931tLb7+UCNPBuSQwXhikrUkI4fBQo6fA8lF0Evqqgg3nDyUpRktQpR5Ry1DIiIVqLyEwkAms87ykg==}
+  /satori@0.10.2:
+    resolution: {integrity: sha512-38povLat5QMuKiKBudM/oIk+a0Z5tEfHh8oD/bsh58L0jlOXxfuhAVpDtlG3M0g5FGLajIV0LaKQftXtaYoSUQ==}
     engines: {node: '>=16'}
     dependencies:
       '@shuding/opentype.js': 1.4.0-beta.0
