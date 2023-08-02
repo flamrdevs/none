@@ -7,9 +7,9 @@ import {
   Badge,
   Button,
   ButtonChildIcon,
-  calcBadgeStringWidth,
-  calcButtonIconStringWidth,
-  calcButtonStringWidth,
+  calcBadgeWidth,
+  calcButtonIconWidth,
+  calcButtonWidth,
   Icon,
   LucideIcons,
   LucideIconSchema,
@@ -38,7 +38,7 @@ export const npm = hono((x) => {
         return ctx.json(await getPackageItem(n));
       });
       return x;
-    }),
+    })
   );
 
   x.get("/v", async (ctx) => {
@@ -54,7 +54,7 @@ export const npm = hono((x) => {
         t,
         n,
       },
-      () => Badge({ c, t, w: calcBadgeStringWidth(v), children: v }),
+      () => Badge({ c, t, w: calcBadgeWidth(v), children: v })
     );
   });
 
@@ -71,7 +71,7 @@ export const npm = hono((x) => {
         t,
         n,
       },
-      () => Badge({ c, t, w: calcBadgeStringWidth(l), children: l }),
+      () => Badge({ c, t, w: calcBadgeWidth(l), children: l })
     );
   });
 
@@ -97,7 +97,7 @@ export const bundlejs = hono((x) => {
         return ctx.json(await getBundleItem(n));
       });
       return x;
-    }),
+    })
   );
 
   x.get("/m", async (ctx) => {
@@ -113,7 +113,7 @@ export const bundlejs = hono((x) => {
         t,
         n,
       },
-      () => Badge({ c, t, w: calcBadgeStringWidth(s), children: s }),
+      () => Badge({ c, t, w: calcBadgeWidth(s), children: s })
     );
   });
 
@@ -130,7 +130,7 @@ export const bundlejs = hono((x) => {
         t,
         n,
       },
-      () => Badge({ c, t, w: calcBadgeStringWidth(s), children: s }),
+      () => Badge({ c, t, w: calcBadgeWidth(s), children: s })
     );
   });
 
@@ -160,13 +160,13 @@ export const ui = hono((x) => {
             t,
             e,
           },
-          () => Badge({ c, t, w: calcBadgeStringWidth(e), children: e }),
-          { expires },
+          () => Badge({ c, t, w: calcBadgeWidth(e), children: e }),
+          { expires }
         );
       });
 
       return x;
-    }),
+    })
   );
 
   x.route(
@@ -189,8 +189,8 @@ export const ui = hono((x) => {
             t,
             e,
           },
-          () => Button({ c, t, w: calcButtonStringWidth(e), children: e }),
-          { expires },
+          () => Button({ c, t, w: calcButtonWidth(e), children: e }),
+          { expires }
         );
       });
 
@@ -217,10 +217,10 @@ export const ui = hono((x) => {
             Button({
               c,
               t,
-              w: calcButtonIconStringWidth(e),
+              w: calcButtonIconWidth(e),
               children: ButtonChildIcon({ c: LucideIcons[i]({}), e }),
             }),
-          { expires },
+          { expires }
         );
       });
 
@@ -247,15 +247,15 @@ export const ui = hono((x) => {
             Button({
               c,
               t,
-              w: calcButtonIconStringWidth(e),
+              w: calcButtonIconWidth(e),
               children: ButtonChildIcon({ c: SimpleIcons[i]({}), e }),
             }),
-          { expires },
+          { expires }
         );
       });
 
       return x;
-    }),
+    })
   );
 
   x.route(
@@ -279,7 +279,7 @@ export const ui = hono((x) => {
             i,
           },
           () => Icon({ c, t, children: LucideIcons[i]({}) }),
-          { expires },
+          { expires }
         );
       });
 
@@ -301,12 +301,12 @@ export const ui = hono((x) => {
             i,
           },
           () => Icon({ c, t, children: SimpleIcons[i]({}) }),
-          { expires },
+          { expires }
         );
       });
 
       return x;
-    }),
+    })
   );
 
   x.route(
@@ -330,7 +330,7 @@ export const ui = hono((x) => {
             e,
           },
           () => Button({ c, t, children: e }),
-          { expires },
+          { expires }
         );
       });
 
@@ -352,7 +352,7 @@ export const ui = hono((x) => {
             i,
           },
           () => Button({ c, t, children: LucideIcons[i]({}) }),
-          { expires },
+          { expires }
         );
       });
 
@@ -374,12 +374,12 @@ export const ui = hono((x) => {
             i,
           },
           () => Button({ c, t, children: SimpleIcons[i]({}) }),
-          { expires },
+          { expires }
         );
       });
 
       return x;
-    }),
+    })
   );
 
   return x;

@@ -30,11 +30,9 @@ type SizeProps = {
   h?: number;
 };
 
-const calcBadgeStringWidth = (str: string) => str.length * 9 + 11;
+const calcBadgeWidth = (str: string) => str.length * 9 + 11;
 
-const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
-  { c, t, w, h, children },
-) => {
+const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
   const color = select(c, t);
 
   const width = 20;
@@ -58,12 +56,10 @@ const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
   });
 };
 
-const calcButtonStringWidth = (str: string) => str.length * 10 + 44;
-const calcButtonIconStringWidth = (str: string) => str.length * 10 + 58;
+const calcButtonWidth = (str: string) => str.length * 10 + 44;
+const calcButtonIconWidth = (str: string) => str.length * 10 + 58;
 
-const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
-  { c, t, w, h, children },
-) => {
+const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
   const color = select(c, t);
 
   const width = 32;
@@ -91,16 +87,11 @@ const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
 const ButtonChildIcon = ({ c, e }: { c: Children; e: string }) => {
   return tag("div", {
     style: { display: "flex", alignItems: "center", justifyContent: "center", gap: 10, paddingRight: 2 },
-    children: [
-      tag("div", { style: { display: "flex" }, children: c }),
-      tag("div", { style: { display: "flex" }, children: e }),
-    ],
+    children: [tag("div", { style: { display: "flex" }, children: c }), tag("div", { style: { display: "flex" }, children: e })],
   });
 };
 
-const Icon: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
-  { c, t, w, h, children },
-) => {
+const Icon: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
   const color = select(c, t);
 
   const width = 22;
@@ -122,27 +113,28 @@ const Icon: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
 type IconNodeChild = readonly [tag: string, attrs: Record<string, string | number>];
 type IconNode = readonly [tag: string, attrs: Record<string, string | number>, children?: IconNodeChild[]];
 
-const createLucideIcon = (
-  node: IconNode,
-): Component<{
-  s?: string | number;
-  c?: string;
-}> =>
-({ s = 20, c = "currentColor" }) => {
-  const children = node[2];
-  return tag("svg", {
-    role: "img",
-    viewBox: "0 0 24 24",
-    width: s,
-    height: s,
-    fill: "none",
-    stroke: c,
-    strokeWidth: 2,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    children: Array.isArray(children) ? children.map((child) => tag(child[0], child[1])) : [],
-  });
-};
+const createLucideIcon =
+  (
+    node: IconNode
+  ): Component<{
+    s?: string | number;
+    c?: string;
+  }> =>
+  ({ s = 20, c = "currentColor" }) => {
+    const children = node[2];
+    return tag("svg", {
+      role: "img",
+      viewBox: "0 0 24 24",
+      width: s,
+      height: s,
+      fill: "none",
+      stroke: c,
+      strokeWidth: 2,
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      children: Array.isArray(children) ? children.map((child) => tag(child[0], child[1])) : [],
+    });
+  };
 
 const LucideIcons = {
   activity: createLucideIcon(li.Activity),
@@ -273,7 +265,7 @@ const LUCIDE_ICON = Object.keys(LucideIcons) as unknown as [
   `video`,
   `wifi`,
   `x`,
-  `zap`,
+  `zap`
 ];
 const LUCIDE_ICON_DEFAULT = "code" satisfies LucideIcon;
 
@@ -283,23 +275,24 @@ const LucideIconSchema = z
 
 const isLucideIcon = (value?: unknown): value is LucideIcon => LUCIDE_ICON.includes(String(value) as LucideIcon);
 
-const createSimpleIcon = (
-  d: string,
-): Component<{
-  s?: string | number;
-  c?: string;
-}> =>
-({ s = 20, c = "currentColor" }) => {
-  return tag("svg", {
-    role: "img",
-    viewBox: "0 0 24 24",
-    width: s,
-    height: s,
-    fill: c,
-    stroke: "none",
-    children: tag("path", { d }),
-  });
-};
+const createSimpleIcon =
+  (
+    d: string
+  ): Component<{
+    s?: string | number;
+    c?: string;
+  }> =>
+  ({ s = 20, c = "currentColor" }) => {
+    return tag("svg", {
+      role: "img",
+      viewBox: "0 0 24 24",
+      width: s,
+      height: s,
+      fill: c,
+      stroke: "none",
+      children: tag("path", { d }),
+    });
+  };
 
 const SimpleIcons = {
   adonisjs: createSimpleIcon(si.siAdonisjs.path),
@@ -526,7 +519,7 @@ const SIMPLE_ICON = Object.keys(SimpleIcons) as unknown as [
   `windows`,
   `xampp`,
   `youtube`,
-  `zod`,
+  `zod`
 ];
 const SIMPLE_ICON_DEFAULT = "github" satisfies SimpleIcon;
 
@@ -538,4 +531,4 @@ const isSimpleIcon = (value?: unknown): value is SimpleIcon => SIMPLE_ICON.inclu
 
 export { LucideIconSchema, SimpleIconSchema };
 export { Badge, Button, ButtonChildIcon, Icon, LucideIcons, SimpleIcons };
-export { calcBadgeStringWidth, calcButtonIconStringWidth, calcButtonStringWidth, isLucideIcon, isSimpleIcon };
+export { calcBadgeWidth, calcButtonIconWidth, calcButtonWidth, isLucideIcon, isSimpleIcon };
