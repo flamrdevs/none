@@ -1,11 +1,15 @@
 import { z } from "zod";
 
-import svg, { tag } from "~/libs/svg";
+import svg from "~/libs/svg";
 import { getPackageItem, PackageNameSchema } from "~/libs/npm";
 import { getBundleItem } from "~/libs/bundlejs";
 import {
   Badge,
   Button,
+  ButtonChildIcon,
+  calcBadgeStringWidth,
+  calcButtonIconStringWidth,
+  calcButtonStringWidth,
   Icon,
   LucideIcons,
   LucideIconSchema,
@@ -38,9 +42,7 @@ export const npm = hono((x) => {
   );
 
   x.get("/v", async (ctx) => {
-    const { c, t, n } = await BasicNPMQuerySchema.parseAsync(
-      ctx.req.query(),
-    );
+    const { c, t, n } = await BasicNPMQuerySchema.parseAsync(ctx.req.query());
 
     const v = (await getPackageItem(n)).version;
 
@@ -52,14 +54,12 @@ export const npm = hono((x) => {
         t,
         n,
       },
-      () => Badge({ c, t, w: v.length * 9 + 11, children: v }),
+      () => Badge({ c, t, w: calcBadgeStringWidth(v), children: v }),
     );
   });
 
   x.get("/l", async (ctx) => {
-    const { c, t, n } = await BasicNPMQuerySchema.parseAsync(
-      ctx.req.query(),
-    );
+    const { c, t, n } = await BasicNPMQuerySchema.parseAsync(ctx.req.query());
 
     const l = (await getPackageItem(n)).license ?? "UNLICENSED";
 
@@ -71,7 +71,7 @@ export const npm = hono((x) => {
         t,
         n,
       },
-      () => Badge({ c, t, w: l.length * 9 + 11, children: l }),
+      () => Badge({ c, t, w: calcBadgeStringWidth(l), children: l }),
     );
   });
 
@@ -101,9 +101,7 @@ export const bundlejs = hono((x) => {
   );
 
   x.get("/m", async (ctx) => {
-    const { c, t, n } = await BasicBundleJSQuerySchema.parseAsync(
-      ctx.req.query(),
-    );
+    const { c, t, n } = await BasicBundleJSQuerySchema.parseAsync(ctx.req.query());
 
     const s = (await getBundleItem(n)).size.uncompressedSize;
 
@@ -115,14 +113,12 @@ export const bundlejs = hono((x) => {
         t,
         n,
       },
-      () => Badge({ c, t, w: s.length * 9 + 11, children: s }),
+      () => Badge({ c, t, w: calcBadgeStringWidth(s), children: s }),
     );
   });
 
   x.get("/mz", async (ctx) => {
-    const { c, t, n } = await BasicBundleJSQuerySchema.parseAsync(
-      ctx.req.query(),
-    );
+    const { c, t, n } = await BasicBundleJSQuerySchema.parseAsync(ctx.req.query());
 
     const s = (await getBundleItem(n)).size.compressedSize;
 
@@ -134,7 +130,7 @@ export const bundlejs = hono((x) => {
         t,
         n,
       },
-      () => Badge({ c, t, w: s.length * 9 + 11, children: s }),
+      () => Badge({ c, t, w: calcBadgeStringWidth(s), children: s }),
     );
   });
 
@@ -154,9 +150,7 @@ export const ui = hono((x) => {
       });
 
       x.get("/", async (ctx) => {
-        const { c, t, e } = await BadgeQuerySchema.parseAsync(
-          ctx.req.query(),
-        );
+        const { c, t, e } = await BadgeQuerySchema.parseAsync(ctx.req.query());
 
         return await svg(
           ctx,
@@ -166,7 +160,7 @@ export const ui = hono((x) => {
             t,
             e,
           },
-          () => Badge({ c, t, w: e.length * 9 + 11, children: e }),
+          () => Badge({ c, t, w: calcBadgeStringWidth(e), children: e }),
           { expires },
         );
       });
@@ -185,9 +179,7 @@ export const ui = hono((x) => {
       });
 
       x.get("/", async (ctx) => {
-        const { c, t, e } = await ButtonQuerySchema.parseAsync(
-          ctx.req.query(),
-        );
+        const { c, t, e } = await ButtonQuerySchema.parseAsync(ctx.req.query());
 
         return await svg(
           ctx,
@@ -197,7 +189,7 @@ export const ui = hono((x) => {
             t,
             e,
           },
-          () => Button({ c, t, w: e.length * 10 + 44, children: e }),
+          () => Button({ c, t, w: calcButtonStringWidth(e), children: e }),
           { expires },
         );
       });
@@ -210,9 +202,7 @@ export const ui = hono((x) => {
       });
 
       x.get("/lucide", async (ctx) => {
-        const { c, t, i, e } = await ButtonLucideQuerySchema.parseAsync(
-          ctx.req.query(),
-        );
+        const { c, t, i, e } = await ButtonLucideQuerySchema.parseAsync(ctx.req.query());
 
         return await svg(
           ctx,
@@ -227,30 +217,8 @@ export const ui = hono((x) => {
             Button({
               c,
               t,
-              w: e.length * 10 + 58,
-              children: tag("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 10,
-                  paddingRight: 2,
-                },
-                children: [
-                  tag("div", {
-                    style: {
-                      display: "flex",
-                    },
-                    children: LucideIcons[i]({}),
-                  }),
-                  tag("div", {
-                    style: {
-                      display: "flex",
-                    },
-                    children: e,
-                  }),
-                ],
-              }),
+              w: calcButtonIconStringWidth(e),
+              children: ButtonChildIcon({ c: LucideIcons[i]({}), e }),
             }),
           { expires },
         );
@@ -264,9 +232,7 @@ export const ui = hono((x) => {
       });
 
       x.get("/simple", async (ctx) => {
-        const { c, t, i, e } = await ButtonSimpleQuerySchema.parseAsync(
-          ctx.req.query(),
-        );
+        const { c, t, i, e } = await ButtonSimpleQuerySchema.parseAsync(ctx.req.query());
 
         return await svg(
           ctx,
@@ -281,30 +247,8 @@ export const ui = hono((x) => {
             Button({
               c,
               t,
-              w: e.length * 10 + 58,
-              children: tag("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 10,
-                  paddingRight: 2,
-                },
-                children: [
-                  tag("div", {
-                    style: {
-                      display: "flex",
-                    },
-                    children: SimpleIcons[i]({}),
-                  }),
-                  tag("div", {
-                    style: {
-                      display: "flex",
-                    },
-                    children: e,
-                  }),
-                ],
-              }),
+              w: calcButtonIconStringWidth(e),
+              children: ButtonChildIcon({ c: SimpleIcons[i]({}), e }),
             }),
           { expires },
         );
@@ -324,9 +268,7 @@ export const ui = hono((x) => {
       });
 
       x.get("/lucide", async (ctx) => {
-        const { c, t, i } = await IconLucideQuerySchema.parseAsync(
-          ctx.req.query(),
-        );
+        const { c, t, i } = await IconLucideQuerySchema.parseAsync(ctx.req.query());
 
         return await svg(
           ctx,
@@ -348,9 +290,7 @@ export const ui = hono((x) => {
       });
 
       x.get("/simple", async (ctx) => {
-        const { c, t, i } = await IconSimpleQuerySchema.parseAsync(
-          ctx.req.query(),
-        );
+        const { c, t, i } = await IconSimpleQuerySchema.parseAsync(ctx.req.query());
 
         return await svg(
           ctx,
@@ -379,9 +319,7 @@ export const ui = hono((x) => {
       });
 
       x.get("/", async (ctx) => {
-        const { c, t, e } = await IconButtonQuerySchema.parseAsync(
-          ctx.req.query(),
-        );
+        const { c, t, e } = await IconButtonQuerySchema.parseAsync(ctx.req.query());
 
         return await svg(
           ctx,
@@ -403,9 +341,7 @@ export const ui = hono((x) => {
       });
 
       x.get("/lucide", async (ctx) => {
-        const { c, t, i } = await IconButtonLucideQuerySchema.parseAsync(
-          ctx.req.query(),
-        );
+        const { c, t, i } = await IconButtonLucideQuerySchema.parseAsync(ctx.req.query());
 
         return await svg(
           ctx,
@@ -427,9 +363,7 @@ export const ui = hono((x) => {
       });
 
       x.get("/simple", async (ctx) => {
-        const { c, t, i } = await IconButtonSimpleQuerySchema.parseAsync(
-          ctx.req.query(),
-        );
+        const { c, t, i } = await IconButtonSimpleQuerySchema.parseAsync(ctx.req.query());
 
         return await svg(
           ctx,

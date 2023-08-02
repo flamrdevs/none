@@ -28,12 +28,7 @@ const PackageItemCache = cache<PackageItem>();
 const getPackageItem = async (name: string): Promise<PackageItem> => {
   let cached = PackageItemCache.get(name);
   if (cached) return cached;
-  return PackageItemCache.set(
-    name,
-    await PackageItemSchema.parseAsync(
-      await ky.get(`https://registry.npmjs.org/${name}/latest`).json(),
-    ),
-  );
+  return PackageItemCache.set(name, await PackageItemSchema.parseAsync(await ky.get(`https://registry.npmjs.org/${name}/latest`).json()));
 };
 
 export { PackageNameSchema };

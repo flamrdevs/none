@@ -3,7 +3,7 @@ import * as li from "lucide";
 import { z } from "zod";
 
 import { tag } from "~/libs/svg";
-import type { Component, PropsWithChildren, RootComponent } from "~/libs/svg";
+import type { Children, Component, PropsWithChildren, RootComponent } from "~/libs/svg";
 
 import type { Color, Theme } from "./colors";
 import { select } from "./utils";
@@ -30,6 +30,8 @@ type SizeProps = {
   h?: number;
 };
 
+const calcBadgeStringWidth = (str: string) => str.length * 9 + 11;
+
 const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
   { c, t, w, h, children },
 ) => {
@@ -45,9 +47,7 @@ const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
       justifyContent: "center",
       width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
       height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
-      backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${
-        color[2]
-      })`,
+      backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
       color: color[11],
       border: `1px solid ${color[7]}`,
       borderRadius: "0.6rem",
@@ -57,6 +57,9 @@ const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
     children,
   });
 };
+
+const calcButtonStringWidth = (str: string) => str.length * 10 + 44;
+const calcButtonIconStringWidth = (str: string) => str.length * 10 + 58;
 
 const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
   { c, t, w, h, children },
@@ -74,9 +77,7 @@ const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
       padding: "0.1rem 0.4rem",
       width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
       height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
-      backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${
-        color[2]
-      })`,
+      backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
       color: color[11],
       border: `1px solid ${color[7]}`,
       borderRadius: "0.6rem",
@@ -84,6 +85,16 @@ const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
       fontWeight: 500,
     },
     children,
+  });
+};
+
+const ButtonChildIcon = ({ c, e }: { c: Children; e: string }) => {
+  return tag("div", {
+    style: { display: "flex", alignItems: "center", justifyContent: "center", gap: 10, paddingRight: 2 },
+    children: [
+      tag("div", { style: { display: "flex" }, children: c }),
+      tag("div", { style: { display: "flex" }, children: e }),
+    ],
   });
 };
 
@@ -108,15 +119,8 @@ const Icon: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = (
   });
 };
 
-type IconNodeChild = readonly [
-  tag: string,
-  attrs: Record<string, string | number>,
-];
-type IconNode = readonly [
-  tag: string,
-  attrs: Record<string, string | number>,
-  children?: IconNodeChild[],
-];
+type IconNodeChild = readonly [tag: string, attrs: Record<string, string | number>];
+type IconNode = readonly [tag: string, attrs: Record<string, string | number>, children?: IconNodeChild[]];
 
 const createLucideIcon = (
   node: IconNode,
@@ -136,9 +140,7 @@ const createLucideIcon = (
     strokeWidth: 2,
     strokeLinecap: "round",
     strokeLinejoin: "round",
-    children: Array.isArray(children)
-      ? children.map((child) => tag(child[0], child[1]))
-      : [],
+    children: Array.isArray(children) ? children.map((child) => tag(child[0], child[1])) : [],
   });
 };
 
@@ -276,14 +278,10 @@ const LUCIDE_ICON = Object.keys(LucideIcons) as unknown as [
 const LUCIDE_ICON_DEFAULT = "code" satisfies LucideIcon;
 
 const LucideIconSchema = z
-  .enum(LUCIDE_ICON, {
-    required_error: "Icon is required",
-    invalid_type_error: "Invalid icon",
-  })
+  .enum(LUCIDE_ICON, { required_error: "Icon is required", invalid_type_error: "Invalid icon" })
   .default(LUCIDE_ICON_DEFAULT);
 
-const isLucideIcon = (value?: unknown): value is LucideIcon =>
-  LUCIDE_ICON.includes(String(value) as LucideIcon);
+const isLucideIcon = (value?: unknown): value is LucideIcon => LUCIDE_ICON.includes(String(value) as LucideIcon);
 
 const createSimpleIcon = (
   d: string,
@@ -533,15 +531,11 @@ const SIMPLE_ICON = Object.keys(SimpleIcons) as unknown as [
 const SIMPLE_ICON_DEFAULT = "github" satisfies SimpleIcon;
 
 const SimpleIconSchema = z
-  .enum(SIMPLE_ICON, {
-    required_error: "Icon is required",
-    invalid_type_error: "Invalid icon",
-  })
+  .enum(SIMPLE_ICON, { required_error: "Icon is required", invalid_type_error: "Invalid icon" })
   .default(SIMPLE_ICON_DEFAULT);
 
-const isSimpleIcon = (value?: unknown): value is SimpleIcon =>
-  SIMPLE_ICON.includes(String(value) as SimpleIcon);
+const isSimpleIcon = (value?: unknown): value is SimpleIcon => SIMPLE_ICON.includes(String(value) as SimpleIcon);
 
 export { LucideIconSchema, SimpleIconSchema };
-export { Badge, Button, Icon, LucideIcons, SimpleIcons };
-export { isLucideIcon, isSimpleIcon };
+export { Badge, Button, ButtonChildIcon, Icon, LucideIcons, SimpleIcons };
+export { calcBadgeStringWidth, calcButtonIconStringWidth, calcButtonStringWidth, isLucideIcon, isSimpleIcon };

@@ -3,10 +3,7 @@ import { Hono } from "hono";
 const hono = (fn: (hono: Hono) => Hono = (x) => x) => fn(new Hono());
 
 const cache = <T>(dex: number = 24 * 60 * 60 * 1000) => {
-  type Item = {
-    e: number;
-    v: T;
-  };
+  type Item = { e: number; v: T };
   const record: Record<string, Item> = {};
   return {
     get(key: string): T | undefined {

@@ -1,0 +1,7 @@
+{
+  "fmt": {
+    "lineWidth": 200,
+    "include": ["src"],
+    "exclude": [".github", "dist", "node_modules", "public"]
+  }
+}

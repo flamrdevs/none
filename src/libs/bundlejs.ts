@@ -21,12 +21,7 @@ const BundleItemCache = cache<BundleItem>();
 const getBundleItem = async (name: string): Promise<BundleItem> => {
   let cached = BundleItemCache.get(name);
   if (cached) return cached;
-  return BundleItemCache.set(
-    name,
-    await BundleItemSchema.parseAsync(
-      await ky.get(`https://deno.bundlejs.com/?q=${name}`).json(),
-    ),
-  );
+  return BundleItemCache.set(name, await BundleItemSchema.parseAsync(await ky.get(`https://deno.bundlejs.com/?q=${name}`).json()));
 };
 
 export { getBundleItem };
