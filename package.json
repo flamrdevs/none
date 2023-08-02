@@ -1,7 +1,7 @@
 {
   "name": "none",
   "version": "0.0.0",
-  "description": "svg generation",
+  "description": "Colorful SVG Generation",
   "type": "module",
   "scripts": {
     "dev": "tsup --env.NODE_ENV development",

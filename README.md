@@ -25,7 +25,15 @@
   </picture>
 </h1>
 
-svg generation
+Colorful SVG Generation Service
+
+- Web framework is from Hono.
+- SVG Generation engine is from satori.
+- Color System is from Radix Colors.
+- Icons library is handpicked from Lucide Icons and Simple Icons.
+- Integrated with external service
+  - bundlejs
+  - npm
 
 ## UI
 
