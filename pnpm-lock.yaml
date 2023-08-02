@@ -10,6 +10,9 @@ devDependencies:
   ky:
     specifier: ^0.33.3
     version: 0.33.3
+  lucide:
+    specifier: ^0.263.0
+    version: 0.263.0
   satori:
     specifier: ^0.10.1
     version: 0.10.1
@@ -687,6 +690,10 @@ packages:
 
   /lodash.sortby@4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
+    dev: true
+
+  /lucide@0.263.0:
+    resolution: {integrity: sha512-Z3CXtFWyZdPDG8i5TOZjP0dXfVK1T6tUdoAFdsdWW32HAJJ0eErN3frh2rt366qaM7fApduNpzCZJqlIdoAjsQ==}
     dev: true
 
   /merge-stream@2.0.0:
