@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 devDependencies:
   '@types/node':
-    specifier: ^20.4.5
-    version: 20.4.5
+    specifier: ^20.4.7
+    version: 20.4.7
   dayjs:
     specifier: ^1.11.9
     version: 1.11.9
@@ -26,8 +26,8 @@ devDependencies:
     specifier: ^5.19.2
     version: 5.19.2
   tsup:
-    specifier: ^7.1.0
-    version: 7.1.0(typescript@5.1.6)
+    specifier: ^7.2.0
+    version: 7.2.0(typescript@5.1.6)
   typescript:
     specifier: ^5.1.6
     version: 5.1.6
@@ -309,8 +309,8 @@ packages:
       string.prototype.codepointat: 0.2.1
     dev: true
 
-  /@types/node@20.4.5:
-    resolution: {integrity: sha512-rt40Nk13II9JwQBdeYqmbn2Q6IVTA5uPhvSO+JVqdXw/6/4glI6oR9ezty/A9Hg5u7JH4OmYmuQ+XvjKm0Datg==}
+  /@types/node@20.4.7:
+    resolution: {integrity: sha512-bUBrPjEry2QUTsnuEjzjbS7voGWCc30W0qzgMf90GPeDGFRakvrz47ju+oqDAKCXLUCe39u57/ORMl/O/04/9g==}
     dev: true
 
   /acorn@8.10.0:
@@ -855,8 +855,8 @@ packages:
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
     dev: true
 
-  /rollup@3.27.0:
-    resolution: {integrity: sha512-aOltLCrYZ0FhJDm7fCqwTjIUEVjWjcydKBV/Zeid6Mn8BWgDCUBBWT5beM5ieForYNo/1ZHuGJdka26kvQ3Gzg==}
+  /rollup@3.27.2:
+    resolution: {integrity: sha512-YGwmHf7h2oUHkVBT248x0yt6vZkYQ3/rvE5iQuVBh3WO8GcJ6BNeOkpoX1yMHIiBm18EMLjBPIoUDkhgnyxGOQ==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
@@ -1003,8 +1003,8 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
 
-  /tsup@7.1.0(typescript@5.1.6):
-    resolution: {integrity: sha512-mazl/GRAk70j8S43/AbSYXGgvRP54oQeX8Un4iZxzATHt0roW0t6HYDVZIXMw0ZQIpvr1nFMniIVnN5186lW7w==}
+  /tsup@7.2.0(typescript@5.1.6):
+    resolution: {integrity: sha512-vDHlczXbgUvY3rWvqFEbSqmC1L7woozbzngMqTtL2PGBODTtWlRwGDDawhvWzr5c1QjKe4OAKqJGfE1xeXUvtQ==}
     engines: {node: '>=16.14'}
     hasBin: true
     peerDependencies:
@@ -1029,7 +1029,7 @@ packages:
       joycon: 3.1.1
       postcss-load-config: 4.0.1
       resolve-from: 5.0.0
-      rollup: 3.27.0
+      rollup: 3.27.2
       source-map: 0.8.0-beta.0
       sucrase: 3.34.0
       tree-kill: 1.2.2
