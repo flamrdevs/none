@@ -25,13 +25,13 @@
   </picture>
 </h1>
 
-Colorful SVG Generation Service
+Colorful SVG generation service
 
 - Web framework is from Hono.
-- SVG Generation engine is from satori.
-- Color System is from Radix Colors.
+- SVG generation engine is from satori.
+- Color system is from Radix Colors.
 - Icons library is handpicked from Lucide Icons and Simple Icons.
-- Integrated with external service
+- Integrated with external services
   - bundlejs
   - npm
 
