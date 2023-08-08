@@ -2,26 +2,26 @@ lockfileVersion: '6.0'
 
 devDependencies:
   '@types/node':
-    specifier: ^20.4.7
-    version: 20.4.7
+    specifier: ^20.4.8
+    version: 20.4.8
   dayjs:
     specifier: ^1.11.9
     version: 1.11.9
   hono:
-    specifier: ^3.3.4
-    version: 3.3.4
+    specifier: ^3.4.1
+    version: 3.4.1
   ky:
     specifier: ^0.33.3
     version: 0.33.3
   lucide:
-    specifier: ^0.263.0
-    version: 0.263.0
+    specifier: ^0.265.0
+    version: 0.265.0
   satori:
     specifier: ^0.10.2
     version: 0.10.2
   simple-icons:
-    specifier: ^9.8.0
-    version: 9.8.0
+    specifier: ^9.9.0
+    version: 9.9.0
   terser:
     specifier: ^5.19.2
     version: 5.19.2
@@ -309,8 +309,8 @@ packages:
       string.prototype.codepointat: 0.2.1
     dev: true
 
-  /@types/node@20.4.7:
-    resolution: {integrity: sha512-bUBrPjEry2QUTsnuEjzjbS7voGWCc30W0qzgMf90GPeDGFRakvrz47ju+oqDAKCXLUCe39u57/ORMl/O/04/9g==}
+  /@types/node@20.4.8:
+    resolution: {integrity: sha512-0mHckf6D2DiIAzh8fM8f3HQCvMKDpK94YQ0DSVkfWTG9BZleYIWudw9cJxX8oCk9bM+vAkDyujDV6dmKHbvQpg==}
     dev: true
 
   /acorn@8.10.0:
@@ -605,8 +605,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /hono@3.3.4:
-    resolution: {integrity: sha512-lqvcsQrXS0bSydj/MkOXi3opAwrlauIjZefhXMMRj9prABfBWdrYHSrWk/xfxgxNPs4yuEMh2Z5zV0L2b1Jmdw==}
+  /hono@3.4.1:
+    resolution: {integrity: sha512-fA7/cfgNg060mt12cYykdstwqM/bRvqYmQlPpEjoKIwMs6QF1rPJzZjppCrFuZZJvKE1vEP6kEAaaDH96XRg7Q==}
     engines: {node: '>=16.0.0'}
     dev: true
 
@@ -699,8 +699,8 @@ packages:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
     dev: true
 
-  /lucide@0.263.0:
-    resolution: {integrity: sha512-Z3CXtFWyZdPDG8i5TOZjP0dXfVK1T6tUdoAFdsdWW32HAJJ0eErN3frh2rt366qaM7fApduNpzCZJqlIdoAjsQ==}
+  /lucide@0.265.0:
+    resolution: {integrity: sha512-UftGwLDfBwI4lKz2XjcyGQZrDObx3GNlqLO9s22T8+MhdvJEqJnNRErpOdL/6K6Z1i/iO1PeD4q4kqDXVhL5jw==}
     dev: true
 
   /merge-stream@2.0.0:
@@ -901,8 +901,8 @@ packages:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
 
-  /simple-icons@9.8.0:
-    resolution: {integrity: sha512-xVHfr+souquvsKoqYzfgEoQeZSt1i8ka9botwc81wGZ9VNOc2xr96GPz1ziycpX+vHLuZFlgibYcqCzJZeCPfg==}
+  /simple-icons@9.9.0:
+    resolution: {integrity: sha512-1Pe4iLuEdUfFP60pgdBl9CzDiKK7gYlIMmnEPr8G9+pYXR4lZRkGta4UapbXcN1g3oGy1FM3HdRT+0tXaDhzIw==}
     engines: {node: '>=0.12.18'}
     dev: true
 
