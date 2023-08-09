@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: "pnpm"
+          cache: 'pnpm'
 
       - name: Install
         run: pnpm install
@@ -36,9 +36,12 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Test
+        run: pnpm test
+
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "none"
-          entrypoint: "main.js"
-          root: "./dist"
+          project: 'none'
+          entrypoint: 'main.js'
+          root: './dist'
