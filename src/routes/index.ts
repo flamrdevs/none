@@ -1,6 +1,8 @@
 import { z } from "zod";
 
-import svg from "~/libs/svg";
+import dayjs from "dayjs";
+
+import svg, { CACHE } from "~/libs/svg";
 import { getPackageItem, PackageNameSchema } from "~/libs/npm";
 import { getBundleItem } from "~/libs/bundlejs";
 import {
@@ -17,7 +19,71 @@ import {
   SimpleIconSchema,
 } from "~/ui/components";
 import { ColorSchema, ThemeSchema } from "~/ui/utils";
-import { hono } from "~/utils";
+import { formatSize, hono } from "~/utils";
+
+export const tilde = hono((x) => {
+  x.route(
+    "/svg",
+    hono((x) => {
+      x.route(
+        "/cache",
+        hono((x) => {
+          x.get("/", (ctx) => {
+            const now = Date.now();
+            const entries = Object.entries(CACHE.value);
+            let size = 0;
+            let bytes: number;
+
+            const object: Record<string, string> = {};
+
+            entries.forEach(([key, { e, v }]) => {
+              bytes = new Blob([v]).size;
+              size += bytes;
+              object[key] = `${formatSize(bytes)} | ${dayjs(now).to(e)}`;
+            });
+
+            return ctx.json({
+              length: Object.keys(object).length,
+              size: formatSize(size),
+              value: object,
+            });
+          });
+
+          x.get("/clean", (ctx) => {
+            const now = Date.now();
+            const entries = Object.entries(CACHE.value);
+            let size = 0;
+            let bytes: number;
+
+            const object: Record<string, string> = {};
+
+            entries
+              .filter(([, { e }]) => e < now)
+              .forEach(([key, { v }]) => {
+                CACHE.del(key);
+
+                bytes = new Blob([v]).size;
+                size += bytes;
+                object[key] = `${formatSize(bytes)}`;
+              });
+
+            return ctx.json({
+              length: Object.keys(object).length,
+              size: formatSize(size),
+              value: object,
+            });
+          });
+
+          return x;
+        })
+      );
+
+      return x;
+    })
+  );
+
+  return x;
+});
 
 export const npm = hono((x) => {
   const BasicNPMQuerySchema = z.object({

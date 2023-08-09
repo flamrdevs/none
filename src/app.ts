@@ -3,27 +3,25 @@ import { compress } from "hono/compress";
 import { logger } from "hono/logger";
 
 import dayjs from "dayjs";
+import dayjs_relativeTime from "dayjs/plugin/relativeTime";
 import { z } from "zod";
 
 import { hono } from "~/utils";
-import { bundlejs, npm, ui } from "~/routes";
+import { bundlejs, npm, tilde, ui } from "~/routes";
+
+dayjs.extend(dayjs_relativeTime);
 
 const app = hono();
 
 const build = dayjs().format("DD-MM-YYYY");
 
-app
-  .use("*", cors({ origin: "*" }))
-  .use("*", compress());
+app.use("*", cors({ origin: "*" })).use("*", compress());
 
 if (process.env.NODE_ENV === "development") {
   app.use("*", logger());
 }
 
-app
-  .route("/npm", npm)
-  .route("/bundlejs", bundlejs)
-  .route("/ui", ui);
+app.route("/~", tilde).route("/npm", npm).route("/bundlejs", bundlejs).route("/ui", ui);
 
 app
   .get("/", (ctx) => ctx.json({ name: "none", build }))

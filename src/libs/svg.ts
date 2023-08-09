@@ -12,10 +12,7 @@ type Tag = "div" | (string & {});
 
 type SafeProps<P extends Record<string, any>> = P & { [key: string]: any | undefined };
 
-type SafeCSSValue<T extends string | number = string | number> =
-  | T
-  | (string & {})
-  | (number & {});
+type SafeCSSValue<T extends string | number = string | number> = T | (string & {}) | (number & {});
 
 type CSSProperties = Partial<{
   display: SafeCSSValue<"flex">;
@@ -74,7 +71,7 @@ type SVGFunction = (
   context: Context,
   query: Record<string, string>,
   element: () => RootElement,
-  options?: { expires?: number },
+  options?: { expires?: number }
 ) => Promise<Response>;
 
 const tag = <P extends Record<string, any>>(type: Tag, props: P) => ({ type, props });
@@ -89,7 +86,7 @@ const img = await (async () => {
     name: FontOptions["name"],
     path: string,
     style: FontOptions["style"],
-    weight: FontOptions["weight"],
+    weight: FontOptions["weight"]
   ): Promise<FontOptions> => ({ name, style, weight, data: await fs.readFile(path) });
   const fonts: FontOptions[] = await Promise.all([
     font("Source Code Pro", "./assets/source-code-pro-300.woff", "normal", 300),
@@ -110,23 +107,27 @@ const img = await (async () => {
   }) as ImgFunction;
 })();
 
+const CACHE = cache<string>();
+
 const svg = await (async () => {
-  const c = cache<string>();
   const maxAxe = process.env.NODE_ENV === "production" ? 86400 : 0;
   return (async (context, query, element, options) => {
     let headers: Record<string, string> = { "content-type": "image/svg+xml", "x-cache": "true" };
-    let key: string = ``, k: string, v: string;
+    let key: string = ``,
+      k: string,
+      v: string;
     for (k in query) if (typeof (v = query[k]) !== "undefined") key += `${k}=${v}`;
-    let cached = c.get(key);
+    let cached = CACHE.get(key);
     if (cached) {
       headers["cache-control"] = `public, max-age=${maxAxe}`;
       return context.body(cached, 200, headers);
     }
     headers["x-cache"] = "false";
-    return context.body(c.set(key, await img(element()), options?.expires), 200, headers);
+    return context.body(CACHE.set(key, await img(element()), options?.expires), 200, headers);
   }) as SVGFunction;
 })();
 
 export type { Children, Component, Element, PropsWithChildren, PropsWithOptionalChildren, RootComponent, RootElement };
 export { img, tag };
+export { CACHE };
 export default svg;
