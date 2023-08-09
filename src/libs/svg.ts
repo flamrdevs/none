@@ -108,10 +108,10 @@ const svg = await (async () => {
   const maxAxe = process.env.NODE_ENV === 'production' ? 86400 : 0;
   return (async (context, query, element, options) => {
     let headers: Record<string, string> = { 'content-type': 'image/svg+xml', 'x-cache': 'true' };
-    let key: string = ``,
+    let key: string = `&`,
       k: string,
       v: string;
-    for (k in query) if (typeof (v = query[k]) !== 'undefined') key += `${k}=${v}`;
+    for (k in query) if (typeof (v = query[k]) !== 'undefined') key += `${k}=${v}&`;
     let cached = CACHE.get(key);
     if (cached) {
       headers['cache-control'] = `public, max-age=${maxAxe}`;
