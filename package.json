@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "tsup --env.NODE_ENV development",
     "build": "tsup --env.NODE_ENV production",
+    "test": "cd dist && deno test -A test.js",
     "preview": "cd dist && deno run -A main.js"
   },
   "devDependencies": {

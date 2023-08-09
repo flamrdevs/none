@@ -3,5 +3,6 @@
     "lineWidth": 200,
     "include": ["src"],
     "exclude": [".github", "dist", "node_modules", "public"]
-  }
+  },
+  "importMap": "./import_map.json"
 }
