@@ -7,7 +7,8 @@
     "dev": "tsup --env.NODE_ENV development",
     "build": "tsup --env.NODE_ENV production",
     "test": "cd dist && deno test -A test.js",
-    "preview": "cd dist && deno run -A main.js"
+    "preview": "cd dist && deno run -A main.js",
+    "script:remove-test": "node scripts/remove-test.js"
   },
   "devDependencies": {
     "@types/node": "^20.4.8",

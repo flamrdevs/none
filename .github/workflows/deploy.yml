@@ -30,18 +30,22 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
+      - name: Setup deno
       - uses: denoland/setup-deno@v1
         with:
           deno-version: '1.35.3'
 
-      - name: Install
+      - name: Run "pnpm install"
         run: pnpm install
 
-      - name: Build
+      - name: Run "pnpm build"
         run: pnpm build
 
-      - name: Test
+      - name: Run "pnpm test"
         run: pnpm test
+
+      - name: Run "pnpm script:remove-test"
+        run: pnpm script:remove-test
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
