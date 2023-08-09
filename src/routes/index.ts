@@ -28,9 +28,11 @@ export const tilde = hono((x) => {
       x.route(
         "/cache",
         hono((x) => {
+          const getEntries = () => Object.entries(CACHE.value);
+
           x.get("/", (ctx) => {
             const now = Date.now();
-            const entries = Object.entries(CACHE.value);
+            const entries = getEntries();
             let size = 0;
             let bytes: number;
 
@@ -51,7 +53,7 @@ export const tilde = hono((x) => {
 
           x.get("/clean", (ctx) => {
             const now = Date.now();
-            const entries = Object.entries(CACHE.value);
+            const entries = getEntries();
             let size = 0;
             let bytes: number;
 

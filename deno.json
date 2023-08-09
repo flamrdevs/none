@@ -1,6 +1,8 @@
 {
   "fmt": {
     "lineWidth": 200,
+    "singleQuote": true,
+    "semiColons": true,
     "include": ["src"],
     "exclude": [".github", "dist", "node_modules", "public"]
   },

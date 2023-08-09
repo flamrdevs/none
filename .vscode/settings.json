@@ -1,3 +1,6 @@
 {
-  "deno.enable": false
+  "deno.enable": false,
+  "prettier.printWidth": 200,
+  "prettier.singleQuote": true,
+  "prettier.semi": true
 }

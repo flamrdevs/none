@@ -1,18 +1,18 @@
-import ky from "ky";
-import { z } from "zod";
+import ky from 'ky';
+import { z } from 'zod';
 
-import { cache } from "~/utils";
+import { cache } from '~/utils';
 
 const PackageNameSchema = z
   .string({
-    required_error: "Package name is required",
-    invalid_type_error: "Package name must be a string",
+    required_error: 'Package name is required',
+    invalid_type_error: 'Package name must be a string',
   })
   .regex(/^(?:@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/, {
-    message: "Invalid NPM package name",
+    message: 'Invalid NPM package name',
   })
   .regex(/^(?!.*-$)[\s\S]*$/, {
-    message: "Package name cannot end with a hyphen",
+    message: 'Package name cannot end with a hyphen',
   });
 
 type PackageItem = z.infer<typeof PackageItemSchema>;

@@ -1,12 +1,12 @@
-import * as si from "simple-icons";
-import * as li from "lucide";
-import { z } from "zod";
+import * as si from 'simple-icons';
+import * as li from 'lucide';
+import { z } from 'zod';
 
-import { tag } from "~/libs/svg";
-import type { Children, Component, PropsWithChildren, RootComponent } from "~/libs/svg";
+import { tag } from '~/libs/svg';
+import type { Children, Component, PropsWithChildren, RootComponent } from '~/libs/svg';
 
-import type { Color, Theme } from "./colors";
-import { select } from "./utils";
+import type { Color, Theme } from './colors';
+import { select } from './utils';
 
 type BaseProps = {
   /**
@@ -38,17 +38,17 @@ const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, 
   const width = 20;
   const height = 20;
 
-  return tag("div", {
+  return tag('div', {
     style: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
-      height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: typeof w !== 'number' || isNaN(w) || w < width ? width : w,
+      height: typeof h !== 'number' || isNaN(h) || h < height ? height : h,
       backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
       color: color[11],
       border: `1px solid ${color[7]}`,
-      borderRadius: "0.6rem",
+      borderRadius: '0.6rem',
       fontSize: 14,
       fontWeight: 500,
     },
@@ -65,18 +65,18 @@ const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t,
   const width = 32;
   const height = 32;
 
-  return tag("div", {
+  return tag('div', {
     style: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "0.1rem 0.4rem",
-      width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
-      height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '0.1rem 0.4rem',
+      width: typeof w !== 'number' || isNaN(w) || w < width ? width : w,
+      height: typeof h !== 'number' || isNaN(h) || h < height ? height : h,
       backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
       color: color[11],
       border: `1px solid ${color[7]}`,
-      borderRadius: "0.6rem",
+      borderRadius: '0.6rem',
       fontSize: 16,
       fontWeight: 500,
     },
@@ -85,9 +85,9 @@ const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t,
 };
 
 const ButtonChildIcon = ({ c, e }: { c: Children; e: string }) => {
-  return tag("div", {
-    style: { display: "flex", alignItems: "center", justifyContent: "center", gap: 10, paddingRight: 2 },
-    children: [tag("div", { style: { display: "flex" }, children: c }), tag("div", { style: { display: "flex" }, children: e })],
+  return tag('div', {
+    style: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, paddingRight: 2 },
+    children: [tag('div', { style: { display: 'flex' }, children: c }), tag('div', { style: { display: 'flex' }, children: e })],
   });
 };
 
@@ -97,13 +97,13 @@ const Icon: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w
   const width = 22;
   const height = 22;
 
-  return tag("div", {
+  return tag('div', {
     style: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      width: typeof w !== "number" || isNaN(w) || w < width ? width : w,
-      height: typeof h !== "number" || isNaN(h) || h < height ? height : h,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: typeof w !== 'number' || isNaN(w) || w < width ? width : w,
+      height: typeof h !== 'number' || isNaN(h) || h < height ? height : h,
       color: color[11],
     },
     children,
@@ -120,33 +120,33 @@ const createLucideIcon =
     s?: string | number;
     c?: string;
   }> =>
-  ({ s = 20, c = "currentColor" }) => {
+  ({ s = 20, c = 'currentColor' }) => {
     const children = node[2];
-    return tag("svg", {
-      role: "img",
-      viewBox: "0 0 24 24",
+    return tag('svg', {
+      role: 'img',
+      viewBox: '0 0 24 24',
       width: s,
       height: s,
-      fill: "none",
+      fill: 'none',
       stroke: c,
       strokeWidth: 2,
-      strokeLinecap: "round",
-      strokeLinejoin: "round",
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
       children: Array.isArray(children) ? children.map((child) => tag(child[0], child[1])) : [],
     });
   };
 
 const LucideIcons = {
   activity: createLucideIcon(li.Activity),
-  "alert-circle": createLucideIcon(li.AlertCircle),
-  "alert-octagon": createLucideIcon(li.AlertOctagon),
-  "alert-triangle": createLucideIcon(li.AlertTriangle),
-  "arrow-down": createLucideIcon(li.ArrowDown),
-  "arrow-left": createLucideIcon(li.ArrowLeft),
-  "arrow-right": createLucideIcon(li.ArrowRight),
-  "arrow-up": createLucideIcon(li.ArrowUp),
+  'alert-circle': createLucideIcon(li.AlertCircle),
+  'alert-octagon': createLucideIcon(li.AlertOctagon),
+  'alert-triangle': createLucideIcon(li.AlertTriangle),
+  'arrow-down': createLucideIcon(li.ArrowDown),
+  'arrow-left': createLucideIcon(li.ArrowLeft),
+  'arrow-right': createLucideIcon(li.ArrowRight),
+  'arrow-up': createLucideIcon(li.ArrowUp),
   award: createLucideIcon(li.Award),
-  "bar-chart": createLucideIcon(li.BarChart),
+  'bar-chart': createLucideIcon(li.BarChart),
   bell: createLucideIcon(li.Bell),
   blocks: createLucideIcon(li.Blocks),
   bot: createLucideIcon(li.Bot),
@@ -165,7 +165,7 @@ const LucideIcons = {
   cpu: createLucideIcon(li.Cpu),
   database: createLucideIcon(li.Database),
   download: createLucideIcon(li.Download),
-  "external-link": createLucideIcon(li.ExternalLink),
+  'external-link': createLucideIcon(li.ExternalLink),
   folder: createLucideIcon(li.Folder),
   gift: createLucideIcon(li.Gift),
   goal: createLucideIcon(li.Goal),
@@ -177,7 +177,7 @@ const LucideIcons = {
   layers: createLucideIcon(li.Layers),
   layout: createLucideIcon(li.Layout),
   library: createLucideIcon(li.Library),
-  "line-chart": createLucideIcon(li.LineChart),
+  'line-chart': createLucideIcon(li.LineChart),
   link: createLucideIcon(li.Link),
   lock: createLucideIcon(li.Lock),
   map: createLucideIcon(li.Map),
@@ -185,8 +185,8 @@ const LucideIcons = {
   network: createLucideIcon(li.Network),
   package: createLucideIcon(li.Package),
   palette: createLucideIcon(li.Palette),
-  "pie-chart": createLucideIcon(li.PieChart),
-  "qr-code": createLucideIcon(li.QrCode),
+  'pie-chart': createLucideIcon(li.PieChart),
+  'qr-code': createLucideIcon(li.QrCode),
   radiation: createLucideIcon(li.Radiation),
   reply: createLucideIcon(li.Reply),
   rocket: createLucideIcon(li.Rocket),
@@ -289,11 +289,9 @@ const LUCIDE_ICON = Object.keys(LucideIcons) as unknown as [
   `x`,
   `zap`
 ];
-const LUCIDE_ICON_DEFAULT = "code" satisfies LucideIcon;
+const LUCIDE_ICON_DEFAULT = 'code' satisfies LucideIcon;
 
-const LucideIconSchema = z
-  .enum(LUCIDE_ICON, { required_error: "Icon is required", invalid_type_error: "Invalid icon" })
-  .default(LUCIDE_ICON_DEFAULT);
+const LucideIconSchema = z.enum(LUCIDE_ICON, { required_error: 'Icon is required', invalid_type_error: 'Invalid icon' }).default(LUCIDE_ICON_DEFAULT);
 
 const isLucideIcon = (value?: unknown): value is LucideIcon => LUCIDE_ICON.includes(String(value) as LucideIcon);
 
@@ -304,22 +302,22 @@ const createSimpleIcon =
     s?: string | number;
     c?: string;
   }> =>
-  ({ s = 20, c = "currentColor" }) => {
-    return tag("svg", {
-      role: "img",
-      viewBox: "0 0 24 24",
+  ({ s = 20, c = 'currentColor' }) => {
+    return tag('svg', {
+      role: 'img',
+      viewBox: '0 0 24 24',
       width: s,
       height: s,
       fill: c,
-      stroke: "none",
-      children: tag("path", { d }),
+      stroke: 'none',
+      children: tag('path', { d }),
     });
   };
 
 const SimpleIcons = {
   adonisjs: createSimpleIcon(si.siAdonisjs.path),
   algolia: createSimpleIcon(si.siAlgolia.path),
-  "alpine.js": createSimpleIcon(si.siAlpinedotjs.path),
+  'alpine.js': createSimpleIcon(si.siAlpinedotjs.path),
   angular: createSimpleIcon(si.siAngular.path),
   appwrite: createSimpleIcon(si.siAppwrite.path),
   arduino: createSimpleIcon(si.siArduino.path),
@@ -342,7 +340,7 @@ const SimpleIcons = {
   commitlint: createSimpleIcon(si.siCommitlint.path),
   css3: createSimpleIcon(si.siCss3.path),
   deno: createSimpleIcon(si.siDeno.path),
-  "dev.to": createSimpleIcon(si.siDevdotto.path),
+  'dev.to': createSimpleIcon(si.siDevdotto.path),
   discord: createSimpleIcon(si.siDiscord.path),
   docker: createSimpleIcon(si.siDocker.path),
   dribbble: createSimpleIcon(si.siDribbble.path),
@@ -377,12 +375,12 @@ const SimpleIcons = {
   nativescript: createSimpleIcon(si.siNativescript.path),
   nestjs: createSimpleIcon(si.siNestjs.path),
   netlify: createSimpleIcon(si.siNetlify.path),
-  "next.js": createSimpleIcon(si.siNextdotjs.path),
+  'next.js': createSimpleIcon(si.siNextdotjs.path),
   nginx: createSimpleIcon(si.siNginx.path),
-  "node.js": createSimpleIcon(si.siNodedotjs.path),
+  'node.js': createSimpleIcon(si.siNodedotjs.path),
   notion: createSimpleIcon(si.siNotion.path),
   npm: createSimpleIcon(si.siNpm.path),
-  "nuxt.js": createSimpleIcon(si.siNuxtdotjs.path),
+  'nuxt.js': createSimpleIcon(si.siNuxtdotjs.path),
   nx: createSimpleIcon(si.siNx.path),
   openai: createSimpleIcon(si.siOpenai.path),
   opencollective: createSimpleIcon(si.siOpencollective.path),
@@ -421,7 +419,7 @@ const SimpleIcons = {
   tauri: createSimpleIcon(si.siTauri.path),
   telegram: createSimpleIcon(si.siTelegram.path),
   threads: createSimpleIcon(si.siThreads.path),
-  "three.js": createSimpleIcon(si.siThreedotjs.path),
+  'three.js': createSimpleIcon(si.siThreedotjs.path),
   tiktok: createSimpleIcon(si.siTiktok.path),
   turborepo: createSimpleIcon(si.siTurborepo.path),
   typescript: createSimpleIcon(si.siTypescript.path),
@@ -432,7 +430,7 @@ const SimpleIcons = {
   visualstudiocode: createSimpleIcon(si.siVisualstudiocode.path),
   vite: createSimpleIcon(si.siVite.path),
   vitest: createSimpleIcon(si.siVitest.path),
-  "vue.js": createSimpleIcon(si.siVuedotjs.path),
+  'vue.js': createSimpleIcon(si.siVuedotjs.path),
   webassembly: createSimpleIcon(si.siWebassembly.path),
   whatsapp: createSimpleIcon(si.siWhatsapp.path),
   windows: createSimpleIcon(si.siWindows.path),
@@ -569,11 +567,9 @@ const SIMPLE_ICON = Object.keys(SimpleIcons) as unknown as [
   `youtube`,
   `zod`
 ];
-const SIMPLE_ICON_DEFAULT = "github" satisfies SimpleIcon;
+const SIMPLE_ICON_DEFAULT = 'github' satisfies SimpleIcon;
 
-const SimpleIconSchema = z
-  .enum(SIMPLE_ICON, { required_error: "Icon is required", invalid_type_error: "Invalid icon" })
-  .default(SIMPLE_ICON_DEFAULT);
+const SimpleIconSchema = z.enum(SIMPLE_ICON, { required_error: 'Icon is required', invalid_type_error: 'Invalid icon' }).default(SIMPLE_ICON_DEFAULT);
 
 const isSimpleIcon = (value?: unknown): value is SimpleIcon => SIMPLE_ICON.includes(String(value) as SimpleIcon);
 

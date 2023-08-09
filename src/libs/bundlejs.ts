@@ -1,7 +1,7 @@
-import ky from "ky";
-import { z } from "zod";
+import ky from 'ky';
+import { z } from 'zod';
 
-import { cache } from "~/utils";
+import { cache } from '~/utils';
 
 type BundleItem = z.infer<typeof BundleItemSchema>;
 const BundleItemSchema = z.object({
