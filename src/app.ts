@@ -13,7 +13,7 @@ dayjs.extend(dayjs_relativeTime);
 
 const app = hono();
 
-const build = dayjs().format('DD-MM-YYYY HH:mm:ss');
+const build = dayjs().format();
 
 app.use('*', cors({ origin: '*' })).use('*', compress());
 
