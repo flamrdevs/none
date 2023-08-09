@@ -25,4 +25,7 @@ const cache = <T>(dex: number = 24 * 60 * 60 * 1000) => {
   };
 };
 
-export { cache, hono };
+const formatSize = ((bytes: number, kb = bytes / 1024, mb = kb / 1024, gb = mb / 1024) =>
+  gb >= 1 ? `${gb.toFixed(2)} GB` : mb >= 1 ? `${mb.toFixed(2)} MB` : `${kb.toFixed(2)} KB`) as (bytes: number) => string;
+
+export { cache, formatSize, hono };
