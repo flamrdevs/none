@@ -30,6 +30,10 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: '1.35.3'
+
       - name: Install
         run: pnpm install
 
