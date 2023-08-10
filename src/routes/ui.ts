@@ -51,7 +51,7 @@ export default hono((x) => {
         c: ColorSchema,
         t: ThemeSchema,
         i: LucideIconSchema,
-        e: z.string().min(2).max(48).default('github'),
+        e: z.string().min(2).max(48).default('code'),
       });
 
       x.get('/lucide', async (ctx) => {
@@ -140,7 +140,7 @@ export default hono((x) => {
         c: ColorSchema,
         t: ThemeSchema,
         i: LucideIconSchema,
-        e: z.string().min(2).max(48).default('github'),
+        e: z.string().min(2).max(48).default('code'),
       });
 
       x.get('/lucide', async (ctx) => {
