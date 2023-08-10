@@ -156,6 +156,32 @@ Colorful SVG generation service
   </picture>
 </p>
 
+#### Lucide
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge/lucide?t=dark&i=download&e=download">
+    <img alt="badge" src="https://none.deno.dev/ui/badge/lucide?t=light&i=download&e=download" hspace="1">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge/lucide?t=dark&i=upload&e=upload">
+    <img alt="badge" src="https://none.deno.dev/ui/badge/lucide?t=light&i=upload&e=upload" hspace="1">
+  </picture>
+</p>
+
+#### Simple
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge/simple?t=dark&i=deno&e=node">
+    <img alt="badge" src="https://none.deno.dev/ui/badge/simple?t=light&i=deno&e=node" hspace="1">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge/simple?t=dark&i=node.js&e=node">
+    <img alt="badge" src="https://none.deno.dev/ui/badge/simple?t=light&i=node.js&e=node" hspace="1">
+  </picture>
+</p>
+
 ### Button
 
 #### Text
