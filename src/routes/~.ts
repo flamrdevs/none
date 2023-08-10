@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 
 import { CACHE } from '~/libs/svg';
 
-import { formatSize, hono } from '~/utils';
+import { format, hono } from '~/utils';
 
 export default hono((x) => {
   x.route(
@@ -24,12 +24,12 @@ export default hono((x) => {
             entries.forEach(([key, { e, v }]) => {
               bytes = new Blob([v]).size;
               size += bytes;
-              object[key] = `${formatSize(bytes)} | ${dayjs(now).to(e)}`;
+              object[key] = `${format.size(bytes)} | ${dayjs(now).to(e)}`;
             });
 
             return ctx.json({
               length: Object.keys(object).length,
-              size: formatSize(size),
+              size: format.size(size),
               value: object,
             });
           });
@@ -49,12 +49,12 @@ export default hono((x) => {
 
                 bytes = new Blob([v]).size;
                 size += bytes;
-                object[key] = `${formatSize(bytes)}`;
+                object[key] = `${format.size(bytes)}`;
               });
 
             return ctx.json({
               length: Object.keys(object).length,
-              size: formatSize(size),
+              size: format.size(size),
               value: object,
             });
           });
