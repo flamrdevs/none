@@ -26,6 +26,8 @@ FETCH.GET('/bundlejs/m?n=@klass/core', 200);
 FETCH.GET('/bundlejs/mz?n=@klass/core', 200);
 
 FETCH.GET('/ui/badge', 200);
+FETCH.GET('/ui/badge/lucide', 200);
+FETCH.GET('/ui/badge/simple', 200);
 FETCH.GET('/ui/button', 200);
 FETCH.GET('/ui/button/lucide', 200);
 FETCH.GET('/ui/button/simple', 200);
