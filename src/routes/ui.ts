@@ -1,7 +1,21 @@
 import { z } from 'zod';
 
 import svg from '~/libs/svg';
-import { Badge, Button, ButtonChildIcon, calcBadgeWidth, calcButtonIconWidth, calcButtonWidth, Icon, LucideIcons, LucideIconSchema, SimpleIcons, SimpleIconSchema } from '~/ui/components';
+import {
+  Badge,
+  BadgeChildIcon,
+  Button,
+  ButtonChildIcon,
+  calcBadgeWidth,
+  calcBadgeIconWidth,
+  calcButtonIconWidth,
+  calcButtonWidth,
+  Icon,
+  LucideIcons,
+  LucideIconSchema,
+  SimpleIcons,
+  SimpleIconSchema,
+} from '~/ui/components';
 import { ColorSchema, ThemeSchema } from '~/ui/utils';
 import { hono } from '~/utils';
 
@@ -29,6 +43,66 @@ export default hono((x) => {
             e,
           },
           () => Badge({ c, t, w: calcBadgeWidth(e), children: e }),
+          { expires }
+        );
+      });
+
+      const BadgeLucideQuerySchema = z.object({
+        c: ColorSchema,
+        t: ThemeSchema,
+        i: LucideIconSchema,
+        e: z.string().min(2).max(48).default('github'),
+      });
+
+      x.get('/lucide', async (ctx) => {
+        const { c, t, i, e } = await BadgeLucideQuerySchema.parseAsync(ctx.req.query());
+
+        return await svg(
+          ctx,
+          {
+            _: 'ui/badge/lucide',
+            c,
+            t,
+            i,
+            e,
+          },
+          () =>
+            Badge({
+              c,
+              t,
+              w: calcBadgeIconWidth(e),
+              children: BadgeChildIcon({ c: LucideIcons[i]({ s: 12 }), e }),
+            }),
+          { expires }
+        );
+      });
+
+      const BadgeSimpleQuerySchema = z.object({
+        c: ColorSchema,
+        t: ThemeSchema,
+        i: SimpleIconSchema,
+        e: z.string().min(2).max(48).default('github'),
+      });
+
+      x.get('/simple', async (ctx) => {
+        const { c, t, i, e } = await BadgeSimpleQuerySchema.parseAsync(ctx.req.query());
+
+        return await svg(
+          ctx,
+          {
+            _: 'ui/badge/simple',
+            c,
+            t,
+            i,
+            e,
+          },
+          () =>
+            Badge({
+              c,
+              t,
+              w: calcBadgeIconWidth(e),
+              children: BadgeChildIcon({ c: SimpleIcons[i]({ s: 12 }), e }),
+            }),
           { expires }
         );
       });

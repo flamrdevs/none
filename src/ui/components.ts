@@ -31,6 +31,7 @@ type SizeProps = {
 };
 
 const calcBadgeWidth = (str: string) => str.length * 9 + 11;
+const calcBadgeIconWidth = (str: string) => str.length * 9 + 24;
 
 const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
   const color = select(c, t);
@@ -53,6 +54,13 @@ const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, 
       fontWeight: 500,
     },
     children,
+  });
+};
+
+const BadgeChildIcon = ({ c, e }: { c: Children; e: string }) => {
+  return tag('div', {
+    style: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, paddingRight: 1 },
+    children: [tag('div', { style: { display: 'flex' }, children: c }), tag('div', { style: { display: 'flex' }, children: e })],
   });
 };
 
@@ -574,5 +582,5 @@ const SimpleIconSchema = z.enum(SIMPLE_ICON, { required_error: 'Icon is required
 const isSimpleIcon = (value?: unknown): value is SimpleIcon => SIMPLE_ICON.includes(String(value) as SimpleIcon);
 
 export { LucideIconSchema, SimpleIconSchema };
-export { Badge, Button, ButtonChildIcon, Icon, LucideIcons, SimpleIcons };
-export { calcBadgeWidth, calcButtonIconWidth, calcButtonWidth, isLucideIcon, isSimpleIcon };
+export { Badge, BadgeChildIcon, Button, ButtonChildIcon, Icon, LucideIcons, SimpleIcons };
+export { calcBadgeWidth, calcBadgeIconWidth, calcButtonIconWidth, calcButtonWidth, isLucideIcon, isSimpleIcon };
