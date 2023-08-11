@@ -3,9 +3,9 @@ import { exec } from 'node:child_process';
 import { defineConfig } from 'tsup';
 import type { Options } from 'tsup';
 
-export default defineConfig(({ env }) => {
-  const DEV = env?.NODE_ENV === 'development';
-  const PROD = env?.NODE_ENV === 'production';
+export default defineConfig(({ env = {} }) => {
+  const DEV = env.NODE_ENV === 'development';
+  const PROD = env.NODE_ENV === 'production';
 
   return {
     env,
