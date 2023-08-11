@@ -5,6 +5,7 @@ import { Context } from 'hono';
 import satori, { init } from 'satori/wasm';
 import type { SatoriOptions } from 'satori/wasm';
 import initYoga from 'yoga-wasm-web';
+import { memocache } from '~/utils';
 
 type Tag = 'div' | (string & {});
 
@@ -100,14 +101,15 @@ const img = await (async () => {
   }) as ImgFunction;
 })();
 
-const CACHE = await caches.open('svg');
+const CACHE = memocache<Response>();
+// const CACHE = await caches.open('svg');
 
 const svg = await (async () => {
   const maxAxe = process.env.NODE_ENV === 'production' ? 86400 : 1;
   return (async (context, element) => {
     const key = context.req.url;
 
-    const cached = await CACHE.match(key);
+    const cached = CACHE.get(key);
 
     if (cached) {
       cached.headers.set('x-cache', 'true');
@@ -116,7 +118,7 @@ const svg = await (async () => {
 
     const fresh = context.body(await img(element()), 200, { 'content-type': 'image/svg+xml', 'cache-control': `public, max-age=${maxAxe}` });
 
-    await CACHE.put(key, fresh.clone());
+    CACHE.set(key, fresh.clone());
 
     return fresh;
   }) as SVGFunction;
