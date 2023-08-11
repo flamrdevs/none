@@ -1,7 +1,7 @@
 import ky from 'ky';
 import { z } from 'zod';
 
-import { cache } from '~/utils';
+import { memocache } from '~/utils';
 
 const PackageNameSchema = z
   .string({
@@ -23,7 +23,7 @@ const PackageItemSchema = z.object({
   license: z.string().optional(),
 });
 
-const PackageItemCache = cache<PackageItem>();
+const PackageItemCache = memocache<PackageItem>();
 
 const getPackageItem = async (name: string): Promise<PackageItem> => {
   let cached = PackageItemCache.get(name);

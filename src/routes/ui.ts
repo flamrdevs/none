@@ -20,8 +20,6 @@ import { ColorSchema, ThemeSchema } from '~/ui/utils';
 import { hono } from '~/utils';
 
 export default hono((x) => {
-  const expires = 24 * 60 * 60 * 1000;
-
   x.route(
     '/badge',
     hono((x) => {
@@ -34,17 +32,7 @@ export default hono((x) => {
       x.get('/', async (ctx) => {
         const { c, t, e } = await BadgeQuerySchema.parseAsync(ctx.req.query());
 
-        return await svg(
-          ctx,
-          {
-            _: 'ui/badge',
-            c,
-            t,
-            e,
-          },
-          () => Badge({ c, t, w: calcBadgeWidth(e), children: e }),
-          { expires }
-        );
+        return await svg(ctx, () => Badge({ c, t, w: calcBadgeWidth(e), children: e }));
       });
 
       const BadgeLucideQuerySchema = z.object({
@@ -57,23 +45,13 @@ export default hono((x) => {
       x.get('/lucide', async (ctx) => {
         const { c, t, i, e } = await BadgeLucideQuerySchema.parseAsync(ctx.req.query());
 
-        return await svg(
-          ctx,
-          {
-            _: 'ui/badge/lucide',
+        return await svg(ctx, () =>
+          Badge({
             c,
             t,
-            i,
-            e,
-          },
-          () =>
-            Badge({
-              c,
-              t,
-              w: calcBadgeIconWidth(e),
-              children: BadgeChildIcon({ c: LucideIcons[i]({ s: 12 }), e }),
-            }),
-          { expires }
+            w: calcBadgeIconWidth(e),
+            children: BadgeChildIcon({ c: LucideIcons[i]({ s: 12 }), e }),
+          })
         );
       });
 
@@ -87,23 +65,13 @@ export default hono((x) => {
       x.get('/simple', async (ctx) => {
         const { c, t, i, e } = await BadgeSimpleQuerySchema.parseAsync(ctx.req.query());
 
-        return await svg(
-          ctx,
-          {
-            _: 'ui/badge/simple',
+        return await svg(ctx, () =>
+          Badge({
             c,
             t,
-            i,
-            e,
-          },
-          () =>
-            Badge({
-              c,
-              t,
-              w: calcBadgeIconWidth(e),
-              children: BadgeChildIcon({ c: SimpleIcons[i]({ s: 12 }), e }),
-            }),
-          { expires }
+            w: calcBadgeIconWidth(e),
+            children: BadgeChildIcon({ c: SimpleIcons[i]({ s: 12 }), e }),
+          })
         );
       });
 
@@ -123,17 +91,7 @@ export default hono((x) => {
       x.get('/', async (ctx) => {
         const { c, t, e } = await ButtonQuerySchema.parseAsync(ctx.req.query());
 
-        return await svg(
-          ctx,
-          {
-            _: 'ui/button',
-            c,
-            t,
-            e,
-          },
-          () => Button({ c, t, w: calcButtonWidth(e), children: e }),
-          { expires }
-        );
+        return await svg(ctx, () => Button({ c, t, w: calcButtonWidth(e), children: e }));
       });
 
       const ButtonLucideQuerySchema = z.object({
@@ -146,23 +104,13 @@ export default hono((x) => {
       x.get('/lucide', async (ctx) => {
         const { c, t, i, e } = await ButtonLucideQuerySchema.parseAsync(ctx.req.query());
 
-        return await svg(
-          ctx,
-          {
-            _: 'ui/button/lucide',
+        return await svg(ctx, () =>
+          Button({
             c,
             t,
-            i,
-            e,
-          },
-          () =>
-            Button({
-              c,
-              t,
-              w: calcButtonIconWidth(e),
-              children: ButtonChildIcon({ c: LucideIcons[i]({}), e }),
-            }),
-          { expires }
+            w: calcButtonIconWidth(e),
+            children: ButtonChildIcon({ c: LucideIcons[i]({}), e }),
+          })
         );
       });
 
@@ -176,23 +124,13 @@ export default hono((x) => {
       x.get('/simple', async (ctx) => {
         const { c, t, i, e } = await ButtonSimpleQuerySchema.parseAsync(ctx.req.query());
 
-        return await svg(
-          ctx,
-          {
-            _: 'ui/button/simple',
+        return await svg(ctx, () =>
+          Button({
             c,
             t,
-            i,
-            e,
-          },
-          () =>
-            Button({
-              c,
-              t,
-              w: calcButtonIconWidth(e),
-              children: ButtonChildIcon({ c: SimpleIcons[i]({}), e }),
-            }),
-          { expires }
+            w: calcButtonIconWidth(e),
+            children: ButtonChildIcon({ c: SimpleIcons[i]({}), e }),
+          })
         );
       });
 
@@ -212,17 +150,7 @@ export default hono((x) => {
       x.get('/lucide', async (ctx) => {
         const { c, t, i } = await IconLucideQuerySchema.parseAsync(ctx.req.query());
 
-        return await svg(
-          ctx,
-          {
-            _: 'ui/icon/lucide',
-            c,
-            t,
-            i,
-          },
-          () => Icon({ c, t, children: LucideIcons[i]({}) }),
-          { expires }
-        );
+        return await svg(ctx, () => Icon({ c, t, children: LucideIcons[i]({}) }));
       });
 
       const IconSimpleQuerySchema = z.object({
@@ -234,17 +162,7 @@ export default hono((x) => {
       x.get('/simple', async (ctx) => {
         const { c, t, i } = await IconSimpleQuerySchema.parseAsync(ctx.req.query());
 
-        return await svg(
-          ctx,
-          {
-            _: 'ui/icon/simple',
-            c,
-            t,
-            i,
-          },
-          () => Icon({ c, t, children: SimpleIcons[i]({}) }),
-          { expires }
-        );
+        return await svg(ctx, () => Icon({ c, t, children: SimpleIcons[i]({}) }));
       });
 
       return x;
@@ -263,17 +181,7 @@ export default hono((x) => {
       x.get('/', async (ctx) => {
         const { c, t, e } = await IconButtonQuerySchema.parseAsync(ctx.req.query());
 
-        return await svg(
-          ctx,
-          {
-            _: 'ui/icon-button',
-            c,
-            t,
-            e,
-          },
-          () => Button({ c, t, children: e }),
-          { expires }
-        );
+        return await svg(ctx, () => Button({ c, t, children: e }));
       });
 
       const IconButtonLucideQuerySchema = z.object({
@@ -285,17 +193,7 @@ export default hono((x) => {
       x.get('/lucide', async (ctx) => {
         const { c, t, i } = await IconButtonLucideQuerySchema.parseAsync(ctx.req.query());
 
-        return await svg(
-          ctx,
-          {
-            _: 'ui/icon-button/lucide',
-            c,
-            t,
-            i,
-          },
-          () => Button({ c, t, children: LucideIcons[i]({}) }),
-          { expires }
-        );
+        return await svg(ctx, () => Button({ c, t, children: LucideIcons[i]({}) }));
       });
 
       const IconButtonSimpleQuerySchema = z.object({
@@ -307,17 +205,7 @@ export default hono((x) => {
       x.get('/simple', async (ctx) => {
         const { c, t, i } = await IconButtonSimpleQuerySchema.parseAsync(ctx.req.query());
 
-        return await svg(
-          ctx,
-          {
-            _: 'ui/icon-button/simple',
-            c,
-            t,
-            i,
-          },
-          () => Button({ c, t, children: SimpleIcons[i]({}) }),
-          { expires }
-        );
+        return await svg(ctx, () => Button({ c, t, children: SimpleIcons[i]({}) }));
       });
 
       return x;

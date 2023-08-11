@@ -6,8 +6,6 @@ import satori, { init } from 'satori/wasm';
 import type { SatoriOptions } from 'satori/wasm';
 import initYoga from 'yoga-wasm-web';
 
-import { cache } from '~/utils';
-
 type Tag = 'div' | (string & {});
 
 type SafeProps<P extends Record<string, any>> = P & { [key: string]: any | undefined };
@@ -67,7 +65,7 @@ type Component<P extends {} = {}> = (props: P) => Element;
 type RootComponent<P extends {} = {}> = (props: P) => RootElement;
 
 type ImgFunction = (element: RootElement) => Promise<string>;
-type SVGFunction = (context: Context, query: Record<string, string>, element: () => RootElement, options?: { expires?: number }) => Promise<Response>;
+type SVGFunction = (context: Context, element: () => RootElement) => Promise<Response>;
 
 const tag = <P extends Record<string, any>>(type: Tag, props: P) => ({ type, props });
 
@@ -102,23 +100,25 @@ const img = await (async () => {
   }) as ImgFunction;
 })();
 
-const CACHE = cache<string>();
+const CACHE = await caches.open('svg');
 
 const svg = await (async () => {
-  const maxAxe = process.env.NODE_ENV === 'production' ? 86400 : 0;
-  return (async (context, query, element, options) => {
-    let headers: Record<string, string> = { 'content-type': 'image/svg+xml', 'x-cache': 'true' };
-    let key: string = `&`,
-      k: string,
-      v: string;
-    for (k in query) if (typeof (v = query[k]) !== 'undefined') key += `${k}=${v}&`;
-    let cached = CACHE.get(key);
+  const maxAxe = process.env.NODE_ENV === 'production' ? 86400 : 1;
+  return (async (context, element) => {
+    const key = context.req.url;
+
+    const cached = await CACHE.match(key);
+
     if (cached) {
-      headers['cache-control'] = `public, max-age=${maxAxe}`;
-      return context.body(cached, 200, headers);
+      cached.headers.set('x-cache', 'true');
+      return cached;
     }
-    headers['x-cache'] = 'false';
-    return context.body(CACHE.set(key, await img(element()), options?.expires), 200, headers);
+
+    const fresh = context.body(await img(element()), 200, { 'content-type': 'image/svg+xml', 'cache-control': `public, max-age=${maxAxe}` });
+
+    await CACHE.put(key, fresh.clone());
+
+    return fresh;
   }) as SVGFunction;
 })();
 

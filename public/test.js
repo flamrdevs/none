@@ -14,8 +14,15 @@ const FETCH = {
   },
 };
 
-FETCH.GET('/~/svg/cache', 200);
-FETCH.GET('/~/svg/cache/clean', 200);
+const name = ['svg'];
+
+for await (const n of name) {
+  const has = await caches.has(n);
+  if (has) {
+    await caches.delete(n);
+    await caches.open(n);
+  }
+}
 
 FETCH.GET('/npm/api/item?n=@klass/core', 200);
 FETCH.GET('/npm/v?n=@klass/core', 200);

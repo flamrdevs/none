@@ -1,7 +1,7 @@
 import ky from 'ky';
 import { z } from 'zod';
 
-import { cache } from '~/utils';
+import { memocache } from '~/utils';
 
 type BundleItem = z.infer<typeof BundleItemSchema>;
 const BundleItemSchema = z.object({
@@ -16,7 +16,7 @@ const BundleItemSchema = z.object({
   }),
 });
 
-const BundleItemCache = cache<BundleItem>();
+const BundleItemCache = memocache<BundleItem>();
 
 const getBundleItem = async (name: string): Promise<BundleItem> => {
   let cached = BundleItemCache.get(name);

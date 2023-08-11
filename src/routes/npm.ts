@@ -34,16 +34,7 @@ export default hono((x) => {
 
     const v = (await getPackageItem(n)).version;
 
-    return await svg(
-      ctx,
-      {
-        _: 'npm/v',
-        c,
-        t,
-        n,
-      },
-      () => Badge({ c, t, w: calcBadgeWidth(v), children: v })
-    );
+    return await svg(ctx, () => Badge({ c, t, w: calcBadgeWidth(v), children: v }));
   });
 
   x.get('/l', async (ctx) => {
@@ -51,16 +42,7 @@ export default hono((x) => {
 
     const l = (await getPackageItem(n)).license ?? 'UNLICENSED';
 
-    return await svg(
-      ctx,
-      {
-        _: 'npm/l',
-        c,
-        t,
-        n,
-      },
-      () => Badge({ c, t, w: calcBadgeWidth(l), children: l })
-    );
+    return await svg(ctx, () => Badge({ c, t, w: calcBadgeWidth(l), children: l }));
   });
 
   return x;

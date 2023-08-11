@@ -7,7 +7,7 @@ import dayjs_relativeTime from 'dayjs/plugin/relativeTime';
 import { ZodError } from 'zod';
 
 import { hono } from '~/utils';
-import { bundlejs, npm, tilde, ui } from '~/routes';
+import * as routes from '~/routes';
 
 dayjs.extend(dayjs_relativeTime);
 
@@ -15,13 +15,13 @@ const app = hono();
 
 const build = dayjs().format();
 
-app.use('*', cors({ origin: '*' })).use('*', compress());
+app.use('*', cors({ origin: '*' }), compress());
 
 if (process.env.NODE_ENV === 'development') {
   app.use('*', logger());
 }
 
-app.route('/~', tilde).route('/npm', npm).route('/bundlejs', bundlejs).route('/ui', ui);
+app.route('/npm', routes.npm).route('/bundlejs', routes.bundlejs).route('/ui', routes.ui);
 
 app
   .get('/', (ctx) => ctx.json({ name: 'none', build }))

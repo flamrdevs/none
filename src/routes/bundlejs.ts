@@ -34,16 +34,7 @@ export default hono((x) => {
 
     const s = (await getBundleItem(n)).size.uncompressedSize;
 
-    return await svg(
-      ctx,
-      {
-        _: 'bundlejs/m',
-        c,
-        t,
-        n,
-      },
-      () => Badge({ c, t, w: calcBadgeWidth(s), children: s })
-    );
+    return await svg(ctx, () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
   });
 
   x.get('/mz', async (ctx) => {
@@ -51,16 +42,7 @@ export default hono((x) => {
 
     const s = (await getBundleItem(n)).size.compressedSize;
 
-    return await svg(
-      ctx,
-      {
-        _: 'bundlejs/mz',
-        c,
-        t,
-        n,
-      },
-      () => Badge({ c, t, w: calcBadgeWidth(s), children: s })
-    );
+    return await svg(ctx, () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
   });
 
   return x;
