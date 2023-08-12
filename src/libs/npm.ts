@@ -1,7 +1,6 @@
+import type { Context } from 'hono';
 import ky from 'ky';
 import { z } from 'zod';
-
-import { memocache } from '~/utils';
 
 const PackageNameSchema = z
   .string({
@@ -15,6 +14,8 @@ const PackageNameSchema = z
     message: 'Package name cannot end with a hyphen',
   });
 
+const getValidPackageNameQuery = async (context: Context, key: string = 'n') => await PackageNameSchema.parseAsync(context.req.query(key));
+
 type PackageItem = z.infer<typeof PackageItemSchema>;
 const PackageItemSchema = z.object({
   name: z.string(),
@@ -23,13 +24,10 @@ const PackageItemSchema = z.object({
   license: z.string().optional(),
 });
 
-const PackageItemCache = memocache<PackageItem>();
+const $PackageItem: Record<string, PackageItem> = {};
 
-const getPackageItem = async (name: string): Promise<PackageItem> => {
-  let cached = PackageItemCache.get(name);
-  if (cached) return cached;
-  return PackageItemCache.set(name, await PackageItemSchema.parseAsync(await ky.get(`https://registry.npmjs.org/${name}/latest`).json()));
-};
+const getPackageItem = async (name: string): Promise<PackageItem> => ($PackageItem[name] ??= await PackageItemSchema.parseAsync(await ky.get(`https://registry.npmjs.org/${name}/latest`).json()));
 
 export { PackageNameSchema };
 export { getPackageItem };
+export { getValidPackageNameQuery };

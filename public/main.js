@@ -1,12 +1,23 @@
-import app from './app.js';
+try {
+  console.time('initialize');
+  const app = (await import('./app.js')).default;
+  console.timeEnd('initialize');
 
-Deno.serve(
-  {
-    port: 8000,
-    hostname: '0.0.0.0',
-    onListen: ({ hostname, port }) => {
-      console.log(`[none]: ${hostname}:${port}`);
+  const port = 8000;
+  const hostname = '0.0.0.0';
+
+  const server = Deno.serve(
+    {
+      port,
+      hostname,
+      onListen: () => {
+        console.log(`[none]: ${hostname}:${port}`);
+      },
     },
-  },
-  app.fetch
-);
+    app.fetch
+  );
+
+  await server.finished;
+} catch (error) {
+  console.error(error);
+}

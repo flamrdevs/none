@@ -17,9 +17,21 @@ export default defineConfig(({ env = {} }) => {
     splitting: true,
     publicDir: true,
     platform: 'node',
-    target: 'deno1.35',
+    bundle: true,
+    target: 'esnext',
+    skipNodeModulesBundle: false,
     external: createNodeExternal(),
     terserOptions: { format: { comments: false } },
+    banner: {
+      js: `
+      import path from 'node:path';
+      import { fileURLToPath } from 'node:url';
+      import { createRequire as topLevelCreateRequire } from 'node:module';
+      const require = topLevelCreateRequire(import.meta.url);
+      const __filename = fileURLToPath(import.meta.url);
+      const __dirname = path.dirname(__filename);
+      `,
+    },
     ...(DEV ? createDenoDevRun() : {}),
   };
 });

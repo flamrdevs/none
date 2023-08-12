@@ -1,49 +1,39 @@
-import { z } from 'zod';
+import { Hono } from 'hono';
 
-import svg from '~/libs/svg';
-import { getPackageItem, PackageNameSchema } from '~/libs/npm';
+import svg from '~/libs/svg.dynamic';
+import { getPackageItem, getValidPackageNameQuery } from '~/libs/npm';
 
-import { Badge, calcBadgeWidth } from '~/ui/components';
-import { ColorSchema, ThemeSchema } from '~/ui/utils';
-import { hono } from '~/utils';
+import { components, utils } from '~/ui/dynamic';
 
-export default hono((x) => {
-  const BasicNPMQuerySchema = z.object({
-    c: ColorSchema,
-    t: ThemeSchema,
-    n: PackageNameSchema,
-  });
+export default new Hono()
 
-  x.route(
+  .route(
     '/api',
-    hono((x) => {
-      const PackageItemQuerySchema = z.object({
-        n: PackageNameSchema,
-      });
-
-      x.get('/item', async (ctx) => {
-        const { n } = await PackageItemQuerySchema.parseAsync(ctx.req.query());
-        return ctx.json(await getPackageItem(n));
-      });
-      return x;
+    new Hono().get('/item', async (ctx) => {
+      return ctx.json(await getPackageItem(await getValidPackageNameQuery(ctx)));
     })
-  );
+  )
+  .get('/v', async (ctx) => {
+    const { Badge, calcBadgeWidth } = await components.core();
+    const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-  x.get('/v', async (ctx) => {
-    const { c, t, n } = await BasicNPMQuerySchema.parseAsync(ctx.req.query());
+    const c = await getValidColorQuery(ctx);
+    const t = await getValidThemeQuery(ctx);
+    const n = await getValidPackageNameQuery(ctx);
 
     const v = (await getPackageItem(n)).version;
 
-    return await svg(ctx, () => Badge({ c, t, w: calcBadgeWidth(v), children: v }));
-  });
+    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(v), children: v }));
+  })
+  .get('/l', async (ctx) => {
+    const { Badge, calcBadgeWidth } = await components.core();
+    const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-  x.get('/l', async (ctx) => {
-    const { c, t, n } = await BasicNPMQuerySchema.parseAsync(ctx.req.query());
+    const c = await getValidColorQuery(ctx);
+    const t = await getValidThemeQuery(ctx);
+    const n = await getValidPackageNameQuery(ctx);
 
     const l = (await getPackageItem(n)).license ?? 'UNLICENSED';
 
-    return await svg(ctx, () => Badge({ c, t, w: calcBadgeWidth(l), children: l }));
+    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(l), children: l }));
   });
-
-  return x;
-});

@@ -4,8 +4,6 @@ import { Context } from 'hono';
 
 import satori, { init } from 'satori/wasm';
 import type { SatoriOptions } from 'satori/wasm';
-import initYoga from 'yoga-wasm-web';
-import { memocache } from '~/utils';
 
 type Tag = 'div' | (string & {});
 
@@ -66,14 +64,12 @@ type Component<P extends {} = {}> = (props: P) => Element;
 type RootComponent<P extends {} = {}> = (props: P) => RootElement;
 
 type ImgFunction = (element: RootElement) => Promise<string>;
-type SVGFunction = (context: Context, element: () => RootElement) => Promise<Response>;
-
-const tag = <P extends Record<string, any>>(type: Tag, props: P) => ({ type, props });
+type SVGFunction = (context: Context, element: () => Promise<RootElement>) => Promise<Response>;
 
 const img = await (async () => {
   type FontOptions = SatoriOptions['fonts'][number];
 
-  const yoga = await initYoga(await fs.readFile('./assets/yoga.wasm').then((res) => res.buffer));
+  const yoga = await (await import('yoga-wasm-web')).default(await fs.readFile('./assets/yoga.wasm').then((res) => res.buffer));
   init(yoga);
 
   const font = async (name: FontOptions['name'], path: string, style: FontOptions['style'], weight: FontOptions['weight']): Promise<FontOptions> => ({
@@ -101,7 +97,7 @@ const img = await (async () => {
   }) as ImgFunction;
 })();
 
-const CACHE = memocache<Response>();
+const CACHE: Record<string, Response> = {};
 // const CACHE = await caches.open('svg');
 
 const svg = await (async () => {
@@ -109,22 +105,22 @@ const svg = await (async () => {
   return (async (context, element) => {
     const key = context.req.url;
 
-    const cached = CACHE.get(key);
+    const cached = CACHE[key] as Response | undefined;
 
     if (cached) {
       cached.headers.set('x-cache', 'true');
       return cached;
     }
 
-    const fresh = context.body(await img(element()), 200, { 'content-type': 'image/svg+xml', 'cache-control': `public, max-age=${maxAxe}` });
+    const fresh = context.body(await img(await element()), 200, { 'content-type': 'image/svg+xml', 'cache-control': `public, max-age=${maxAxe}` });
 
-    CACHE.set(key, fresh.clone());
+    CACHE[key] = fresh.clone();
 
     return fresh;
   }) as SVGFunction;
 })();
 
-export type { Children, Component, Element, PropsWithChildren, PropsWithOptionalChildren, RootComponent, RootElement };
-export { img, tag };
+export type { Tag, Children, Component, Element, PropsWithChildren, PropsWithOptionalChildren, RootComponent, RootElement, ImgFunction, SVGFunction };
+export { img };
 export { CACHE };
 export default svg;

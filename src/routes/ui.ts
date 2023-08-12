@@ -1,216 +1,204 @@
+import { Hono } from 'hono';
+import type { Context } from 'hono';
 import { z } from 'zod';
 
-import svg from '~/libs/svg';
-import {
-  Badge,
-  BadgeChildIcon,
-  Button,
-  ButtonChildIcon,
-  calcBadgeWidth,
-  calcBadgeIconWidth,
-  calcButtonIconWidth,
-  calcButtonWidth,
-  Icon,
-  LucideIcons,
-  LucideIconSchema,
-  SimpleIcons,
-  SimpleIconSchema,
-} from '~/ui/components';
-import { ColorSchema, ThemeSchema } from '~/ui/utils';
-import { hono } from '~/utils';
+import svg from '~/libs/svg.dynamic';
+import { components, utils } from '~/ui/dynamic';
 
-export default hono((x) => {
-  x.route(
+export default new Hono()
+
+  .route(
     '/badge',
-    hono((x) => {
-      const BadgeQuerySchema = z.object({
-        c: ColorSchema,
-        t: ThemeSchema,
-        e: z.string().min(2).max(48).default('badge'),
-      });
+    (() => {
+      const BadgeElementSchema = z.string().min(2).max(48).default('badge');
 
-      x.get('/', async (ctx) => {
-        const { c, t, e } = await BadgeQuerySchema.parseAsync(ctx.req.query());
+      const getValidBadgeElementQuery = async (context: Context, key: string = 'e') => await BadgeElementSchema.parseAsync(context.req.query(key));
 
-        return await svg(ctx, () => Badge({ c, t, w: calcBadgeWidth(e), children: e }));
-      });
+      return new Hono()
 
-      const BadgeLucideQuerySchema = z.object({
-        c: ColorSchema,
-        t: ThemeSchema,
-        i: LucideIconSchema,
-        e: z.string().min(2).max(48).default('code'),
-      });
+        .get('/', async (ctx) => {
+          const { Badge, calcBadgeWidth } = await components.core();
+          const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-      x.get('/lucide', async (ctx) => {
-        const { c, t, i, e } = await BadgeLucideQuerySchema.parseAsync(ctx.req.query());
+          const c = await getValidColorQuery(ctx);
+          const t = await getValidThemeQuery(ctx);
+          const e = await getValidBadgeElementQuery(ctx);
 
-        return await svg(ctx, () =>
-          Badge({
-            c,
-            t,
-            w: calcBadgeIconWidth(e),
-            children: BadgeChildIcon({ c: LucideIcons[i]({ s: 12 }), e }),
-          })
-        );
-      });
+          return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(e), children: e }));
+        })
 
-      const BadgeSimpleQuerySchema = z.object({
-        c: ColorSchema,
-        t: ThemeSchema,
-        i: SimpleIconSchema,
-        e: z.string().min(2).max(48).default('github'),
-      });
+        .get('/lucide', async (ctx) => {
+          const { Badge, BadgeChildIcon, calcBadgeIconWidth } = await components.core();
+          const { LucideIcons, getValidLucideIconQuery } = await components.icon.lucide();
+          const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-      x.get('/simple', async (ctx) => {
-        const { c, t, i, e } = await BadgeSimpleQuerySchema.parseAsync(ctx.req.query());
+          const c = await getValidColorQuery(ctx);
+          const t = await getValidThemeQuery(ctx);
+          const i = await getValidLucideIconQuery(ctx);
+          const e = await getValidBadgeElementQuery(ctx);
 
-        return await svg(ctx, () =>
-          Badge({
-            c,
-            t,
-            w: calcBadgeIconWidth(e),
-            children: BadgeChildIcon({ c: SimpleIcons[i]({ s: 12 }), e }),
-          })
-        );
-      });
+          return await svg(ctx, async () =>
+            Badge({
+              c,
+              t,
+              w: calcBadgeIconWidth(e),
+              children: BadgeChildIcon({ c: LucideIcons[i]({ s: 12 }), e }),
+            })
+          );
+        })
 
-      return x;
-    })
-  );
+        .get('/simple', async (ctx) => {
+          const { Badge, BadgeChildIcon, calcBadgeIconWidth } = await components.core();
+          const { SimpleIcons, getValidSimpleIconQuery } = await components.icon.simple();
+          const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-  x.route(
+          const c = await getValidColorQuery(ctx);
+          const t = await getValidThemeQuery(ctx);
+          const i = await getValidSimpleIconQuery(ctx);
+          const e = await getValidBadgeElementQuery(ctx);
+
+          return await svg(ctx, async () =>
+            Badge({
+              c,
+              t,
+              w: calcBadgeIconWidth(e),
+              children: BadgeChildIcon({ c: SimpleIcons[i]({ s: 12 }), e }),
+            })
+          );
+        });
+    })()
+  )
+
+  .route(
     '/button',
-    hono((x) => {
-      const ButtonQuerySchema = z.object({
-        c: ColorSchema,
-        t: ThemeSchema,
-        e: z.string().min(2).max(48).default('button'),
-      });
+    (() => {
+      const ButtonElementSchema = z.string().min(2).max(48).default('button');
 
-      x.get('/', async (ctx) => {
-        const { c, t, e } = await ButtonQuerySchema.parseAsync(ctx.req.query());
+      const getValidButtonElementQuery = async (context: Context, key: string = 'e') => await ButtonElementSchema.parseAsync(context.req.query(key));
 
-        return await svg(ctx, () => Button({ c, t, w: calcButtonWidth(e), children: e }));
-      });
+      return new Hono()
+        .get('/', async (ctx) => {
+          const { Button, calcButtonWidth } = await components.core();
+          const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-      const ButtonLucideQuerySchema = z.object({
-        c: ColorSchema,
-        t: ThemeSchema,
-        i: LucideIconSchema,
-        e: z.string().min(2).max(48).default('code'),
-      });
+          const c = await getValidColorQuery(ctx);
+          const t = await getValidThemeQuery(ctx);
+          const e = await getValidButtonElementQuery(ctx);
 
-      x.get('/lucide', async (ctx) => {
-        const { c, t, i, e } = await ButtonLucideQuerySchema.parseAsync(ctx.req.query());
+          return await svg(ctx, async () => Button({ c, t, w: calcButtonWidth(e), children: e }));
+        })
 
-        return await svg(ctx, () =>
-          Button({
-            c,
-            t,
-            w: calcButtonIconWidth(e),
-            children: ButtonChildIcon({ c: LucideIcons[i]({}), e }),
-          })
-        );
-      });
+        .get('/lucide', async (ctx) => {
+          const { Button, ButtonChildIcon, calcButtonIconWidth } = await components.core();
+          const { LucideIcons, getValidLucideIconQuery } = await components.icon.lucide();
+          const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-      const ButtonSimpleQuerySchema = z.object({
-        c: ColorSchema,
-        t: ThemeSchema,
-        i: SimpleIconSchema,
-        e: z.string().min(2).max(48).default('github'),
-      });
+          const c = await getValidColorQuery(ctx);
+          const t = await getValidThemeQuery(ctx);
+          const i = await getValidLucideIconQuery(ctx);
+          const e = await getValidButtonElementQuery(ctx);
 
-      x.get('/simple', async (ctx) => {
-        const { c, t, i, e } = await ButtonSimpleQuerySchema.parseAsync(ctx.req.query());
+          return await svg(ctx, async () =>
+            Button({
+              c,
+              t,
+              w: calcButtonIconWidth(e),
+              children: ButtonChildIcon({ c: LucideIcons[i]({}), e }),
+            })
+          );
+        })
 
-        return await svg(ctx, () =>
-          Button({
-            c,
-            t,
-            w: calcButtonIconWidth(e),
-            children: ButtonChildIcon({ c: SimpleIcons[i]({}), e }),
-          })
-        );
-      });
+        .get('/simple', async (ctx) => {
+          const { Button, ButtonChildIcon, calcButtonIconWidth } = await components.core();
+          const { SimpleIcons, getValidSimpleIconQuery } = await components.icon.simple();
+          const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-      return x;
-    })
-  );
+          const c = await getValidColorQuery(ctx);
+          const t = await getValidThemeQuery(ctx);
+          const i = await getValidSimpleIconQuery(ctx);
+          const e = await getValidButtonElementQuery(ctx);
 
-  x.route(
+          return await svg(ctx, async () =>
+            Button({
+              c,
+              t,
+              w: calcButtonIconWidth(e),
+              children: ButtonChildIcon({ c: SimpleIcons[i]({}), e }),
+            })
+          );
+        });
+    })()
+  )
+
+  .route(
     '/icon',
-    hono((x) => {
-      const IconLucideQuerySchema = z.object({
-        c: ColorSchema,
-        t: ThemeSchema,
-        i: LucideIconSchema,
-      });
+    new Hono()
 
-      x.get('/lucide', async (ctx) => {
-        const { c, t, i } = await IconLucideQuerySchema.parseAsync(ctx.req.query());
+      .get('/lucide', async (ctx) => {
+        const { Icon } = await components.core();
+        const { LucideIcons, getValidLucideIconQuery } = await components.icon.lucide();
+        const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-        return await svg(ctx, () => Icon({ c, t, children: LucideIcons[i]({}) }));
-      });
+        const c = await getValidColorQuery(ctx);
+        const t = await getValidThemeQuery(ctx);
+        const i = await getValidLucideIconQuery(ctx);
 
-      const IconSimpleQuerySchema = z.object({
-        c: ColorSchema,
-        t: ThemeSchema,
-        i: SimpleIconSchema,
-      });
+        return await svg(ctx, async () => Icon({ c, t, children: LucideIcons[i]({}) }));
+      })
 
-      x.get('/simple', async (ctx) => {
-        const { c, t, i } = await IconSimpleQuerySchema.parseAsync(ctx.req.query());
+      .get('/simple', async (ctx) => {
+        const { Icon } = await components.core();
+        const { SimpleIcons, getValidSimpleIconQuery } = await components.icon.simple();
+        const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-        return await svg(ctx, () => Icon({ c, t, children: SimpleIcons[i]({}) }));
-      });
+        const c = await getValidColorQuery(ctx);
+        const t = await getValidThemeQuery(ctx);
+        const i = await getValidSimpleIconQuery(ctx);
 
-      return x;
-    })
-  );
+        return await svg(ctx, async () => Icon({ c, t, children: SimpleIcons[i]({}) }));
+      })
+  )
 
-  x.route(
+  .route(
     '/icon-button',
-    hono((x) => {
-      const IconButtonQuerySchema = z.object({
-        c: ColorSchema,
-        t: ThemeSchema,
-        e: z.string().length(1).default('x'),
-      });
+    (() => {
+      const IconButtonElementSchema = z.string().length(1).default('x');
 
-      x.get('/', async (ctx) => {
-        const { c, t, e } = await IconButtonQuerySchema.parseAsync(ctx.req.query());
+      const getValidIconButtonElementQuery = async (context: Context, key: string = 'e') => await IconButtonElementSchema.parseAsync(context.req.query(key));
 
-        return await svg(ctx, () => Button({ c, t, children: e }));
-      });
+      return new Hono()
 
-      const IconButtonLucideQuerySchema = z.object({
-        c: ColorSchema,
-        t: ThemeSchema,
-        i: LucideIconSchema,
-      });
+        .get('/', async (ctx) => {
+          const { Button } = await components.core();
+          const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-      x.get('/lucide', async (ctx) => {
-        const { c, t, i } = await IconButtonLucideQuerySchema.parseAsync(ctx.req.query());
+          const c = await getValidColorQuery(ctx);
+          const t = await getValidThemeQuery(ctx);
+          const e = await getValidIconButtonElementQuery(ctx);
 
-        return await svg(ctx, () => Button({ c, t, children: LucideIcons[i]({}) }));
-      });
+          return await svg(ctx, async () => Button({ c, t, children: e }));
+        })
+        .get('/lucide', async (ctx) => {
+          const { Button } = await components.core();
+          const { LucideIcons, getValidLucideIconQuery } = await components.icon.lucide();
+          const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-      const IconButtonSimpleQuerySchema = z.object({
-        c: ColorSchema,
-        t: ThemeSchema,
-        i: SimpleIconSchema,
-      });
+          const c = await getValidColorQuery(ctx);
+          const t = await getValidThemeQuery(ctx);
+          const i = await getValidLucideIconQuery(ctx);
 
-      x.get('/simple', async (ctx) => {
-        const { c, t, i } = await IconButtonSimpleQuerySchema.parseAsync(ctx.req.query());
+          return await svg(ctx, async () => Button({ c, t, children: LucideIcons[i]({}) }));
+        })
+        .get('/simple', async (ctx) => {
+          const { Button } = await components.core();
+          const { SimpleIcons, getValidSimpleIconQuery } = await components.icon.simple();
+          const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-        return await svg(ctx, () => Button({ c, t, children: SimpleIcons[i]({}) }));
-      });
+          const c = await getValidColorQuery(ctx);
+          const t = await getValidThemeQuery(ctx);
+          const i = await getValidSimpleIconQuery(ctx);
 
-      return x;
-    })
+          return await svg(ctx, async () => Button({ c, t, children: SimpleIcons[i]({}) }));
+        });
+    })()
   );
-
-  return x;
-});

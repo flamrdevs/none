@@ -1,3 +1,4 @@
+import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { compress } from 'hono/compress';
 import { logger } from 'hono/logger';
@@ -6,12 +7,11 @@ import dayjs from 'dayjs';
 import dayjs_relativeTime from 'dayjs/plugin/relativeTime';
 import { ZodError } from 'zod';
 
-import { hono } from '~/utils';
 import * as routes from '~/routes';
 
 dayjs.extend(dayjs_relativeTime);
 
-const app = hono();
+const app = new Hono();
 
 const build = dayjs().format();
 

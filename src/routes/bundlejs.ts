@@ -1,49 +1,41 @@
-import { z } from 'zod';
+import { Hono } from 'hono';
 
-import svg from '~/libs/svg';
-import { PackageNameSchema } from '~/libs/npm';
+import svg from '~/libs/svg.dynamic';
+import { getValidPackageNameQuery } from '~/libs/npm';
 import { getBundleItem } from '~/libs/bundlejs';
-import { Badge, calcBadgeWidth } from '~/ui/components';
-import { ColorSchema, ThemeSchema } from '~/ui/utils';
-import { hono } from '~/utils';
+import { components, utils } from '~/ui/dynamic';
 
-export default hono((x) => {
-  const BasicBundleJSQuerySchema = z.object({
-    c: ColorSchema,
-    t: ThemeSchema,
-    n: PackageNameSchema,
-  });
+export default new Hono()
 
-  x.route(
+  .route(
     '/api',
-    hono((x) => {
-      const BundleItemQuerySchema = z.object({
-        n: PackageNameSchema,
-      });
-
-      x.get('/item', async (ctx) => {
-        const { n } = await BundleItemQuerySchema.parseAsync(ctx.req.query());
-        return ctx.json(await getBundleItem(n));
-      });
-      return x;
+    new Hono().get('/item', async (ctx) => {
+      return ctx.json(await getBundleItem(await getValidPackageNameQuery(ctx)));
     })
-  );
+  )
 
-  x.get('/m', async (ctx) => {
-    const { c, t, n } = await BasicBundleJSQuerySchema.parseAsync(ctx.req.query());
+  .get('/m', async (ctx) => {
+    const { Badge, calcBadgeWidth } = await components.core();
+    const { getValidColorQuery, getValidThemeQuery } = await utils();
+
+    const c = await getValidColorQuery(ctx);
+    const t = await getValidThemeQuery(ctx);
+    const n = await getValidPackageNameQuery(ctx);
 
     const s = (await getBundleItem(n)).size.uncompressedSize;
 
-    return await svg(ctx, () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
-  });
+    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
+  })
 
-  x.get('/mz', async (ctx) => {
-    const { c, t, n } = await BasicBundleJSQuerySchema.parseAsync(ctx.req.query());
+  .get('/mz', async (ctx) => {
+    const { Badge, calcBadgeWidth } = await components.core();
+    const { getValidColorQuery, getValidThemeQuery } = await utils();
+
+    const c = await getValidColorQuery(ctx);
+    const t = await getValidThemeQuery(ctx);
+    const n = await getValidPackageNameQuery(ctx);
 
     const s = (await getBundleItem(n)).size.compressedSize;
 
-    return await svg(ctx, () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
+    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
   });
-
-  return x;
-});
