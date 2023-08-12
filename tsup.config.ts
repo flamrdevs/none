@@ -16,7 +16,7 @@ export default defineConfig(({ env = {} }) => {
     minify: PROD && 'terser',
     splitting: true,
     publicDir: true,
-    platform: 'node',
+    platform: 'browser',
     bundle: true,
     target: 'esnext',
     skipNodeModulesBundle: false,
