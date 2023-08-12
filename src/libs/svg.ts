@@ -121,6 +121,4 @@ const svg = await (async () => {
 })();
 
 export type { Tag, Children, Component, Element, PropsWithChildren, PropsWithOptionalChildren, RootComponent, RootElement, ImgFunction, SVGFunction };
-export { img };
-export { CACHE };
 export default svg;

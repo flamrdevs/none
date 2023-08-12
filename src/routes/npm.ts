@@ -1,7 +1,6 @@
 import { Hono } from 'hono';
 
-import svg from '~/libs/svg.dynamic';
-import { getPackageItem, getValidPackageNameQuery } from '~/libs/npm';
+import { npm, svg } from '~/libs/dynamic';
 
 import { components, utils } from '~/ui/dynamic';
 
@@ -10,10 +9,14 @@ export default new Hono()
   .route(
     '/api',
     new Hono().get('/item', async (ctx) => {
+      const { getPackageItem, getValidPackageNameQuery } = await npm();
+
       return ctx.json(await getPackageItem(await getValidPackageNameQuery(ctx)));
     })
   )
   .get('/v', async (ctx) => {
+    const { getPackageItem, getValidPackageNameQuery } = await npm();
+
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
@@ -26,6 +29,8 @@ export default new Hono()
     return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(v), children: v }));
   })
   .get('/l', async (ctx) => {
+    const { getPackageItem, getValidPackageNameQuery } = await npm();
+
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 

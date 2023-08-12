@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import type { Context } from 'hono';
 import { z } from 'zod';
 
-import svg from '~/libs/svg.dynamic';
+import { svg } from '~/libs/dynamic';
 import { components, utils } from '~/ui/dynamic';
 
 export default new Hono()
