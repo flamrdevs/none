@@ -11,17 +11,17 @@
     "script:remove-test": "node scripts/remove-test.js"
   },
   "devDependencies": {
-    "@types/node": "^20.4.10",
+    "@types/node": "^20.5.0",
     "dayjs": "^1.11.9",
-    "hono": "^3.4.1",
+    "hono": "^3.4.3",
     "ky": "^0.33.3",
-    "lucide": "^0.265.0",
+    "lucide": "^0.268.0",
     "satori": "^0.10.3",
-    "simple-icons": "^9.9.0",
+    "simple-icons": "^9.10.0",
     "terser": "^5.19.2",
     "tsup": "^7.2.0",
     "typescript": "^5.1.6",
     "yoga-wasm-web": "^0.3.3",
-    "zod": "^3.21.4"
+    "zod": "^3.22.0"
   }
 }
