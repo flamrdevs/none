@@ -105,10 +105,10 @@ const svg = await (async () => {
   return (async (context, element) => {
     const key = context.req.url;
 
-    const cached = CACHE[key] as Response | undefined;
-
-    if (cached) {
+    if (key in CACHE) {
+      const cached = CACHE[key].clone();
       cached.headers.set('x-cache', 'true');
+      console.log(`svg - cache=true : ${key}`);
       return cached;
     }
 
@@ -116,6 +116,7 @@ const svg = await (async () => {
 
     CACHE[key] = fresh.clone();
 
+    console.log(`svg - cache=false : ${key}`);
     return fresh;
   }) as SVGFunction;
 })();
