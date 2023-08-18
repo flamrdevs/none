@@ -4,12 +4,9 @@ import { compress } from 'hono/compress';
 import { logger } from 'hono/logger';
 
 import dayjs from 'dayjs';
-import dayjs_relativeTime from 'dayjs/plugin/relativeTime';
 import { ZodError } from 'zod';
 
 import * as routes from '~/routes';
-
-dayjs.extend(dayjs_relativeTime);
 
 const app = new Hono();
 

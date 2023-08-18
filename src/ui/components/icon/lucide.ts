@@ -191,11 +191,9 @@ const LUCIDE_ICON_DEFAULT = 'code' satisfies LucideIcon;
 
 const LucideIconSchema = z.enum(LUCIDE_ICON, { required_error: 'Icon is required', invalid_type_error: 'Invalid icon' }).default(LUCIDE_ICON_DEFAULT);
 
-const isLucideIcon = (value?: unknown): value is LucideIcon => LUCIDE_ICON.includes(String(value) as LucideIcon);
-
 const getValidLucideIconQuery = async (context: Context, key: string = 'i') => await LucideIconSchema.parseAsync(context.req.query(key));
 
+export type { LucideIcon };
 export { LucideIconSchema };
 export { LucideIcons };
-export { isLucideIcon };
 export { getValidLucideIconQuery };

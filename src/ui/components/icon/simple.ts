@@ -304,11 +304,9 @@ const SIMPLE_ICON_DEFAULT = 'github' satisfies SimpleIcon;
 
 const SimpleIconSchema = z.enum(SIMPLE_ICON, { required_error: 'Icon is required', invalid_type_error: 'Invalid icon' }).default(SIMPLE_ICON_DEFAULT);
 
-const isSimpleIcon = (value?: unknown): value is SimpleIcon => SIMPLE_ICON.includes(String(value) as SimpleIcon);
-
 const getValidSimpleIconQuery = async (context: Context, key: string = 'i') => await SimpleIconSchema.parseAsync(context.req.query(key));
 
+export type { SimpleIcon };
 export { SimpleIconSchema };
 export { SimpleIcons };
-export { isSimpleIcon };
 export { getValidSimpleIconQuery };
