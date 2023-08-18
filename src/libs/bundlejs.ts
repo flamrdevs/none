@@ -1,6 +1,8 @@
 import ky from 'ky';
 import { z } from 'zod';
 
+import { memo } from './utils';
+
 type BundleItem = z.infer<typeof BundleItemSchema>;
 const BundleItemSchema = z.object({
   version: z.string(),
@@ -14,8 +16,8 @@ const BundleItemSchema = z.object({
   }),
 });
 
-const $BundleItem: Record<string, BundleItem> = {};
+const loadBundleItem = memo<BundleItem>();
 
-const getBundleItem = async (name: string): Promise<BundleItem> => ($BundleItem[name] ??= await BundleItemSchema.parseAsync(await ky.get(`https://deno.bundlejs.com/?q=${name}`).json()));
+const getBundleItem = (name: string): Promise<BundleItem> => loadBundleItem(name, async () => await BundleItemSchema.parseAsync(await ky.get(`https://deno.bundlejs.com/?q=${name}`).json()));
 
 export { getBundleItem };

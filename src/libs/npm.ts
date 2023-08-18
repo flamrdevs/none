@@ -2,6 +2,8 @@ import type { Context } from 'hono';
 import ky from 'ky';
 import { z } from 'zod';
 
+import { memo } from './utils';
+
 const PackageNameSchema = z
   .string({
     required_error: 'Package name is required',
@@ -24,9 +26,9 @@ const PackageItemSchema = z.object({
   license: z.string().optional(),
 });
 
-const $PackageItem: Record<string, PackageItem> = {};
+const loadPackageItem = memo<PackageItem>();
 
-const getPackageItem = async (name: string): Promise<PackageItem> => ($PackageItem[name] ??= await PackageItemSchema.parseAsync(await ky.get(`https://registry.npmjs.org/${name}/latest`).json()));
+const getPackageItem = (name: string): Promise<PackageItem> => loadPackageItem(name, async () => await PackageItemSchema.parseAsync(await ky.get(`https://registry.npmjs.org/${name}/latest`).json()));
 
 export { PackageNameSchema };
 export { getPackageItem };
