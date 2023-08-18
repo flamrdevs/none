@@ -6,6 +6,9 @@ import { components, utils } from '~/ui/dynamic';
 
 export default new Hono()
 
+  /**
+   * api
+   */
   .route(
     '/api',
     new Hono().get('/item', async (ctx) => {
@@ -16,6 +19,9 @@ export default new Hono()
     })
   )
 
+  /**
+   * min
+   */
   .get('/m', async (ctx) => {
     const { getBundleItem } = await bundlejs();
     const { getValidPackageNameQuery } = await npm();
@@ -32,6 +38,9 @@ export default new Hono()
     return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
   })
 
+  /**
+   * min+gzip
+   */
   .get('/mz', async (ctx) => {
     const { getBundleItem } = await bundlejs();
     const { getValidPackageNameQuery } = await npm();

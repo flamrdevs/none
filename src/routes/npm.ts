@@ -6,6 +6,9 @@ import { components, utils } from '~/ui/dynamic';
 
 export default new Hono()
 
+  /**
+   * api
+   */
   .route(
     '/api',
     new Hono().get('/item', async (ctx) => {
@@ -14,6 +17,10 @@ export default new Hono()
       return ctx.json(await getPackageItem(await getValidPackageNameQuery(ctx)));
     })
   )
+
+  /**
+   * version
+   */
   .get('/v', async (ctx) => {
     const { getPackageItem, getValidPackageNameQuery } = await npm();
 
@@ -28,6 +35,10 @@ export default new Hono()
 
     return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(v), children: v }));
   })
+
+  /**
+   * license
+   */
   .get('/l', async (ctx) => {
     const { getPackageItem, getValidPackageNameQuery } = await npm();
 
