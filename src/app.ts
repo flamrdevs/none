@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { compress } from 'hono/compress';
 import { logger } from 'hono/logger';
+import { secureHeaders } from 'hono/secure-headers';
 
 import dayjs from 'dayjs';
 import { ZodError } from 'zod';
@@ -12,7 +13,7 @@ const app = new Hono();
 
 const build = dayjs().format();
 
-app.use('*', cors({ origin: '*' }), compress());
+app.use('*', cors({ origin: '*' }), compress(), secureHeaders());
 
 if (process.env.NODE_ENV === 'development') {
   app.use('*', logger());
