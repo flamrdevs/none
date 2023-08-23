@@ -11,9 +11,9 @@
     "script:remove-test": "node scripts/remove-test.js"
   },
   "devDependencies": {
-    "@types/node": "^20.5.1",
+    "@types/node": "^20.5.3",
     "dayjs": "^1.11.9",
-    "hono": "^3.5.0",
+    "hono": "^3.5.1",
     "ky": "^0.33.3",
     "lucide": "^0.268.0",
     "satori": "^0.10.3",

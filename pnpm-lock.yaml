@@ -2,14 +2,14 @@ lockfileVersion: '6.0'
 
 devDependencies:
   '@types/node':
-    specifier: ^20.5.1
-    version: 20.5.1
+    specifier: ^20.5.3
+    version: 20.5.3
   dayjs:
     specifier: ^1.11.9
     version: 1.11.9
   hono:
-    specifier: ^3.5.0
-    version: 3.5.0
+    specifier: ^3.5.1
+    version: 3.5.1
   ky:
     specifier: ^0.33.3
     version: 0.33.3
@@ -309,8 +309,8 @@ packages:
       string.prototype.codepointat: 0.2.1
     dev: true
 
-  /@types/node@20.5.1:
-    resolution: {integrity: sha512-4tT2UrL5LBqDwoed9wZ6N3umC4Yhz3W3FloMmiiG4JwmUJWpie0c7lcnUNd4gtMKuDEO4wRVS8B6Xa0uMRsMKg==}
+  /@types/node@20.5.3:
+    resolution: {integrity: sha512-ITI7rbWczR8a/S6qjAW7DMqxqFMjjTo61qZVWJ1ubPvbIQsL5D/TvwjYEalM8Kthpe3hTzOGrF2TGbAu2uyqeA==}
     dev: true
 
   /acorn@8.10.0:
@@ -399,7 +399,7 @@ packages:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /color-name@1.1.4:
@@ -557,8 +557,8 @@ packages:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
 
-  /fsevents@2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+  /fsevents@2.3.3:
+    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
@@ -605,8 +605,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /hono@3.5.0:
-    resolution: {integrity: sha512-0eJT6F+TRovENdANDubzri3c1oVEjbTgrQvXrcUKjFV6ZElNWNSrrHZIQE5CPwRTddsUdPjkgguuLYw90npC+w==}
+  /hono@3.5.1:
+    resolution: {integrity: sha512-L31KJg1Qu1ZHYKlpHYymqyDPR9U5SOy+X6c6+HQxBOGMGrJFawd5BvfcP+0rrGcw1bN5xk61+k3oKW4jFWyUkw==}
     engines: {node: '>=16.0.0'}
     dev: true
 
@@ -860,7 +860,7 @@ packages:
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /run-parallel@1.2.0:
