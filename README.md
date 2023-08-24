@@ -75,6 +75,10 @@ Colorful SVG generation service
     <img alt="badge" src="https://none.deno.dev/ui/badge?c=red&t=light&e=red" hspace="1">
   </picture>
   <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge?c=ruby&t=dark&e=ruby">
+    <img alt="badge" src="https://none.deno.dev/ui/badge?c=ruby&t=light&e=ruby" hspace="1">
+  </picture>
+  <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge?c=crimson&t=dark&e=crimson">
     <img alt="badge" src="https://none.deno.dev/ui/badge?c=crimson&t=light&e=crimson" hspace="1">
   </picture>
@@ -95,6 +99,10 @@ Colorful SVG generation service
     <img alt="badge" src="https://none.deno.dev/ui/badge?c=violet&t=light&e=violet" hspace="1">
   </picture>
   <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge?c=iris&t=dark&e=iris">
+    <img alt="badge" src="https://none.deno.dev/ui/badge?c=iris&t=light&e=iris" hspace="1">
+  </picture>
+  <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge?c=indigo&t=dark&e=indigo">
     <img alt="badge" src="https://none.deno.dev/ui/badge?c=indigo&t=light&e=indigo" hspace="1">
   </picture>
@@ -109,6 +117,10 @@ Colorful SVG generation service
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge?c=teal&t=dark&e=teal">
     <img alt="badge" src="https://none.deno.dev/ui/badge?c=teal&t=light&e=teal" hspace="1">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge?c=jade&t=dark&e=jade">
+    <img alt="badge" src="https://none.deno.dev/ui/badge?c=jade&t=light&e=jade" hspace="1">
   </picture>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge?c=green&t=dark&e=green">
@@ -220,6 +232,10 @@ Colorful SVG generation service
     <img alt="button" src="https://none.deno.dev/ui/button?c=red&t=light&e=red" hspace="1">
   </picture>
   <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/button?c=ruby&t=dark&e=ruby">
+    <img alt="button" src="https://none.deno.dev/ui/button?c=ruby&t=light&e=ruby" hspace="1">
+  </picture>
+  <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/button?c=crimson&t=dark&e=crimson">
     <img alt="button" src="https://none.deno.dev/ui/button?c=crimson&t=light&e=crimson" hspace="1">
   </picture>
@@ -240,6 +256,10 @@ Colorful SVG generation service
     <img alt="button" src="https://none.deno.dev/ui/button?c=violet&t=light&e=violet" hspace="1">
   </picture>
   <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/button?c=iris&t=dark&e=iris">
+    <img alt="button" src="https://none.deno.dev/ui/button?c=iris&t=light&e=iris" hspace="1">
+  </picture>
+  <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/button?c=indigo&t=dark&e=indigo">
     <img alt="button" src="https://none.deno.dev/ui/button?c=indigo&t=light&e=indigo" hspace="1">
   </picture>
@@ -254,6 +274,10 @@ Colorful SVG generation service
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/button?c=teal&t=dark&e=teal">
     <img alt="button" src="https://none.deno.dev/ui/button?c=teal&t=light&e=teal" hspace="1">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/button?c=jade&t=dark&e=jade">
+    <img alt="button" src="https://none.deno.dev/ui/button?c=jade&t=light&e=jade" hspace="1">
   </picture>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/button?c=green&t=dark&e=green">
@@ -357,6 +381,10 @@ Colorful SVG generation service
     <img alt="icon-button" src="https://none.deno.dev/ui/icon-button?c=red&t=light&e=x" hspace="1">
   </picture>
   <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?c=ruby&t=dark&e=x">
+    <img alt="icon-button" src="https://none.deno.dev/ui/icon-button?c=ruby&t=light&e=x" hspace="1">
+  </picture>
+  <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?c=crimson&t=dark&e=x">
     <img alt="icon-button" src="https://none.deno.dev/ui/icon-button?c=crimson&t=light&e=x" hspace="1">
   </picture>
@@ -377,6 +405,10 @@ Colorful SVG generation service
     <img alt="icon-button" src="https://none.deno.dev/ui/icon-button?c=violet&t=light&e=x" hspace="1">
   </picture>
   <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?c=iris&t=dark&e=x">
+    <img alt="icon-button" src="https://none.deno.dev/ui/icon-button?c=iris&t=light&e=x" hspace="1">
+  </picture>
+  <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?c=indigo&t=dark&e=x">
     <img alt="icon-button" src="https://none.deno.dev/ui/icon-button?c=indigo&t=light&e=x" hspace="1">
   </picture>
@@ -391,6 +423,10 @@ Colorful SVG generation service
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?c=teal&t=dark&e=x">
     <img alt="icon-button" src="https://none.deno.dev/ui/icon-button?c=teal&t=light&e=x" hspace="1">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?c=jade&t=dark&e=x">
+    <img alt="icon-button" src="https://none.deno.dev/ui/icon-button?c=jade&t=light&e=x" hspace="1">
   </picture>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?c=green&t=dark&e=x">
