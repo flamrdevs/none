@@ -13,7 +13,7 @@ const app = new Hono();
 
 const build = dayjs().format();
 
-app.use('*', cors({ origin: '*' }), compress(), secureHeaders());
+app.use('*', cors({ origin: '*' }), compress(), secureHeaders({ crossOriginResourcePolicy: false }));
 
 if (process.env.NODE_ENV === 'development') {
   app.use('*', logger());
