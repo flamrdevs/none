@@ -11,16 +11,16 @@
     "script:remove-test": "node scripts/remove-test.js"
   },
   "devDependencies": {
-    "@types/node": "^20.5.3",
+    "@types/node": "^20.5.4",
     "dayjs": "^1.11.9",
-    "hono": "^3.5.1",
+    "hono": "^3.5.4",
     "ky": "^0.33.3",
     "lucide": "^0.268.0",
     "satori": "^0.10.3",
     "simple-icons": "^9.11.0",
     "terser": "^5.19.2",
     "tsup": "^7.2.0",
-    "typescript": "^5.1.6",
+    "typescript": "^5.2.2",
     "yoga-wasm-web": "^0.3.3",
     "zod": "^3.22.2"
   }
