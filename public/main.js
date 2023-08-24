@@ -10,7 +10,7 @@ try {
     {
       port,
       hostname,
-      onListen: () => {
+      onListen: ({ hostname, port }) => {
         console.log(`[none]: ${hostname}:${port}`);
       },
     },
