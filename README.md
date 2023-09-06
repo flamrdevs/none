@@ -531,3 +531,5 @@ Colorful SVG generation service
     <img alt="license" src="https://none.deno.dev/bundlejs/mz?t=light&n=@klass/core" hspace="1">
   </picture>
 </p>
+
+<img width="100%" src="https://hiiiits.deno.dev/hit/flamrdevs/none" alt="hiiiits" title="hiiiits" />
