@@ -1,4 +1,4 @@
-import type { Children, PropsWithChildren, RootComponent } from '~/libs/svg';
+import type { Children, RootComponent } from '~/libs/svg';
 
 import { tag } from './utils';
 import type { BaseProps, SizeProps } from './utils';
@@ -7,7 +7,7 @@ import { select } from '../utils';
 const calcBadgeWidth = (str: string) => str.length * 9 + 11;
 const calcBadgeIconWidth = (str: string) => str.length * 9 + 24;
 
-const Badge: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
+const Badge: RootComponent<BaseProps & SizeProps & { children: Children }> = ({ c, t, w, h, children }) => {
   const color = select(c, t);
 
   const width = 20;
@@ -41,7 +41,7 @@ const BadgeChildIcon = ({ c, e }: { c: Children; e: string }) => {
 const calcButtonWidth = (str: string) => str.length * 10 + 44;
 const calcButtonIconWidth = (str: string) => str.length * 10 + 58;
 
-const Button: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
+const Button: RootComponent<BaseProps & SizeProps & { children: Children }> = ({ c, t, w, h, children }) => {
   const color = select(c, t);
 
   const width = 32;
@@ -73,7 +73,7 @@ const ButtonChildIcon = ({ c, e }: { c: Children; e: string }) => {
   });
 };
 
-const Icon: RootComponent<PropsWithChildren<BaseProps & SizeProps>> = ({ c, t, w, h, children }) => {
+const Icon: RootComponent<BaseProps & SizeProps & { children: Children }> = ({ c, t, w, h, children }) => {
   const color = select(c, t);
 
   const width = 22;

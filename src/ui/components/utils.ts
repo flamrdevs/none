@@ -1,4 +1,4 @@
-import type { Tag } from '~/libs/svg';
+import type { Tag, CSSProperties, Children } from '~/libs/svg';
 
 import type { Color, Theme } from '../colors';
 
@@ -24,7 +24,7 @@ type SizeProps = {
   h?: number;
 };
 
-const tag = <P extends Record<string, any>>(type: Tag, props: P) => ({ type, props });
+const tag = <P extends { style?: CSSProperties; children?: Children } & { [key: string]: unknown }>(type: Tag, props: P) => ({ type, props });
 
 export type { BaseProps, SizeProps };
 export { tag };
