@@ -53,6 +53,7 @@ const SimpleIcons = {
   codesandbox: createSimpleIcon(si.siCodesandbox.path),
   commitlint: createSimpleIcon(si.siCommitlint.path),
   css3: createSimpleIcon(si.siCss3.path),
+  dart: createSimpleIcon(si.siDart.path),
   deno: createSimpleIcon(si.siDeno.path),
   'dev.to': createSimpleIcon(si.siDevdotto.path),
   discord: createSimpleIcon(si.siDiscord.path),
@@ -72,6 +73,7 @@ const SimpleIcons = {
   githubactions: createSimpleIcon(si.siGithubactions.path),
   githubpages: createSimpleIcon(si.siGithubpages.path),
   gitlab: createSimpleIcon(si.siGitlab.path),
+  go: createSimpleIcon(si.siGo.path),
   googlechrome: createSimpleIcon(si.siGooglechrome.path),
   graphql: createSimpleIcon(si.siGraphql.path),
   html5: createSimpleIcon(si.siHtml5.path),
@@ -159,6 +161,7 @@ const SimpleIcons = {
   xampp: createSimpleIcon(si.siXampp.path),
   yarn: createSimpleIcon(si.siYarn.path),
   youtube: createSimpleIcon(si.siYoutube.path),
+  zig: createSimpleIcon(si.siZig.path),
   zod: createSimpleIcon(si.siZod.path),
 };
 
@@ -192,6 +195,7 @@ const SIMPLE_ICON = Object.keys(SimpleIcons) as unknown as [
   `codesandbox`,
   `commitlint`,
   `css3`,
+  `dart`,
   `deno`,
   `dev.to`,
   `discord`,
@@ -211,6 +215,7 @@ const SIMPLE_ICON = Object.keys(SimpleIcons) as unknown as [
   `githubactions`,
   `githubpages`,
   `gitlab`,
+  `go`,
   `googlechrome`,
   `graphql`,
   `html5`,
@@ -298,6 +303,7 @@ const SIMPLE_ICON = Object.keys(SimpleIcons) as unknown as [
   `xampp`,
   `yarn`,
   `youtube`,
+  `zig`,
   `zod`
 ];
 const SIMPLE_ICON_DEFAULT = 'github' satisfies SimpleIcon;
