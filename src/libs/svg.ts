@@ -143,8 +143,11 @@ const img = await (async () => {
 const CACHE: Record<string, Response> = {};
 // const CACHE = await caches.open('svg');
 
+const MAX_AGE = process.env.NODE_ENV === 'production' ? 86400 : 1;
+
+const HEADERS = { 'content-type': 'image/svg+xml', 'cache-control': `public, max-age=${MAX_AGE}` };
+
 const svg = await (async () => {
-  const maxAxe = process.env.NODE_ENV === 'production' ? 86400 : 1;
   return (async (context, element) => {
     const key = context.req.url;
 
@@ -155,7 +158,7 @@ const svg = await (async () => {
       return cached;
     }
 
-    const fresh = context.body(await img(await element()), 200, { 'content-type': 'image/svg+xml', 'cache-control': `public, max-age=${maxAxe}` });
+    const fresh = context.body(await img(await element()), 200, HEADERS);
 
     CACHE[key] = fresh.clone();
 

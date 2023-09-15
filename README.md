@@ -492,34 +492,14 @@ Colorful SVG generation service
   </picture>
 </p>
 
-## NPM
-
-### Version
-
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/v?t=dark&n=@klass/core">
-    <img alt="version" src="https://none.deno.dev/npm/v?t=light&n=@klass/core" hspace="1">
-  </picture>
-</p>
-
-### License
-
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/l?t=dark&n=@klass/core">
-    <img alt="license" src="https://none.deno.dev/npm/l?t=light&n=@klass/core" hspace="1">
-  </picture>
-</p>
-
 ## BundleJS
 
 ### Min
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/bundlejs/m?t=dark&n=@klass/core">
-    <img alt="version" src="https://none.deno.dev/bundlejs/m?t=light&n=@klass/core" hspace="1">
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/bundlejs/m/@klass/core?t=dark">
+    <img alt="version" src="https://none.deno.dev/bundlejs/m/@klass/core?t=light" hspace="1">
   </picture>
 </p>
 
@@ -527,8 +507,75 @@ Colorful SVG generation service
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/bundlejs/mz?t=dark&n=@klass/core">
-    <img alt="license" src="https://none.deno.dev/bundlejs/mz?t=light&n=@klass/core" hspace="1">
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/bundlejs/mz/@klass/core?t=dark">
+    <img alt="license" src="https://none.deno.dev/bundlejs/mz/@klass/core?t=light" hspace="1">
+  </picture>
+</p>
+
+## Github
+
+### Repo Forks Count
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/github/repo/fc/flamrdevs/none?t=dark">
+    <img alt="version" src="https://none.deno.dev/github/repo/fc/flamrdevs/none?t=light" hspace="1">
+  </picture>
+</p>
+
+### Repo Stargazers Count
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/github/repo/sc/flamrdevs/none?t=dark">
+    <img alt="version" src="https://none.deno.dev/github/repo/sc/flamrdevs/none?t=light" hspace="1">
+  </picture>
+</p>
+
+### Repo License
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/github/repo/l/flamrdevs/none?t=dark">
+    <img alt="version" src="https://none.deno.dev/github/repo/l/flamrdevs/none?t=light" hspace="1">
+  </picture>
+</p>
+
+## NPM
+
+### Version
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/v/@klass/core?t=dark">
+    <img alt="version" src="https://none.deno.dev/npm/v/@klass/core?t=light" hspace="1">
+  </picture>
+</p>
+
+### License
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/l/@klass/core?t=dark">
+    <img alt="license" src="https://none.deno.dev/npm/l/@klass/core?t=light" hspace="1">
+  </picture>
+</p>
+
+### Weekly Downloads
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/dw/@klass/core?t=dark">
+    <img alt="license" src="https://none.deno.dev/npm/dw/@klass/core?t=light" hspace="1">
+  </picture>
+</p>
+
+### Monthly Downloads
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/dm/@klass/core?t=dark">
+    <img alt="license" src="https://none.deno.dev/npm/dm/@klass/core?t=light" hspace="1">
   </picture>
 </p>
 

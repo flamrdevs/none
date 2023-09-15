@@ -19,7 +19,12 @@ if (process.env.NODE_ENV === 'development') {
   app.use('*', logger());
 }
 
-app.route('/npm', routes.npm).route('/bundlejs', routes.bundlejs).route('/ui', routes.ui);
+app
+  //
+  .route('/bundlejs', routes.bundlejs)
+  .route('/github', routes.github)
+  .route('/npm', routes.npm)
+  .route('/ui', routes.ui);
 
 app
   .get('/', (ctx) => ctx.json({ name: 'none', build }))

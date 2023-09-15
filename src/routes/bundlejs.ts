@@ -11,27 +11,28 @@ export default new Hono()
    */
   .route(
     '/api',
-    new Hono().get('/item', async (ctx) => {
+    new Hono().get('/item/:name{.+$}', async (ctx) => {
       const { getBundleItem } = await bundlejs();
-      const { getValidPackageNameQuery } = await npm();
+      const { getValidPackageNameParam } = await npm();
 
-      return ctx.json(await getBundleItem(await getValidPackageNameQuery(ctx)));
+      return ctx.json(await getBundleItem(await getValidPackageNameParam(ctx)));
     })
   )
 
   /**
    * min
    */
-  .get('/m', async (ctx) => {
+  .get('/m/:name{.+$}', async (ctx) => {
     const { getBundleItem } = await bundlejs();
-    const { getValidPackageNameQuery } = await npm();
+    const { getValidPackageNameParam } = await npm();
 
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
+    const n = await getValidPackageNameParam(ctx);
+
     const c = await getValidColorQuery(ctx);
     const t = await getValidThemeQuery(ctx);
-    const n = await getValidPackageNameQuery(ctx);
 
     const s = (await getBundleItem(n)).size.uncompressedSize;
 
@@ -41,16 +42,17 @@ export default new Hono()
   /**
    * min+gzip
    */
-  .get('/mz', async (ctx) => {
+  .get('/mz/:name{.+$}', async (ctx) => {
     const { getBundleItem } = await bundlejs();
-    const { getValidPackageNameQuery } = await npm();
+    const { getValidPackageNameParam } = await npm();
 
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
+    const n = await getValidPackageNameParam(ctx);
+
     const c = await getValidColorQuery(ctx);
     const t = await getValidThemeQuery(ctx);
-    const n = await getValidPackageNameQuery(ctx);
 
     const s = (await getBundleItem(n)).size.compressedSize;
 

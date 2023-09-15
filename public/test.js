@@ -32,13 +32,30 @@ await (async () => {
   await app.request('/ui/icon-button', { method: 'GET' });
 })();
 
-await FETCH.GET('/npm/api/item?n=@klass/core', 200);
-await FETCH.GET('/npm/v?n=@klass/core', 200);
-await FETCH.GET('/npm/l?n=@klass/core', 200);
+await FETCH.GET('/bundlejs/api/item/propsplit', 200);
+await FETCH.GET('/bundlejs/m/propsplit', 200);
+await FETCH.GET('/bundlejs/mz/propsplit', 200);
 
-await FETCH.GET('/bundlejs/api/item?n=@klass/core', 200);
-await FETCH.GET('/bundlejs/m?n=@klass/core', 200);
-await FETCH.GET('/bundlejs/mz?n=@klass/core', 200);
+await FETCH.GET('/bundlejs/api/item/@klass/core', 200);
+await FETCH.GET('/bundlejs/m/@klass/core', 200);
+await FETCH.GET('/bundlejs/mz/@klass/core', 200);
+
+await FETCH.GET('/github/api/repo-item/flamrdevs/none', 200);
+await FETCH.GET('/github/repo/fc/flamrdevs/none', 200);
+await FETCH.GET('/github/repo/sc/flamrdevs/none', 200);
+await FETCH.GET('/github/repo/l/flamrdevs/none', 200);
+
+await FETCH.GET('/npm/api/item/propsplit', 200);
+await FETCH.GET('/npm/v/propsplit', 200);
+await FETCH.GET('/npm/l/propsplit', 200);
+await FETCH.GET('/npm/dw/propsplit', 200);
+await FETCH.GET('/npm/dm/propsplit', 200);
+
+await FETCH.GET('/npm/api/item/@klass/core', 200);
+await FETCH.GET('/npm/v/@klass/core', 200);
+await FETCH.GET('/npm/l/@klass/core', 200);
+await FETCH.GET('/npm/dw/@klass/core', 200);
+await FETCH.GET('/npm/dm/@klass/core', 200);
 
 await FETCH.GET('/ui/badge', 200);
 await FETCH.GET('/ui/badge/lucide', 200);
