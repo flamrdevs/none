@@ -17,6 +17,31 @@
   </picture>
 </p>
 
+<p>
+  <img width="100%" src="https://hiiiits.deno.dev/hit/flamrdevs/none" alt="hiiiits" title="hiiiits" />
+</p>
+
+<p align="center">
+  <a title="license" href="https://github.com/flamrdevs/none/blob/main/LICENSE">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/github/repo/l/flamrdevs/none?t=dark">
+      <img alt="license" src="https://none.deno.dev/github/repo/l/flamrdevs/none?t=light" hspace="1">
+    </picture>
+  </a>
+  <a title="forks" href="https://github.com/flamrdevs/none/forks">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/github/repo/fc/flamrdevs/none?t=dark">
+      <img alt="forks" src="https://none.deno.dev/github/repo/fc/flamrdevs/none?t=light" hspace="1">
+    </picture>
+  </a>
+  <a title="stargazers" href="https://github.com/flamrdevs/none/stargazers">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/github/repo/sc/flamrdevs/none?t=dark">
+      <img alt="stargazers" src="https://none.deno.dev/github/repo/sc/flamrdevs/none?t=light" hspace="1">
+    </picture>
+  </a>
+</p>
+
 <h1>
   <span>none</span>
   <picture>
@@ -578,5 +603,3 @@ Colorful SVG generation service
     <img alt="license" src="https://none.deno.dev/npm/dm/@klass/core?t=light" hspace="1">
   </picture>
 </p>
-
-<img width="100%" src="https://hiiiits.deno.dev/hit/flamrdevs/none" alt="hiiiits" title="hiiiits" />
