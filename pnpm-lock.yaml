@@ -2,14 +2,14 @@ lockfileVersion: '6.0'
 
 devDependencies:
   '@types/node':
-    specifier: ^20.6.0
-    version: 20.6.0
+    specifier: ^20.6.3
+    version: 20.6.3
   dayjs:
-    specifier: ^1.11.9
-    version: 1.11.9
+    specifier: ^1.11.10
+    version: 1.11.10
   hono:
-    specifier: ^3.6.3
-    version: 3.6.3
+    specifier: ^3.7.0
+    version: 3.7.0
   ky:
     specifier: ^1.0.1
     version: 1.0.1
@@ -17,14 +17,14 @@ devDependencies:
     specifier: ^0.279.0
     version: 0.279.0
   satori:
-    specifier: ^0.10.6
-    version: 0.10.6
+    specifier: ^0.10.7
+    version: 0.10.7
   simple-icons:
     specifier: ^9.15.0
     version: 9.15.0
   terser:
-    specifier: ^5.19.4
-    version: 5.19.4
+    specifier: ^5.20.0
+    version: 5.20.0
   tsup:
     specifier: ^7.2.0
     version: 7.2.0(typescript@5.2.2)
@@ -321,8 +321,8 @@ packages:
       string.prototype.codepointat: 0.2.1
     dev: true
 
-  /@types/node@20.6.0:
-    resolution: {integrity: sha512-najjVq5KN2vsH2U/xyh2opaSEz6cZMR2SetLIlxlj08nOcmPOemJmUK2o4kUzfLqfrWE0PIrNeE16XhYDd3nqg==}
+  /@types/node@20.6.3:
+    resolution: {integrity: sha512-HksnYH4Ljr4VQgEy2lTStbCKv/P590tmPe5HqOnv9Gprffgv5WXAY+Y5Gqniu0GGqeTCUdBnzC3QSrzPkBkAMA==}
     dev: true
 
   /acorn@8.10.0:
@@ -461,8 +461,8 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /dayjs@1.11.9:
-    resolution: {integrity: sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==}
+  /dayjs@1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
     dev: true
 
   /debug@4.3.4:
@@ -617,8 +617,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /hono@3.6.3:
-    resolution: {integrity: sha512-8WszeHGzUm45qJy2JcCXkEFXMsAysciGGQs+fbpdUYPO2bRMbjJznZE3LX8tCXBqR4f/3e6225B3YOX6pQZWvA==}
+  /hono@3.7.0:
+    resolution: {integrity: sha512-tqhUslEbdAyWCU1a2jeoytwdmS971eIoB3IklTZRVQz+SjSyOQixrkp5CVw7chYwanYE3UMEyr/uAR2HOuMdhw==}
     engines: {node: '>=16.0.0'}
     dev: true
 
@@ -881,8 +881,8 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /satori@0.10.6:
-    resolution: {integrity: sha512-bhAAnh+ZZgulFpxoDi5AB1VA3MsN6AnhB0Elfdj5bQitn4N9GHAB3MC5eFauOnXHF7a9TT1jIPHhUY4JQsP6Xg==}
+  /satori@0.10.7:
+    resolution: {integrity: sha512-PizTQJuWSo1B2NTKUBAOYY7Cy9CDeRrW2aK0d+OTNaNz/1WcjfdZjl5Y6uapwrPB1DxG48XfaFaL2M5C0CL5Vw==}
     engines: {node: '>=16'}
     dependencies:
       '@shuding/opentype.js': 1.4.0-beta.0
@@ -965,8 +965,8 @@ packages:
       ts-interface-checker: 0.1.13
     dev: true
 
-  /terser@5.19.4:
-    resolution: {integrity: sha512-6p1DjHeuluwxDXcuT9VR8p64klWJKo1ILiy19s6C9+0Bh2+NWTX6nD9EPppiER4ICkHDVB1RkVpin/YW2nQn/g==}
+  /terser@5.20.0:
+    resolution: {integrity: sha512-e56ETryaQDyebBwJIWYB2TT6f2EZ0fL0sW/JRXNMN26zZdKi2u/E/5my5lG6jNxym6qsrVXfFRmOdV42zlAgLQ==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
