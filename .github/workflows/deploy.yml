@@ -44,8 +44,8 @@ jobs:
       - name: Run "pnpm test"
         run: pnpm test
 
-      - name: Run "pnpm script:remove-test"
-        run: pnpm script:remove-test
+      - name: Run "pnpm script:remove-unnecessary"
+        run: pnpm script:remove-unnecessary
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
