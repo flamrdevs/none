@@ -8,8 +8,8 @@ devDependencies:
     specifier: ^1.11.10
     version: 1.11.10
   hono:
-    specifier: ^3.7.0
-    version: 3.7.0
+    specifier: ^3.7.1
+    version: 3.7.1
   ky:
     specifier: ^1.0.1
     version: 1.0.1
@@ -17,8 +17,8 @@ devDependencies:
     specifier: ^0.279.0
     version: 0.279.0
   satori:
-    specifier: ^0.10.7
-    version: 0.10.7
+    specifier: ^0.10.8
+    version: 0.10.8
   simple-icons:
     specifier: ^9.15.0
     version: 9.15.0
@@ -617,8 +617,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /hono@3.7.0:
-    resolution: {integrity: sha512-tqhUslEbdAyWCU1a2jeoytwdmS971eIoB3IklTZRVQz+SjSyOQixrkp5CVw7chYwanYE3UMEyr/uAR2HOuMdhw==}
+  /hono@3.7.1:
+    resolution: {integrity: sha512-S6XiX1wr2mj6zo1HNkmAJ3vVkHTsMMQuAN9W3gDj7vKCf3Kc8/zfdrUHJKkzIz9fknibznfgPWDOKkt5Ae+3EQ==}
     engines: {node: '>=16.0.0'}
     dev: true
 
@@ -881,8 +881,8 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /satori@0.10.7:
-    resolution: {integrity: sha512-PizTQJuWSo1B2NTKUBAOYY7Cy9CDeRrW2aK0d+OTNaNz/1WcjfdZjl5Y6uapwrPB1DxG48XfaFaL2M5C0CL5Vw==}
+  /satori@0.10.8:
+    resolution: {integrity: sha512-WlPLxgpx5kIyMuOO6qi98DhZGIbRk5XJRqENkt6D6gyDBWGyo3M5kcSl0X/oSFHUH+n4unlzwMejoPM47s4zug==}
     engines: {node: '>=16'}
     dependencies:
       '@shuding/opentype.js': 1.4.0-beta.0
