@@ -2,14 +2,14 @@ lockfileVersion: '6.0'
 
 devDependencies:
   '@types/node':
-    specifier: ^20.6.3
-    version: 20.6.3
+    specifier: ^20.7.0
+    version: 20.7.0
   dayjs:
     specifier: ^1.11.10
     version: 1.11.10
   hono:
-    specifier: ^3.7.1
-    version: 3.7.1
+    specifier: ^3.7.2
+    version: 3.7.2
   ky:
     specifier: ^1.0.1
     version: 1.0.1
@@ -20,8 +20,8 @@ devDependencies:
     specifier: ^0.10.8
     version: 0.10.8
   simple-icons:
-    specifier: ^9.15.0
-    version: 9.15.0
+    specifier: ^9.16.0
+    version: 9.16.0
   terser:
     specifier: ^5.20.0
     version: 5.20.0
@@ -34,9 +34,6 @@ devDependencies:
   yoga-wasm-web:
     specifier: ^0.3.3
     version: 0.3.3
-  zod:
-    specifier: ^3.22.2
-    version: 3.22.2
 
 packages:
 
@@ -321,8 +318,8 @@ packages:
       string.prototype.codepointat: 0.2.1
     dev: true
 
-  /@types/node@20.6.3:
-    resolution: {integrity: sha512-HksnYH4Ljr4VQgEy2lTStbCKv/P590tmPe5HqOnv9Gprffgv5WXAY+Y5Gqniu0GGqeTCUdBnzC3QSrzPkBkAMA==}
+  /@types/node@20.7.0:
+    resolution: {integrity: sha512-zI22/pJW2wUZOVyguFaUL1HABdmSVxpXrzIqkjsHmyUjNhPoWM1CKfvVuXfetHhIok4RY573cqS0mZ1SJEnoTg==}
     dev: true
 
   /acorn@8.10.0:
@@ -617,8 +614,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /hono@3.7.1:
-    resolution: {integrity: sha512-S6XiX1wr2mj6zo1HNkmAJ3vVkHTsMMQuAN9W3gDj7vKCf3Kc8/zfdrUHJKkzIz9fknibznfgPWDOKkt5Ae+3EQ==}
+  /hono@3.7.2:
+    resolution: {integrity: sha512-5SWYrAQJlfjHggcDTnmKZd5zlUEXmoUiBjnmL6C1W8MX39/bUw6ZIvfEJZgpo7d7Z/vCJ5FRfkjIQPRH5yV/dQ==}
     engines: {node: '>=16.0.0'}
     dev: true
 
@@ -913,8 +910,8 @@ packages:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
 
-  /simple-icons@9.15.0:
-    resolution: {integrity: sha512-76lKUjLHV5xQmNd5uglZitthQjY+Y15e+sKsryEk4Xo9OXmC1E1trBNC5Q4R2FHkHu8lAUhW7Up0mCcG6e0Nqg==}
+  /simple-icons@9.16.0:
+    resolution: {integrity: sha512-KM+7MWNlRnAjeURKV6VvJmjqfHuRLwgXxZ2IrtV+bqsz/8P/xmFEvJd+8xUww94bbPEIsHeXK7A9BwJASYnXrQ==}
     engines: {node: '>=0.12.18'}
     dev: true
 
@@ -1095,8 +1092,4 @@ packages:
 
   /yoga-wasm-web@0.3.3:
     resolution: {integrity: sha512-N+d4UJSJbt/R3wqY7Coqs5pcV0aUj2j9IaQ3rNj9bVCLld8tTGKRa2USARjnvZJWVx1NDmQev8EknoczaOQDOA==}
-    dev: true
-
-  /zod@3.22.2:
-    resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
     dev: true

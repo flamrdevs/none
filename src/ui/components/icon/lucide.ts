@@ -1,8 +1,9 @@
 import type { Context } from 'hono';
 import * as li from 'lucide';
-import { z } from 'zod';
 
 import type { Component } from '~/libs/svg';
+
+import * as http from '~/libs/http';
 
 import { tag } from '../utils';
 
@@ -211,11 +212,14 @@ const LUCIDE_ICON = Object.keys(LucideIcons) as unknown as [
 ];
 const LUCIDE_ICON_DEFAULT = 'code' satisfies LucideIcon;
 
-const LucideIconSchema = z.enum(LUCIDE_ICON, { required_error: 'Icon is required', invalid_type_error: 'Invalid icon' }).default(LUCIDE_ICON_DEFAULT);
+const parse = async (value: unknown = LUCIDE_ICON_DEFAULT) => {
+  if (LUCIDE_ICON.includes(`${value}` as any)) return value as LucideIcon;
+  throw http.e400('Invalid icon');
+};
 
-const getValidLucideIconQuery = async (context: Context, key: string = 'i') => await LucideIconSchema.parseAsync(context.req.query(key));
+const getValidLucideIconQuery = (context: Context, key: string = 'i') => parse(context.req.query(key));
 
 export type { LucideIcon };
-export { LucideIconSchema };
+export { parse };
 export { LucideIcons };
 export { getValidLucideIconQuery };

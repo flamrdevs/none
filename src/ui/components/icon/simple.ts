@@ -1,8 +1,9 @@
 import type { Context } from 'hono';
 import * as si from 'simple-icons';
-import { z } from 'zod';
 
 import type { Component } from '~/libs/svg';
+
+import * as http from '~/libs/http';
 
 import { tag } from '../utils';
 
@@ -318,11 +319,14 @@ const SIMPLE_ICON = Object.keys(SimpleIcons) as unknown as [
 ];
 const SIMPLE_ICON_DEFAULT = 'github' satisfies SimpleIcon;
 
-const SimpleIconSchema = z.enum(SIMPLE_ICON, { required_error: 'Icon is required', invalid_type_error: 'Invalid icon' }).default(SIMPLE_ICON_DEFAULT);
+const parse = async (value: unknown = SIMPLE_ICON_DEFAULT) => {
+  if (SIMPLE_ICON.includes(`${value}` as any)) return value as SimpleIcon;
+  throw http.e400('Invalid icon');
+};
 
-const getValidSimpleIconQuery = async (context: Context, key: string = 'i') => await SimpleIconSchema.parseAsync(context.req.query(key));
+const getValidSimpleIconQuery = (context: Context, key: string = 'i') => parse(context.req.query(key));
 
 export type { SimpleIcon };
-export { SimpleIconSchema };
+export { parse };
 export { SimpleIcons };
 export { getValidSimpleIconQuery };

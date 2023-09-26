@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import type { Context } from 'hono';
-import { z } from 'zod';
+
+import * as http from '~/libs/http';
 
 import { svg } from '~/libs/dynamic';
 import { components, utils } from '~/ui/dynamic';
@@ -13,9 +14,12 @@ export default new Hono()
   .route(
     '/badge',
     (() => {
-      const BadgeElementSchema = z.string().min(2).max(48).default('badge');
+      const parseBadgeElement = (value: unknown = 'badge') => {
+        if (typeof value === 'string' && value.length > 1 && value.length < 49) return value;
+        throw http.e400('Invalid badge element');
+      };
 
-      const getValidBadgeElementQuery = async (context: Context, key: string = 'e') => await BadgeElementSchema.parseAsync(context.req.query(key));
+      const getValidBadgeElementQuery = (context: Context, key: string = 'e') => parseBadgeElement(context.req.query(key));
 
       return (
         new Hono()
@@ -89,9 +93,12 @@ export default new Hono()
   .route(
     '/button',
     (() => {
-      const ButtonElementSchema = z.string().min(2).max(48).default('button');
+      const parseButtonElement = (value: unknown = 'button') => {
+        if (typeof value === 'string' && value.length > 1 && value.length < 49) return value;
+        throw http.e400('Invalid button element');
+      };
 
-      const getValidButtonElementQuery = async (context: Context, key: string = 'e') => await ButtonElementSchema.parseAsync(context.req.query(key));
+      const getValidButtonElementQuery = (context: Context, key: string = 'e') => parseButtonElement(context.req.query(key));
 
       return (
         new Hono()
@@ -203,9 +210,12 @@ export default new Hono()
   .route(
     '/icon-button',
     (() => {
-      const IconButtonElementSchema = z.string().length(1).default('x');
+      const parseIconButtonElement = (value: unknown = 'x') => {
+        if (typeof value === 'string' && value.length === 1) return value;
+        throw http.e400('Invalid icon button element');
+      };
 
-      const getValidIconButtonElementQuery = async (context: Context, key: string = 'e') => await IconButtonElementSchema.parseAsync(context.req.query(key));
+      const getValidIconButtonElementQuery = (context: Context, key: string = 'e') => parseIconButtonElement(context.req.query(key));
 
       return (
         new Hono()

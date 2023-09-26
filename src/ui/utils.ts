@@ -1,5 +1,6 @@
 import type { Context } from 'hono';
-import { z } from 'zod';
+
+import * as http from '~/libs/http';
 
 import COLORS from './colors';
 import type { Color, ColorObject, Theme } from './colors';
@@ -44,12 +45,18 @@ const THEME_DEFAULT = 'dark' satisfies Theme;
 
 const select = (color: Color = COLOR_DEFAULT, theme: Theme = THEME_DEFAULT): ColorObject => COLORS[color][theme];
 
-const ColorSchema = z.enum(COLOR, { invalid_type_error: 'Invalid color', required_error: 'Required color' }).default(COLOR_DEFAULT);
-const ThemeSchema = z.enum(THEME, { invalid_type_error: 'Invalid theme', required_error: 'Required theme' }).default(THEME_DEFAULT);
+const parseColor = async (value: unknown = COLOR_DEFAULT) => {
+  if (COLOR.includes(`${value}` as any)) return value as Color;
+  throw http.e400('Invalid color');
+};
+const parseTheme = async (value: unknown = THEME_DEFAULT) => {
+  if (THEME.includes(`${value}` as any)) return value as Theme;
+  throw http.e400('Invalid theme');
+};
 
-const getValidColorQuery = async (context: Context) => await ColorSchema.parseAsync(context.req.query('c'));
-const getValidThemeQuery = async (context: Context) => await ThemeSchema.parseAsync(context.req.query('t'));
+const getValidColorQuery = (context: Context) => parseColor(context.req.query('c'));
+const getValidThemeQuery = (context: Context) => parseTheme(context.req.query('t'));
 
-export { ColorSchema, ThemeSchema };
+export { parseColor, parseTheme };
 export { select };
 export { getValidColorQuery, getValidThemeQuery };
