@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { cors } from 'hono/cors';
 import { compress } from 'hono/compress';
-// import { logger } from 'hono/logger';
+import { logger } from 'hono/logger';
 import { secureHeaders } from 'hono/secure-headers';
 
 import dayjs from 'dayjs';
@@ -16,7 +16,7 @@ const build = dayjs().format();
 app.use('*', cors({ origin: '*' }), compress(), secureHeaders({ crossOriginResourcePolicy: false }));
 
 if (process.env.NODE_ENV === 'development') {
-  // app.use('*', logger());
+  app.use('*', logger());
 }
 
 app

@@ -14,7 +14,7 @@ export default new Hono()
   .route(
     '/badge',
     (() => {
-      const parseBadgeElement = (value: unknown = 'badge') => {
+      const parseBadgeElement = async (value: unknown = 'badge') => {
         if (typeof value === 'string' && value.length > 1 && value.length < 49) return value;
         throw http.e400('Invalid badge element');
       };
@@ -93,7 +93,7 @@ export default new Hono()
   .route(
     '/button',
     (() => {
-      const parseButtonElement = (value: unknown = 'button') => {
+      const parseButtonElement = async (value: unknown = 'button') => {
         if (typeof value === 'string' && value.length > 1 && value.length < 49) return value;
         throw http.e400('Invalid button element');
       };
@@ -210,7 +210,7 @@ export default new Hono()
   .route(
     '/icon-button',
     (() => {
-      const parseIconButtonElement = (value: unknown = 'x') => {
+      const parseIconButtonElement = async (value: unknown = 'x') => {
         if (typeof value === 'string' && value.length === 1) return value;
         throw http.e400('Invalid icon button element');
       };
