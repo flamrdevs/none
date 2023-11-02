@@ -4,15 +4,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.8.10
     version: 20.8.10
-  dayjs:
-    specifier: ^1.11.10
-    version: 1.11.10
   hono:
     specifier: ^3.9.1
     version: 3.9.1
-  ky:
-    specifier: ^1.1.2
-    version: 1.1.2
   lucide:
     specifier: ^0.291.0
     version: 0.291.0
@@ -447,10 +441,6 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /dayjs@1.11.10:
-    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
-    dev: true
-
   /debug@4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
     engines: {node: '>=6.0'}
@@ -665,11 +655,6 @@ packages:
   /joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
     engines: {node: '>=10'}
-    dev: true
-
-  /ky@1.1.2:
-    resolution: {integrity: sha512-voehdKw8MleNTfcAVlZ9nObJQiWXvb5b3sYpVP6s8VYEdrmnbs7aYdNfAE0nC8wch8TXjH1ksnwTOvYcxrf1Gw==}
-    engines: {node: '>=18'}
     dev: true
 
   /lilconfig@2.1.0:

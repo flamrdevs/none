@@ -12,9 +12,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.8.10",
-    "dayjs": "^1.11.10",
     "hono": "^3.9.1",
-    "ky": "^1.1.2",
     "lucide": "^0.291.0",
     "satori": "^0.10.9",
     "simple-icons": "^9.19.0",

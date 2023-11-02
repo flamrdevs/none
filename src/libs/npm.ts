@@ -1,6 +1,7 @@
 import type { Context } from 'hono';
-import ky from 'ky';
 import * as v from 'valibot';
+
+import * as fetchs from './fetchs';
 
 import { memo } from './utils';
 
@@ -30,11 +31,11 @@ const loadPackageItem = memo<PackageItem>();
 const loadDownloadPointWeekItem = memo<DownloadPointItem>();
 const loadDownloadPointMonthItem = memo<DownloadPointItem>();
 
-const getPackageItem = (name: string): Promise<PackageItem> => loadPackageItem(name, async () => v.parse(PackageItemSchema, await ky.get(`https://registry.npmjs.org/${name}/latest`).json()));
+const getPackageItem = (name: string): Promise<PackageItem> => loadPackageItem(name, async () => v.parse(PackageItemSchema, await fetchs.get.json(`https://registry.npmjs.org/${name}/latest`)));
 const getDownloadPointWeekItem = (name: string): Promise<DownloadPointItem> =>
-  loadDownloadPointWeekItem(name, async () => v.parse(DownloadPointItemSchema, await ky.get(`https://api.npmjs.org/downloads/point/last-week/${name}`).json()));
+  loadDownloadPointWeekItem(name, async () => v.parse(DownloadPointItemSchema, await fetchs.get.json(`https://api.npmjs.org/downloads/point/last-week/${name}`)));
 const getDownloadPointMonthItem = (name: string): Promise<DownloadPointItem> =>
-  loadDownloadPointMonthItem(name, async () => v.parse(DownloadPointItemSchema, await ky.get(`https://api.npmjs.org/downloads/point/last-month/${name}`).json()));
+  loadDownloadPointMonthItem(name, async () => v.parse(DownloadPointItemSchema, await fetchs.get.json(`https://api.npmjs.org/downloads/point/last-month/${name}`)));
 
 const formatDownloads = (number: number): string => (number < 1000 ? number.toString() : number < 1000000 ? (number / 1000).toFixed(1) + 'K' : (number / 1000000).toFixed(1) + 'M');
 

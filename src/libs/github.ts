@@ -1,6 +1,7 @@
 import type { Context } from 'hono';
-import ky from 'ky';
 import * as v from 'valibot';
+
+import * as fetchs from './fetchs';
 
 import { memo } from './utils';
 
@@ -33,7 +34,7 @@ const RepoItemSchema = v.object({
 const loadRepoItem = memo<RepoItem>();
 
 const getRepoItem = (user: string, repo: string): Promise<RepoItem> =>
-  loadRepoItem([user, repo].join('/'), async () => v.parse(RepoItemSchema, await ky.get(`https://api.github.com/repos/${user}/${repo}`).json()));
+  loadRepoItem([user, repo].join('/'), async () => v.parse(RepoItemSchema, await fetchs.get.json(`https://api.github.com/repos/${user}/${repo}`)));
 
 const formatCount = (number: number): string => (number < 1000 ? number.toString() : number < 1000000 ? (number / 1000).toFixed(1) + 'K' : (number / 1000000).toFixed(1) + 'M');
 
