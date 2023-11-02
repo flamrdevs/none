@@ -15,7 +15,7 @@ export default new Hono()
       const { getBundleItem } = await bundlejs();
       const { getValidPackageNameParam } = await npm();
 
-      return ctx.json(await getBundleItem(await getValidPackageNameParam(ctx)));
+      return ctx.json(await getBundleItem(getValidPackageNameParam(ctx)));
     })
   )
 
@@ -29,10 +29,10 @@ export default new Hono()
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const n = await getValidPackageNameParam(ctx);
+    const n = getValidPackageNameParam(ctx);
 
-    const c = await getValidColorQuery(ctx);
-    const t = await getValidThemeQuery(ctx);
+    const c = getValidColorQuery(ctx);
+    const t = getValidThemeQuery(ctx);
 
     const s = (await getBundleItem(n)).size.uncompressedSize;
 
@@ -49,10 +49,10 @@ export default new Hono()
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const n = await getValidPackageNameParam(ctx);
+    const n = getValidPackageNameParam(ctx);
 
-    const c = await getValidColorQuery(ctx);
-    const t = await getValidThemeQuery(ctx);
+    const c = getValidColorQuery(ctx);
+    const t = getValidThemeQuery(ctx);
 
     const s = (await getBundleItem(n)).size.compressedSize;
 

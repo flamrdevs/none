@@ -1,6 +1,5 @@
 import type { Context } from 'hono';
-
-import * as http from '~/libs/http';
+import * as v from 'valibot';
 
 import COLORS from './colors';
 import type { Color, ColorObject, Theme } from './colors';
@@ -45,18 +44,12 @@ const THEME_DEFAULT = 'dark' satisfies Theme;
 
 const select = (color: Color = COLOR_DEFAULT, theme: Theme = THEME_DEFAULT): ColorObject => COLORS[color][theme];
 
-const parseColor = async (value: unknown = COLOR_DEFAULT) => {
-  if (COLOR.includes(`${value}` as any)) return value as Color;
-  throw http.e400('Invalid color');
-};
-const parseTheme = async (value: unknown = THEME_DEFAULT) => {
-  if (THEME.includes(`${value}` as any)) return value as Theme;
-  throw http.e400('Invalid theme');
-};
+const ColorSchema = v.optional(v.picklist(COLOR), COLOR_DEFAULT);
 
-const getValidColorQuery = (context: Context) => parseColor(context.req.query('c'));
-const getValidThemeQuery = (context: Context) => parseTheme(context.req.query('t'));
+const ThemeSchema = v.optional(v.picklist(THEME), THEME_DEFAULT);
 
-export { parseColor, parseTheme };
+const getValidColorQuery = (context: Context) => v.parse(ColorSchema, context.req.query('c'));
+const getValidThemeQuery = (context: Context) => v.parse(ThemeSchema, context.req.query('t'));
+
 export { select };
 export { getValidColorQuery, getValidThemeQuery };

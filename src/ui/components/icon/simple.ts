@@ -1,9 +1,8 @@
 import type { Context } from 'hono';
 import * as si from 'simple-icons';
+import * as v from 'valibot';
 
 import type { Component } from '~/libs/svg';
-
-import * as http from '~/libs/http';
 
 import { tag } from '../utils';
 
@@ -319,14 +318,10 @@ const SIMPLE_ICON = Object.keys(SimpleIcons) as unknown as [
 ];
 const SIMPLE_ICON_DEFAULT = 'github' satisfies SimpleIcon;
 
-const parse = async (value: unknown = SIMPLE_ICON_DEFAULT) => {
-  if (SIMPLE_ICON.includes(`${value}` as any)) return value as SimpleIcon;
-  throw http.e400('Invalid icon');
-};
+const IconSchema = v.optional(v.picklist(SIMPLE_ICON), SIMPLE_ICON_DEFAULT);
 
-const getValidSimpleIconQuery = (context: Context, key: string = 'i') => parse(context.req.query(key));
+const getValidSimpleIconQuery = (context: Context, key: string = 'i') => v.parse(IconSchema, context.req.query(key));
 
 export type { SimpleIcon };
-export { parse };
 export { SimpleIcons };
 export { getValidSimpleIconQuery };

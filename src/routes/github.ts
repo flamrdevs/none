@@ -14,7 +14,7 @@ export default new Hono()
     new Hono().get('/repo-item/:user/:repo', async (ctx) => {
       const { getRepoItem, getValidUsernameParam, getValidReponameParam } = await github();
 
-      return ctx.json(await getRepoItem(await getValidUsernameParam(ctx), await getValidReponameParam(ctx)));
+      return ctx.json(await getRepoItem(getValidUsernameParam(ctx), getValidReponameParam(ctx)));
     })
   )
 
@@ -28,11 +28,11 @@ export default new Hono()
     const { LucideIcons } = await components.icon.lucide();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const user = await getValidUsernameParam(ctx);
-    const repo = await getValidReponameParam(ctx);
+    const user = getValidUsernameParam(ctx);
+    const repo = getValidReponameParam(ctx);
 
-    const c = await getValidColorQuery(ctx);
-    const t = await getValidThemeQuery(ctx);
+    const c = getValidColorQuery(ctx);
+    const t = getValidThemeQuery(ctx);
 
     const children = `${formatCount((await getRepoItem(user, repo)).forks_count)}`;
 
@@ -49,11 +49,11 @@ export default new Hono()
     const { LucideIcons } = await components.icon.lucide();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const user = await getValidUsernameParam(ctx);
-    const repo = await getValidReponameParam(ctx);
+    const user = getValidUsernameParam(ctx);
+    const repo = getValidReponameParam(ctx);
 
-    const c = await getValidColorQuery(ctx);
-    const t = await getValidThemeQuery(ctx);
+    const c = getValidColorQuery(ctx);
+    const t = getValidThemeQuery(ctx);
 
     const children = `${formatCount((await getRepoItem(user, repo)).stargazers_count)}`;
 
@@ -70,11 +70,11 @@ export default new Hono()
     const { LucideIcons } = await components.icon.lucide();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const user = await getValidUsernameParam(ctx);
-    const repo = await getValidReponameParam(ctx);
+    const user = getValidUsernameParam(ctx);
+    const repo = getValidReponameParam(ctx);
 
-    const c = await getValidColorQuery(ctx);
-    const t = await getValidThemeQuery(ctx);
+    const c = getValidColorQuery(ctx);
+    const t = getValidThemeQuery(ctx);
 
     const item = await getRepoItem(user, repo);
     const children = item.license ? `${item.license.spdx_id}` : 'Null';

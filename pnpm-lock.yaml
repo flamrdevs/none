@@ -31,6 +31,9 @@ devDependencies:
   typescript:
     specifier: ^5.2.2
     version: 5.2.2
+  valibot:
+    specifier: ^0.20.0
+    version: 0.20.0
   yoga-wasm-web:
     specifier: ^0.3.3
     version: 0.3.3
@@ -1049,6 +1052,10 @@ packages:
     dependencies:
       pako: 0.2.9
       tiny-inflate: 1.0.3
+    dev: true
+
+  /valibot@0.20.0:
+    resolution: {integrity: sha512-a2Vy4oPIHvrwfPZF0Cl83yBn17Zgekp6IQ0PzdUFTPWtlwWFCJNHtOm/nypzv5o/6llKBsIEErswWHbvjNGzNw==}
     dev: true
 
   /webidl-conversions@4.0.2:

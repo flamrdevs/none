@@ -14,7 +14,7 @@ export default new Hono()
     new Hono().get('/item/:name{.+$}', async (ctx) => {
       const { getPackageItem, getValidPackageNameParam } = await npm();
 
-      return ctx.json(await getPackageItem(await getValidPackageNameParam(ctx)));
+      return ctx.json(await getPackageItem(getValidPackageNameParam(ctx)));
     })
   )
 
@@ -27,10 +27,10 @@ export default new Hono()
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const n = await getValidPackageNameParam(ctx);
+    const n = getValidPackageNameParam(ctx);
 
-    const c = await getValidColorQuery(ctx);
-    const t = await getValidThemeQuery(ctx);
+    const c = getValidColorQuery(ctx);
+    const t = getValidThemeQuery(ctx);
 
     const v = (await getPackageItem(n)).version;
 
@@ -46,10 +46,10 @@ export default new Hono()
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const n = await getValidPackageNameParam(ctx);
+    const n = getValidPackageNameParam(ctx);
 
-    const c = await getValidColorQuery(ctx);
-    const t = await getValidThemeQuery(ctx);
+    const c = getValidColorQuery(ctx);
+    const t = getValidThemeQuery(ctx);
 
     const l = (await getPackageItem(n)).license ?? 'UNLICENSED';
 
@@ -65,10 +65,10 @@ export default new Hono()
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const n = await getValidPackageNameParam(ctx);
+    const n = getValidPackageNameParam(ctx);
 
-    const c = await getValidColorQuery(ctx);
-    const t = await getValidThemeQuery(ctx);
+    const c = getValidColorQuery(ctx);
+    const t = getValidThemeQuery(ctx);
 
     const text = `${formatDownloads((await getDownloadPointWeekItem(n)).downloads)}/W`;
 
@@ -84,10 +84,10 @@ export default new Hono()
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const n = await getValidPackageNameParam(ctx);
+    const n = getValidPackageNameParam(ctx);
 
-    const c = await getValidColorQuery(ctx);
-    const t = await getValidThemeQuery(ctx);
+    const c = getValidColorQuery(ctx);
+    const t = getValidThemeQuery(ctx);
 
     const text = `${formatDownloads((await getDownloadPointMonthItem(n)).downloads)}/M`;
 

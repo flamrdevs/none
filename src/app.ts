@@ -7,6 +7,8 @@ import { secureHeaders } from 'hono/secure-headers';
 
 import dayjs from 'dayjs';
 
+import * as v from 'valibot';
+
 import * as routes from '~/routes';
 
 const app = new Hono();
@@ -35,6 +37,9 @@ app
 
     if (error instanceof HTTPException) {
       status = error.status;
+      message = error.message;
+    } else if (error instanceof v.ValiError) {
+      status = 400;
       message = error.message;
     } else if (error instanceof Error) {
       message = error.message;

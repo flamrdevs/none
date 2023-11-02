@@ -1,7 +1,6 @@
 import { Hono } from 'hono';
 import type { Context } from 'hono';
-
-import * as http from '~/libs/http';
+import * as v from 'valibot';
 
 import { svg } from '~/libs/dynamic';
 import { components, utils } from '~/ui/dynamic';
@@ -14,12 +13,9 @@ export default new Hono()
   .route(
     '/badge',
     (() => {
-      const parseBadgeElement = async (value: unknown = 'badge') => {
-        if (typeof value === 'string' && value.length > 1 && value.length < 49) return value;
-        throw http.e400('Invalid badge element');
-      };
+      const BadgeElementSchema = v.optional(v.string([v.minLength(2), v.maxLength(48)]), 'badge');
 
-      const getValidBadgeElementQuery = (context: Context, key: string = 'e') => parseBadgeElement(context.req.query(key));
+      const getValidBadgeElementQuery = (context: Context, key: string = 'e') => v.parse(BadgeElementSchema, context.req.query(key));
 
       return (
         new Hono()
@@ -31,9 +27,9 @@ export default new Hono()
             const { Badge, calcBadgeWidth } = await components.core();
             const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-            const c = await getValidColorQuery(ctx);
-            const t = await getValidThemeQuery(ctx);
-            const e = await getValidBadgeElementQuery(ctx);
+            const c = getValidColorQuery(ctx);
+            const t = getValidThemeQuery(ctx);
+            const e = getValidBadgeElementQuery(ctx);
 
             return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(e), children: e }));
           })
@@ -46,10 +42,10 @@ export default new Hono()
             const { LucideIcons, getValidLucideIconQuery } = await components.icon.lucide();
             const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-            const c = await getValidColorQuery(ctx);
-            const t = await getValidThemeQuery(ctx);
-            const i = await getValidLucideIconQuery(ctx);
-            const e = await getValidBadgeElementQuery(ctx);
+            const c = getValidColorQuery(ctx);
+            const t = getValidThemeQuery(ctx);
+            const i = getValidLucideIconQuery(ctx);
+            const e = getValidBadgeElementQuery(ctx);
 
             return await svg(ctx, async () =>
               Badge({
@@ -69,10 +65,10 @@ export default new Hono()
             const { SimpleIcons, getValidSimpleIconQuery } = await components.icon.simple();
             const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-            const c = await getValidColorQuery(ctx);
-            const t = await getValidThemeQuery(ctx);
-            const i = await getValidSimpleIconQuery(ctx);
-            const e = await getValidBadgeElementQuery(ctx);
+            const c = getValidColorQuery(ctx);
+            const t = getValidThemeQuery(ctx);
+            const i = getValidSimpleIconQuery(ctx);
+            const e = getValidBadgeElementQuery(ctx);
 
             return await svg(ctx, async () =>
               Badge({
@@ -93,12 +89,9 @@ export default new Hono()
   .route(
     '/button',
     (() => {
-      const parseButtonElement = async (value: unknown = 'button') => {
-        if (typeof value === 'string' && value.length > 1 && value.length < 49) return value;
-        throw http.e400('Invalid button element');
-      };
+      const ButtonElementSchema = v.optional(v.string([v.minLength(2), v.maxLength(48)]), 'button');
 
-      const getValidButtonElementQuery = (context: Context, key: string = 'e') => parseButtonElement(context.req.query(key));
+      const getValidButtonElementQuery = (context: Context, key: string = 'e') => v.parse(ButtonElementSchema, context.req.query(key));
 
       return (
         new Hono()
@@ -110,9 +103,9 @@ export default new Hono()
             const { Button, calcButtonWidth } = await components.core();
             const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-            const c = await getValidColorQuery(ctx);
-            const t = await getValidThemeQuery(ctx);
-            const e = await getValidButtonElementQuery(ctx);
+            const c = getValidColorQuery(ctx);
+            const t = getValidThemeQuery(ctx);
+            const e = getValidButtonElementQuery(ctx);
 
             return await svg(ctx, async () => Button({ c, t, w: calcButtonWidth(e), children: e }));
           })
@@ -125,10 +118,10 @@ export default new Hono()
             const { LucideIcons, getValidLucideIconQuery } = await components.icon.lucide();
             const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-            const c = await getValidColorQuery(ctx);
-            const t = await getValidThemeQuery(ctx);
-            const i = await getValidLucideIconQuery(ctx);
-            const e = await getValidButtonElementQuery(ctx);
+            const c = getValidColorQuery(ctx);
+            const t = getValidThemeQuery(ctx);
+            const i = getValidLucideIconQuery(ctx);
+            const e = getValidButtonElementQuery(ctx);
 
             return await svg(ctx, async () =>
               Button({
@@ -148,10 +141,10 @@ export default new Hono()
             const { SimpleIcons, getValidSimpleIconQuery } = await components.icon.simple();
             const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-            const c = await getValidColorQuery(ctx);
-            const t = await getValidThemeQuery(ctx);
-            const i = await getValidSimpleIconQuery(ctx);
-            const e = await getValidButtonElementQuery(ctx);
+            const c = getValidColorQuery(ctx);
+            const t = getValidThemeQuery(ctx);
+            const i = getValidSimpleIconQuery(ctx);
+            const e = getValidButtonElementQuery(ctx);
 
             return await svg(ctx, async () =>
               Button({
@@ -181,9 +174,9 @@ export default new Hono()
         const { LucideIcons, getValidLucideIconQuery } = await components.icon.lucide();
         const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-        const c = await getValidColorQuery(ctx);
-        const t = await getValidThemeQuery(ctx);
-        const i = await getValidLucideIconQuery(ctx);
+        const c = getValidColorQuery(ctx);
+        const t = getValidThemeQuery(ctx);
+        const i = getValidLucideIconQuery(ctx);
 
         return await svg(ctx, async () => Icon({ c, t, children: LucideIcons[i]({}) }));
       })
@@ -196,9 +189,9 @@ export default new Hono()
         const { SimpleIcons, getValidSimpleIconQuery } = await components.icon.simple();
         const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-        const c = await getValidColorQuery(ctx);
-        const t = await getValidThemeQuery(ctx);
-        const i = await getValidSimpleIconQuery(ctx);
+        const c = getValidColorQuery(ctx);
+        const t = getValidThemeQuery(ctx);
+        const i = getValidSimpleIconQuery(ctx);
 
         return await svg(ctx, async () => Icon({ c, t, children: SimpleIcons[i]({}) }));
       })
@@ -210,12 +203,9 @@ export default new Hono()
   .route(
     '/icon-button',
     (() => {
-      const parseIconButtonElement = async (value: unknown = 'x') => {
-        if (typeof value === 'string' && value.length === 1) return value;
-        throw http.e400('Invalid icon button element');
-      };
+      const IconButtonElementSchema = v.optional(v.string([v.length(1)]), 'x');
 
-      const getValidIconButtonElementQuery = (context: Context, key: string = 'e') => parseIconButtonElement(context.req.query(key));
+      const getValidIconButtonElementQuery = (context: Context, key: string = 'e') => v.parse(IconButtonElementSchema, context.req.query(key));
 
       return (
         new Hono()
@@ -227,9 +217,9 @@ export default new Hono()
             const { Button } = await components.core();
             const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-            const c = await getValidColorQuery(ctx);
-            const t = await getValidThemeQuery(ctx);
-            const e = await getValidIconButtonElementQuery(ctx);
+            const c = getValidColorQuery(ctx);
+            const t = getValidThemeQuery(ctx);
+            const e = getValidIconButtonElementQuery(ctx);
 
             return await svg(ctx, async () => Button({ c, t, children: e }));
           })
@@ -242,9 +232,9 @@ export default new Hono()
             const { LucideIcons, getValidLucideIconQuery } = await components.icon.lucide();
             const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-            const c = await getValidColorQuery(ctx);
-            const t = await getValidThemeQuery(ctx);
-            const i = await getValidLucideIconQuery(ctx);
+            const c = getValidColorQuery(ctx);
+            const t = getValidThemeQuery(ctx);
+            const i = getValidLucideIconQuery(ctx);
 
             return await svg(ctx, async () => Button({ c, t, children: LucideIcons[i]({}) }));
           })
@@ -257,9 +247,9 @@ export default new Hono()
             const { SimpleIcons, getValidSimpleIconQuery } = await components.icon.simple();
             const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-            const c = await getValidColorQuery(ctx);
-            const t = await getValidThemeQuery(ctx);
-            const i = await getValidSimpleIconQuery(ctx);
+            const c = getValidColorQuery(ctx);
+            const t = getValidThemeQuery(ctx);
+            const i = getValidSimpleIconQuery(ctx);
 
             return await svg(ctx, async () => Button({ c, t, children: SimpleIcons[i]({}) }));
           })
