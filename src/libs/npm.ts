@@ -1,4 +1,3 @@
-import type { Context } from 'hono';
 import * as v from 'valibot';
 
 import * as fetchs from './fetchs';
@@ -7,7 +6,7 @@ import { memo } from './utils';
 
 const PackageNameSchema = v.string([v.regex(/^(?:@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/), v.regex(/^(?!.*-$)[\s\S]*$/)]);
 
-const getValidPackageNameParam = (context: Context, key: string = 'name') => v.parse(PackageNameSchema, context.req.param(key));
+const getValidPackageNameParam = (param: Record<string, string>, key: string = 'name') => v.parse(PackageNameSchema, param[key]);
 
 type PackageItem = v.Output<typeof PackageItemSchema>;
 

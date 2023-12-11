@@ -14,7 +14,9 @@ export default new Hono()
     new Hono().get('/item/:name{.+$}', async (ctx) => {
       const { getPackageItem, getValidPackageNameParam } = await npm();
 
-      return ctx.json(await getPackageItem(getValidPackageNameParam(ctx)));
+      const param = ctx.req.param();
+
+      return ctx.json(await getPackageItem(getValidPackageNameParam(param)));
     })
   )
 
@@ -27,10 +29,13 @@ export default new Hono()
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const n = getValidPackageNameParam(ctx);
+    const param = ctx.req.param();
+    const query = ctx.req.query();
 
-    const c = getValidColorQuery(ctx);
-    const t = getValidThemeQuery(ctx);
+    const n = getValidPackageNameParam(param);
+
+    const c = getValidColorQuery(query);
+    const t = getValidThemeQuery(query);
 
     const v = (await getPackageItem(n)).version;
 
@@ -46,10 +51,13 @@ export default new Hono()
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const n = getValidPackageNameParam(ctx);
+    const param = ctx.req.param();
+    const query = ctx.req.query();
 
-    const c = getValidColorQuery(ctx);
-    const t = getValidThemeQuery(ctx);
+    const n = getValidPackageNameParam(param);
+
+    const c = getValidColorQuery(query);
+    const t = getValidThemeQuery(query);
 
     const l = (await getPackageItem(n)).license ?? 'UNLICENSED';
 
@@ -65,10 +73,13 @@ export default new Hono()
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const n = getValidPackageNameParam(ctx);
+    const param = ctx.req.param();
+    const query = ctx.req.query();
 
-    const c = getValidColorQuery(ctx);
-    const t = getValidThemeQuery(ctx);
+    const n = getValidPackageNameParam(param);
+
+    const c = getValidColorQuery(query);
+    const t = getValidThemeQuery(query);
 
     const text = `${formatDownloads((await getDownloadPointWeekItem(n)).downloads)}/W`;
 
@@ -84,10 +95,13 @@ export default new Hono()
     const { Badge, calcBadgeWidth } = await components.core();
     const { getValidColorQuery, getValidThemeQuery } = await utils();
 
-    const n = getValidPackageNameParam(ctx);
+    const param = ctx.req.param();
+    const query = ctx.req.query();
 
-    const c = getValidColorQuery(ctx);
-    const t = getValidThemeQuery(ctx);
+    const n = getValidPackageNameParam(param);
+
+    const c = getValidColorQuery(query);
+    const t = getValidThemeQuery(query);
 
     const text = `${formatDownloads((await getDownloadPointMonthItem(n)).downloads)}/M`;
 

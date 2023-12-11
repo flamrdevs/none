@@ -1,4 +1,3 @@
-import type { Context } from 'hono';
 import * as v from 'valibot';
 
 import * as fetchs from './fetchs';
@@ -9,8 +8,8 @@ const UsernameSchema = v.string([v.regex(/^[a-zA-Z\d](?:[a-zA-Z\d]|-(?=[a-zA-Z\d
 
 const ReponameSchema = v.string([v.regex(/^[a-zA-Z\d](?:[a-zA-Z\d]|-(?=[a-zA-Z\d])){1,99}$/), v.regex(/^(?!.*-$)[\s\S]*$/)]);
 
-const getValidUsernameParam = (context: Context, key: string = 'user') => v.parse(UsernameSchema, context.req.param(key));
-const getValidReponameParam = (context: Context, key: string = 'repo') => v.parse(ReponameSchema, context.req.param(key));
+const getValidUsernameParam = (param: Record<string, string>, key: string = 'user') => v.parse(UsernameSchema, param[key]);
+const getValidReponameParam = (param: Record<string, string>, key: string = 'repo') => v.parse(ReponameSchema, param[key]);
 
 type RepoItem = v.Output<typeof RepoItemSchema>;
 

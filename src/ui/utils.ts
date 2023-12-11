@@ -1,4 +1,3 @@
-import type { Context } from 'hono';
 import * as v from 'valibot';
 
 import COLORS from './colors';
@@ -48,8 +47,8 @@ const ColorSchema = v.optional(v.picklist(COLOR), COLOR_DEFAULT);
 
 const ThemeSchema = v.optional(v.picklist(THEME), THEME_DEFAULT);
 
-const getValidColorQuery = (context: Context) => v.parse(ColorSchema, context.req.query('c'));
-const getValidThemeQuery = (context: Context) => v.parse(ThemeSchema, context.req.query('t'));
+const getValidColorQuery = (query: Record<string, string>) => v.parse(ColorSchema, query['c']);
+const getValidThemeQuery = (query: Record<string, string>) => v.parse(ThemeSchema, query['t']);
 
 export { select };
 export { getValidColorQuery, getValidThemeQuery };
