@@ -197,6 +197,10 @@ Colorful SVG generation service
 
 <p align="left">
   <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge/lucide?t=dark&i=activity&e=activity">
+    <img alt="badge" src="https://none.deno.dev/ui/badge/lucide?t=light&i=activity&e=activity" hspace="1">
+  </picture>
+  <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge/lucide?t=dark&i=download&e=download">
     <img alt="badge" src="https://none.deno.dev/ui/badge/lucide?t=light&i=download&e=download" hspace="1">
   </picture>
@@ -210,12 +214,16 @@ Colorful SVG generation service
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge/simple?t=dark&i=deno&e=node">
-    <img alt="badge" src="https://none.deno.dev/ui/badge/simple?t=light&i=deno&e=node" hspace="1">
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge/simple?t=dark&i=deno&e=deno">
+    <img alt="badge" src="https://none.deno.dev/ui/badge/simple?t=light&i=deno&e=deno" hspace="1">
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge/simple?t=dark&i=node.js&e=node">
-    <img alt="badge" src="https://none.deno.dev/ui/badge/simple?t=light&i=node.js&e=node" hspace="1">
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge/simple?t=dark&i=nodedotjs&e=node">
+    <img alt="badge" src="https://none.deno.dev/ui/badge/simple?t=light&i=nodedotjs&e=node" hspace="1">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge/simple?t=dark&i=typescript&e=typescript">
+    <img alt="badge" src="https://none.deno.dev/ui/badge/simple?t=light&i=typescript&e=typescript" hspace="1">
   </picture>
 </p>
 
@@ -357,6 +365,10 @@ Colorful SVG generation service
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/button/lucide?t=dark&i=rocket&e=Getting%20Started">
     <img alt="button" src="https://none.deno.dev/ui/button/lucide?t=light&i=rocket&e=Getting%20Started" hspace="1">
   </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/button/lucide?t=dark&i=blocks&e=Overview">
+    <img alt="button" src="https://none.deno.dev/ui/button/lucide?t=light&i=blocks&e=Overview" hspace="1">
+  </picture>
 </p>
 
 #### Simple
@@ -365,6 +377,10 @@ Colorful SVG generation service
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/button/simple?t=dark&i=github&e=Open%20in%20GitHub">
     <img alt="button" src="https://none.deno.dev/ui/button/simple?t=light&i=github&e=Open%20in%20GitHub" hspace="1">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/button/simple?t=dark&i=stackblitz&e=Open%20in%20Stackblitz">
+    <img alt="button" src="https://none.deno.dev/ui/button/simple?t=light&i=stackblitz&e=Open%20in%20Stackblitz" hspace="1">
   </picture>
 </p>
 
@@ -506,6 +522,10 @@ Colorful SVG generation service
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button/lucide?t=dark&i=rocket">
     <img alt="icon-button" src="https://none.deno.dev/ui/icon-button/lucide?t=light&i=rocket" hspace="1">
   </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button/lucide?t=dark&i=home">
+    <img alt="icon-button" src="https://none.deno.dev/ui/icon-button/lucide?t=light&i=home" hspace="1">
+  </picture>
 </p>
 
 #### Simple
@@ -514,6 +534,10 @@ Colorful SVG generation service
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button/simple?t=dark&i=github">
     <img alt="icon-button" src="https://none.deno.dev/ui/icon-button/simple?t=light&i=github" hspace="1">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button/simple?t=dark&i=git">
+    <img alt="icon-button" src="https://none.deno.dev/ui/icon-button/simple?t=light&i=git" hspace="1">
   </picture>
 </p>
 
