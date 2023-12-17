@@ -9,17 +9,17 @@ devDependencies:
     specifier: ^20.10.4
     version: 20.10.4
   hono:
-    specifier: ^3.11.4
-    version: 3.11.4
+    specifier: ^3.11.8
+    version: 3.11.8
   lucide:
-    specifier: ^0.294.0
-    version: 0.294.0
+    specifier: ^0.298.0
+    version: 0.298.0
   satori:
     specifier: ^0.10.11
     version: 0.10.11
   simple-icons:
-    specifier: ^10.2.0
-    version: 10.2.0
+    specifier: ^10.3.0
+    version: 10.3.0
   string-ts:
     specifier: ^1.3.3
     version: 1.3.3
@@ -36,8 +36,8 @@ devDependencies:
     specifier: ^5.3.3
     version: 5.3.3
   valibot:
-    specifier: ^0.24.0
-    version: 0.24.0
+    specifier: ^0.24.1
+    version: 0.24.1
   yoga-wasm-web:
     specifier: ^0.3.3
     version: 0.3.3
@@ -941,8 +941,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /hono@3.11.4:
-    resolution: {integrity: sha512-lU8Et1Nkpa4RqgBvjGUGyu8/2QNdAOR9EqFzNCoP7wM+xtcq2v/DHi9CMJ/ixVxRU9Q2uAh0G3xIKTVYzzC4dg==}
+  /hono@3.11.8:
+    resolution: {integrity: sha512-s+7FDN0CS0lAvooyj4oQw0PyEec7I+YuVg40gtFHuUrfHBEhKITrLu4dskTdeYn0Xvhbz7s4yRJebJx6gCN/5Q==}
     engines: {node: '>=16.0.0'}
     dev: true
 
@@ -1030,8 +1030,8 @@ packages:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
     dev: true
 
-  /lucide@0.294.0:
-    resolution: {integrity: sha512-6qMSsvJBE+/j+inFUIyowoyqitSntt2oKjXyew/S6Y2ZGdaLQ0ktNGtkDk3LqTVlwfAWGAWvFxUsLYI8tmt3Hw==}
+  /lucide@0.298.0:
+    resolution: {integrity: sha512-FphzOd0gEJftlSHjEz0BEJW4nInpycRJF7xwr0n/36MOsWiDuRRs7QuJwB4qJvaDwggArPzXFKTjunNR5Gz/TQ==}
     dev: true
 
   /merge-stream@2.0.0:
@@ -1249,8 +1249,8 @@ packages:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
 
-  /simple-icons@10.2.0:
-    resolution: {integrity: sha512-NBCvnCEoNAFC6ihODFWPq372NRvD84m1iRRxRtw9e30F7TgX/l/I5jBF1XlHehj5pMgQo0S4m/3cOqafAQhq7w==}
+  /simple-icons@10.3.0:
+    resolution: {integrity: sha512-MpqALzcKXPNfVKiNkESkahmXIt0tTVnTOZAhD6q4MmL3XUroaKwy8stPwXZOfK1WoT6jqpjUfc0nopPePZvY7w==}
     engines: {node: '>=0.12.18'}
     dev: true
 
@@ -1422,8 +1422,8 @@ packages:
       tiny-inflate: 1.0.3
     dev: true
 
-  /valibot@0.24.0:
-    resolution: {integrity: sha512-OZq+2RmC4CU93Oxw+hL9L73wA7X0I89g2Fd6RR8wtlRFUinW9/gVl9g9h94EWQBHbEFFVG2Xxt2ndMszF66k0A==}
+  /valibot@0.24.1:
+    resolution: {integrity: sha512-Toclbuy20XsECZiueh2dkQ63he2AGaBIj/FJRDAFti2kueFldm9bjJzSYvPaL5CE1HXDMRhq7olak8at7xCz5A==}
     dev: true
 
   /webidl-conversions@4.0.2:
