@@ -15,17 +15,17 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2.2.4
+        uses: pnpm/action-setup@v2
         with:
-          version: 8.5.1
+          version: 8.11.0
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
@@ -33,7 +33,7 @@ jobs:
       - name: Setup deno
         uses: denoland/setup-deno@v1
         with:
-          deno-version: '1.35.3'
+          deno-version: '1.38.3'
 
       - name: Run "pnpm install"
         run: pnpm install
@@ -44,8 +44,8 @@ jobs:
       - name: Run "pnpm test"
         run: pnpm test
 
-      - name: Run "pnpm script:remove-unnecessary"
-        run: pnpm script:remove-unnecessary
+      - name: Run "pnpm script:clean"
+        run: pnpm script:clean
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
