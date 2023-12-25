@@ -15,6 +15,9 @@ const PackageItemSchema = v.object({
   version: v.string(),
   description: v.optional(v.nullable(v.string())),
   license: v.optional(v.nullable(v.string())),
+  dependencies: v.optional(v.record(v.string(), v.string())),
+  devDependencies: v.optional(v.record(v.string(), v.string())),
+  peerDependencies: v.optional(v.record(v.string(), v.string())),
 });
 
 type DownloadPointItem = v.Output<typeof DownloadPointItemSchema>;
