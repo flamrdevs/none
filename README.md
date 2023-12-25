@@ -1,19 +1,19 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?t=dark&e=n">
-    <img alt="button" src="https://none.deno.dev/ui/icon-button?t=light&e=n" hspace="1">
+    <img alt="n" src="https://none.deno.dev/ui/icon-button?t=light&e=n" hspace="1">
   </picture>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?t=dark&e=o">
-    <img alt="button" src="https://none.deno.dev/ui/icon-button?t=light&e=o" hspace="1">
+    <img alt="o" src="https://none.deno.dev/ui/icon-button?t=light&e=o" hspace="1">
   </picture>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?t=dark&e=n">
-    <img alt="button" src="https://none.deno.dev/ui/icon-button?t=light&e=n" hspace="1">
+    <img alt="n" src="https://none.deno.dev/ui/icon-button?t=light&e=n" hspace="1">
   </picture>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/icon-button?t=dark&e=e">
-    <img alt="button" src="https://none.deno.dev/ui/icon-button?t=light&e=e" hspace="1">
+    <img alt="e" src="https://none.deno.dev/ui/icon-button?t=light&e=e" hspace="1">
   </picture>
 </p>
 
@@ -43,22 +43,19 @@
 </p>
 
 <h1>
-  <span>none</span>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge?c=yellow&t=dark&e=beta">
-    <img alt="button" src="https://none.deno.dev/ui/badge?c=yellow&t=light&e=beta" hspace="1">
-  </picture>
+  none
 </h1>
 
 Colorful SVG generation service
 
-- Web framework is from Hono.
-- SVG generation engine is from satori.
-- Color system is from Radix Colors.
-- Icons library is handpicked from Lucide Icons and Simple Icons.
-- Integrated with external services
-  - bundlejs
-  - npm
+- Web framework is from [`Hono`](https://hono.dev).
+- SVG generation engine is from [`satori`](https://github.com/vercel/satori).
+- Color system is from [`Radix Colors`](https://www.radix-ui.com/colors).
+- Icons library is handpicked from [`Lucide Icons`](https://lucide.dev) and [`Simple Icons`](https://simpleicons.org).
+- Integrated with external API's
+  - GitHub
+  - BundleJS
+  - NPM
 
 ## UI
 
@@ -541,89 +538,158 @@ Colorful SVG generation service
   </picture>
 </p>
 
-## BundleJS
-
-### Min
-
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/bundlejs/m/@klass/core?t=dark">
-    <img alt="version" src="https://none.deno.dev/bundlejs/m/@klass/core?t=light" hspace="1">
-  </picture>
-</p>
-
-### Min + Gzip
-
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/bundlejs/mz/@klass/core?t=dark">
-    <img alt="license" src="https://none.deno.dev/bundlejs/mz/@klass/core?t=light" hspace="1">
-  </picture>
-</p>
-
 ## Github
 
-### Repo Forks Count
+### Repository
 
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/github/repo/fc/flamrdevs/none?t=dark">
-    <img alt="version" src="https://none.deno.dev/github/repo/fc/flamrdevs/none?t=light" hspace="1">
-  </picture>
-</p>
+<table>
+  <thead>
+    <tr>
+      <th>
+        -
+      </th>
+      <th>
+        <code>flamrdevs/klass</code>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Forks Count
+      </td>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/github/repo/fc/flamrdevs/klass?t=dark">
+          <img alt="forks" src="https://none.deno.dev/github/repo/fc/flamrdevs/klass?t=light" hspace="1">
+        </picture>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Stargazers Count
+      </td>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/github/repo/sc/flamrdevs/klass?t=dark">
+          <img alt="stargazers" src="https://none.deno.dev/github/repo/sc/flamrdevs/klass?t=light" hspace="1">
+        </picture>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        License
+      </td>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/github/repo/l/flamrdevs/klass?t=dark">
+          <img alt="license" src="https://none.deno.dev/github/repo/l/flamrdevs/klass?t=light" hspace="1">
+        </picture>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-### Repo Stargazers Count
+## BundleJS
 
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/github/repo/sc/flamrdevs/none?t=dark">
-    <img alt="version" src="https://none.deno.dev/github/repo/sc/flamrdevs/none?t=light" hspace="1">
-  </picture>
-</p>
+### Package
 
-### Repo License
-
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/github/repo/l/flamrdevs/none?t=dark">
-    <img alt="version" src="https://none.deno.dev/github/repo/l/flamrdevs/none?t=light" hspace="1">
-  </picture>
-</p>
+<table>
+  <thead>
+    <tr>
+      <th>
+        -
+      </th>
+      <th>
+        <code>@klass/core</code>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Min
+      </td>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/bundlejs/m/@klass/core?t=dark">
+          <img alt="min" src="https://none.deno.dev/bundlejs/m/@klass/core?t=light" hspace="1">
+        </picture>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Min + Gzip
+      </td>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/bundlejs/mz/@klass/core?t=dark">
+          <img alt="min+gzip" src="https://none.deno.dev/bundlejs/mz/@klass/core?t=light" hspace="1">
+        </picture>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## NPM
 
-### Version
+### Package
 
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/v/@klass/core?t=dark">
-    <img alt="version" src="https://none.deno.dev/npm/v/@klass/core?t=light" hspace="1">
-  </picture>
-</p>
-
-### License
-
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/l/@klass/core?t=dark">
-    <img alt="license" src="https://none.deno.dev/npm/l/@klass/core?t=light" hspace="1">
-  </picture>
-</p>
-
-### Weekly Downloads
-
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/dw/@klass/core?t=dark">
-    <img alt="license" src="https://none.deno.dev/npm/dw/@klass/core?t=light" hspace="1">
-  </picture>
-</p>
-
-### Monthly Downloads
-
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/dm/@klass/core?t=dark">
-    <img alt="license" src="https://none.deno.dev/npm/dm/@klass/core?t=light" hspace="1">
-  </picture>
-</p>
+<table>
+  <thead>
+    <tr>
+      <th>
+        -
+      </th>
+      <th>
+        <code>@klass/core</code>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Version
+      </td>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/v/@klass/core?t=dark">
+          <img alt="version" src="https://none.deno.dev/npm/v/@klass/core?t=light" hspace="1">
+        </picture>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        License
+      </td>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/l/@klass/core?t=dark">
+          <img alt="license" src="https://none.deno.dev/npm/l/@klass/core?t=light" hspace="1">
+        </picture>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Weekly Downloads
+      </td>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/dw/@klass/core?t=dark">
+          <img alt="weekly downloads" src="https://none.deno.dev/npm/dw/@klass/core?t=light" hspace="1">
+        </picture>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Monthly Downloads
+      </td>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/dm/@klass/core?t=dark">
+          <img alt="monthly downloads" src="https://none.deno.dev/npm/dm/@klass/core?t=light" hspace="1">
+        </picture>
+      </td>
+    </tr>
+  </tbody>
+</table>
