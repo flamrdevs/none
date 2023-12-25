@@ -1,6 +1,6 @@
 import * as v from 'valibot';
 
-import * as fetchs from './fetchs';
+import * as ftch from './ftch';
 
 import { memo } from './utils';
 
@@ -33,7 +33,7 @@ const RepoItemSchema = v.object({
 const loadRepoItem = memo<RepoItem>();
 
 const getRepoItem = (user: string, repo: string): Promise<RepoItem> =>
-  loadRepoItem([user, repo].join('/'), async () => v.parse(RepoItemSchema, await fetchs.get.json(`https://api.github.com/repos/${user}/${repo}`)));
+  loadRepoItem([user, repo].join('/'), async () => v.parse(RepoItemSchema, await ftch.get.json(`https://api.github.com/repos/${user}/${repo}`)));
 
 const formatCount = (number: number): string => (number < 1000 ? number.toString() : number < 1000000 ? (number / 1000).toFixed(1) + 'K' : (number / 1000000).toFixed(1) + 'M');
 

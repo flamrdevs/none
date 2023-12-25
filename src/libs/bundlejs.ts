@@ -1,6 +1,6 @@
 import * as v from 'valibot';
 
-import * as fetchs from './fetchs';
+import * as ftch from './ftch';
 
 import { getPackageItem } from './npm';
 import { memo } from './utils';
@@ -30,7 +30,7 @@ const getBundleItem = (name: string): Promise<BundleItem> =>
     if (npm.peerDependencies) external.push(...Object.keys(npm.peerDependencies));
     const config = { esbuild: { external } };
 
-    return v.parse(BundleItemSchema, await fetchs.get.json(`https://deno.bundlejs.com/?q=${name}&config=${JSON.stringify(config)}`));
+    return v.parse(BundleItemSchema, await ftch.get.json(`https://deno.bundlejs.com/?q=${name}&config=${JSON.stringify(config)}`));
   });
 
 export { getBundleItem };
