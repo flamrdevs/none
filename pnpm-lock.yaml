@@ -9,8 +9,8 @@ devDependencies:
     specifier: ^20.10.5
     version: 20.10.5
   hono:
-    specifier: ^3.11.10
-    version: 3.11.10
+    specifier: ^3.11.11
+    version: 3.11.11
   lucide:
     specifier: ^0.302.0
     version: 0.302.0
@@ -36,8 +36,8 @@ devDependencies:
     specifier: ^5.3.3
     version: 5.3.3
   valibot:
-    specifier: ^0.24.1
-    version: 0.24.1
+    specifier: ^0.25.0
+    version: 0.25.0
   yoga-wasm-web:
     specifier: ^0.3.3
     version: 0.3.3
@@ -951,8 +951,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /hono@3.11.10:
-    resolution: {integrity: sha512-vizPp5PfVq5dwgN+EM+8v7RHlvrrEbnpkHtM2GMsl6KICA/MvWcnEMJ5L8SjYPxueB8VJMwc6nzzgKj5Vovp7g==}
+  /hono@3.11.11:
+    resolution: {integrity: sha512-E3Xv7LnOjg7VXiu+t+YplDEYXvkxpcTCzZ3RUFQlcNXclSME8aiQAYwWpJPT6MQRRpa4TG5RlOolqeYEDEK3wg==}
     engines: {node: '>=16.0.0'}
     dev: true
 
@@ -1432,8 +1432,8 @@ packages:
       tiny-inflate: 1.0.3
     dev: true
 
-  /valibot@0.24.1:
-    resolution: {integrity: sha512-Toclbuy20XsECZiueh2dkQ63he2AGaBIj/FJRDAFti2kueFldm9bjJzSYvPaL5CE1HXDMRhq7olak8at7xCz5A==}
+  /valibot@0.25.0:
+    resolution: {integrity: sha512-cmD0ca15oyAbT75iYLNW6uU6doAeIwYfOshpXka/E1Bx4frzbkrgb7gvkI7K0YK/DVOksei4FfxWfRoBP3NFTg==}
     dev: true
 
   /webidl-conversions@4.0.2:

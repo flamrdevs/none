@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
-    "hono": "^3.11.10",
+    "hono": "^3.11.11",
     "lucide": "^0.302.0",
     "satori": "^0.10.11",
     "simple-icons": "^10.4.0",
@@ -22,7 +22,7 @@
     "tsup": "^8.0.1",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
-    "valibot": "^0.24.1",
+    "valibot": "^0.25.0",
     "yoga-wasm-web": "^0.3.3"
   }
 }
