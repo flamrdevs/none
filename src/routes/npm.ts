@@ -1,8 +1,10 @@
 import { Hono } from 'hono';
 
-import { npm, svg } from '~/libs/dynamic';
+import { npm } from '~/libs/dynamic';
 
 import { components, utils } from '~/ui/dynamic';
+
+import * as response from '~/utils/response';
 
 export default new Hono()
 
@@ -11,13 +13,44 @@ export default new Hono()
    */
   .route(
     '/api',
-    new Hono().get('/item/:name{.+$}', async (ctx) => {
-      const { getPackageItem, getValidPackageNameParam } = await npm();
+    new Hono()
+      .get('/item/:name{.+$}', async (ctx) => {
+        const { getPackageItem, getValidPackageNameParam } = await npm();
 
-      const param = ctx.req.param();
+        return ctx.json(await getPackageItem(getValidPackageNameParam(ctx.req.param())));
+      })
+      .route(
+        '/downloads',
+        new Hono()
+          .route(
+            '/point',
+            new Hono()
+              .get('/week/:name{.+$}', async (ctx) => {
+                const { getDownloadPointWeekItem, getValidPackageNameParam } = await npm();
 
-      return ctx.json(await getPackageItem(getValidPackageNameParam(param)));
-    })
+                return ctx.json(await getDownloadPointWeekItem(getValidPackageNameParam(ctx.req.param())));
+              })
+              .get('/month/:name{.+$}', async (ctx) => {
+                const { getDownloadPointMonthItem, getValidPackageNameParam } = await npm();
+
+                return ctx.json(await getDownloadPointMonthItem(getValidPackageNameParam(ctx.req.param())));
+              })
+          )
+          .route(
+            '/range',
+            new Hono()
+              .get('/week/:name{.+$}', async (ctx) => {
+                const { getDownloadRangeWeekItem, getValidPackageNameParam } = await npm();
+
+                return ctx.json(await getDownloadRangeWeekItem(getValidPackageNameParam(ctx.req.param())));
+              })
+              .get('/month/:name{.+$}', async (ctx) => {
+                const { getDownloadRangeMonthItem, getValidPackageNameParam } = await npm();
+
+                return ctx.json(await getDownloadRangeMonthItem(getValidPackageNameParam(ctx.req.param())));
+              })
+          )
+      )
   )
 
   /**
@@ -39,7 +72,7 @@ export default new Hono()
 
     const v = (await getPackageItem(n)).version;
 
-    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(v), children: v }));
+    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(v), children: v }));
   })
 
   /**
@@ -61,7 +94,7 @@ export default new Hono()
 
     const l = (await getPackageItem(n)).license ?? 'UNLICENSED';
 
-    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(l), children: l }));
+    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(l), children: l }));
   })
 
   /**
@@ -83,7 +116,7 @@ export default new Hono()
 
     const text = `${formatDownloads((await getDownloadPointWeekItem(n)).downloads)}/W`;
 
-    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(text), children: text }));
+    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(text), children: text }));
   })
 
   /**
@@ -105,5 +138,5 @@ export default new Hono()
 
     const text = `${formatDownloads((await getDownloadPointMonthItem(n)).downloads)}/M`;
 
-    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(text), children: text }));
+    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(text), children: text }));
   });

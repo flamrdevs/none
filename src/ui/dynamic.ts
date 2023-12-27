@@ -1,5 +1,3 @@
-const colors = () => import('./colors');
-
 const components = {
   core: () => import('./components/core'),
   icon: {
@@ -10,4 +8,4 @@ const components = {
 
 const utils = () => import('./utils');
 
-export { colors, components, utils };
+export { components, utils };

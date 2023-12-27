@@ -1,6 +1,6 @@
-import type { Tag, CSSProperties, Children } from '~/libs/svg';
+import type { Tag, CSSProperties, Children } from '~/libs/image';
 
-import type { Color, Theme } from '../colors';
+import type { Color, Theme } from '../utils/colors';
 
 type BaseProps = {
   /**

@@ -1,8 +1,10 @@
 import { Hono } from 'hono';
 
-import { bundlejs, npm, svg } from '~/libs/dynamic';
+import { bundlejs, npm } from '~/libs/dynamic';
 
 import { components, utils } from '~/ui/dynamic';
+
+import * as response from '~/utils/response';
 
 export default new Hono()
 
@@ -15,9 +17,7 @@ export default new Hono()
       const { getBundleItem } = await bundlejs();
       const { getValidPackageNameParam } = await npm();
 
-      const param = ctx.req.param();
-
-      return ctx.json(await getBundleItem(getValidPackageNameParam(param)));
+      return ctx.json(await getBundleItem(getValidPackageNameParam(ctx.req.param())));
     })
   )
 
@@ -41,7 +41,7 @@ export default new Hono()
 
     const s = (await getBundleItem(n)).size.uncompressedSize;
 
-    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
+    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
   })
 
   /**
@@ -64,5 +64,5 @@ export default new Hono()
 
     const s = (await getBundleItem(n)).size.compressedSize;
 
-    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
+    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
   });

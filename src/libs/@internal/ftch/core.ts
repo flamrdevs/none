@@ -8,8 +8,5 @@ const json = async <M extends Method>(method: M, input: RequestInfo) => {
   throw new HTTPException(500, { message: 'Fetch failed' });
 };
 
-const get = {
-  json: async <T = unknown>(url: string) => (await json('GET', url)) as T,
-};
-
-export { get };
+export type { Method };
+export { json };

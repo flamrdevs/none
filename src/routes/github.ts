@@ -1,8 +1,10 @@
 import { Hono } from 'hono';
 
-import { github, svg } from '~/libs/dynamic';
+import { github } from '~/libs/dynamic';
 
 import { components, utils } from '~/ui/dynamic';
+
+import * as response from '~/utils/response';
 
 export default new Hono()
 
@@ -11,13 +13,19 @@ export default new Hono()
    */
   .route(
     '/api',
-    new Hono().get('/repo-item/:user/:repo', async (ctx) => {
-      const { getRepoItem, getValidUsernameParam, getValidReponameParam } = await github();
+    new Hono()
+      .get('/user-item/:user', async (ctx) => {
+        const { getUserItem, getValidUsernameParam } = await github();
 
-      const param = ctx.req.param();
+        return ctx.json(await getUserItem(getValidUsernameParam(ctx.req.param())));
+      })
+      .get('/repo-item/:user/:repo', async (ctx) => {
+        const { getRepoItem, getValidUsernameParam, getValidReponameParam } = await github();
 
-      return ctx.json(await getRepoItem(getValidUsernameParam(param), getValidReponameParam(param)));
-    })
+        const param = ctx.req.param();
+
+        return ctx.json(await getRepoItem(getValidUsernameParam(param), getValidReponameParam(param)));
+      })
   )
 
   /**
@@ -41,7 +49,7 @@ export default new Hono()
 
     const children = `${formatCount((await getRepoItem(user, repo)).forks_count)}`;
 
-    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeIconWidth(children), children: BadgeChildIcon({ c: LucideIcons['git-fork']({ s: 12 }), e: children }) }));
+    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeIconWidth(children), children: BadgeChildIcon({ c: LucideIcons['git-fork']({ s: 12 }), e: children }) }));
   })
 
   /**
@@ -65,7 +73,7 @@ export default new Hono()
 
     const children = `${formatCount((await getRepoItem(user, repo)).stargazers_count)}`;
 
-    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeIconWidth(children), children: BadgeChildIcon({ c: LucideIcons['star']({ s: 12 }), e: children }) }));
+    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeIconWidth(children), children: BadgeChildIcon({ c: LucideIcons['star']({ s: 12 }), e: children }) }));
   })
 
   /**
@@ -90,5 +98,5 @@ export default new Hono()
     const item = await getRepoItem(user, repo);
     const children = item.license ? `${item.license.spdx_id}` : 'Null';
 
-    return await svg(ctx, async () => Badge({ c, t, w: calcBadgeIconWidth(children), children: BadgeChildIcon({ c: LucideIcons['scale']({ s: 12 }), e: children }) }));
+    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeIconWidth(children), children: BadgeChildIcon({ c: LucideIcons['scale']({ s: 12 }), e: children }) }));
   });

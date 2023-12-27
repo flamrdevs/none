@@ -1,6 +1,6 @@
 import * as v from 'valibot';
 
-import type { Component } from '~/libs/svg';
+import type { Component } from '~/libs/image';
 
 import { tag } from '../../utils';
 

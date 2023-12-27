@@ -1,8 +1,10 @@
 import { Hono } from 'hono';
 import * as v from 'valibot';
 
-import { svg } from '~/libs/dynamic';
 import { components, utils } from '~/ui/dynamic';
+
+import * as response from '~/utils/response';
+import { createQueryKeyParser } from '~/utils/valibot';
 
 export default new Hono()
 
@@ -12,9 +14,7 @@ export default new Hono()
   .route(
     '/badge',
     (() => {
-      const BadgeElementSchema = v.optional(v.string([v.minLength(2), v.maxLength(48)]), 'badge');
-
-      const getValidBadgeElementQuery = (query: Record<string, string>, key: string = 'e') => v.parse(BadgeElementSchema, query[key]);
+      const getValidBadgeElementQuery = createQueryKeyParser(v.optional(v.string([v.minLength(2), v.maxLength(48)]), 'badge'), 'e');
 
       return (
         new Hono()
@@ -32,7 +32,7 @@ export default new Hono()
             const t = getValidThemeQuery(query);
             const e = getValidBadgeElementQuery(query);
 
-            return await svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(e), children: e }));
+            return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(e), children: e }));
           })
 
           /**
@@ -50,7 +50,7 @@ export default new Hono()
             const i = getValidLucideIconFromQuery(query);
             const e = getValidBadgeElementQuery(query);
 
-            return await svg(ctx, async () =>
+            return await response.svg(ctx, async () =>
               Badge({
                 c,
                 t,
@@ -75,7 +75,7 @@ export default new Hono()
             const i = getValidSimpleIconFromQuery(query);
             const e = getValidBadgeElementQuery(query);
 
-            return await svg(ctx, async () =>
+            return await response.svg(ctx, async () =>
               Badge({
                 c,
                 t,
@@ -94,9 +94,7 @@ export default new Hono()
   .route(
     '/button',
     (() => {
-      const ButtonElementSchema = v.optional(v.string([v.minLength(2), v.maxLength(48)]), 'button');
-
-      const getValidButtonElementQuery = (query: Record<string, string>, key: string = 'e') => v.parse(ButtonElementSchema, query[key]);
+      const getValidButtonElementQuery = createQueryKeyParser(v.optional(v.string([v.minLength(2), v.maxLength(48)]), 'button'), 'e');
 
       return (
         new Hono()
@@ -114,7 +112,7 @@ export default new Hono()
             const t = getValidThemeQuery(query);
             const e = getValidButtonElementQuery(query);
 
-            return await svg(ctx, async () => Button({ c, t, w: calcButtonWidth(e), children: e }));
+            return await response.svg(ctx, async () => Button({ c, t, w: calcButtonWidth(e), children: e }));
           })
 
           /**
@@ -132,7 +130,7 @@ export default new Hono()
             const i = getValidLucideIconFromQuery(query);
             const e = getValidButtonElementQuery(query);
 
-            return await svg(ctx, async () =>
+            return await response.svg(ctx, async () =>
               Button({
                 c,
                 t,
@@ -157,7 +155,7 @@ export default new Hono()
             const i = getValidSimpleIconFromQuery(query);
             const e = getValidButtonElementQuery(query);
 
-            return await svg(ctx, async () =>
+            return await response.svg(ctx, async () =>
               Button({
                 c,
                 t,
@@ -191,7 +189,7 @@ export default new Hono()
         const t = getValidThemeQuery(query);
         const i = getValidLucideIconFromQuery(query);
 
-        return await svg(ctx, async () => Icon({ c, t, children: LucideIcons[i]({}) }));
+        return await response.svg(ctx, async () => Icon({ c, t, children: LucideIcons[i]({}) }));
       })
 
       /**
@@ -208,7 +206,7 @@ export default new Hono()
         const t = getValidThemeQuery(query);
         const i = getValidSimpleIconFromQuery(query);
 
-        return await svg(ctx, async () => Icon({ c, t, children: SimpleIcons[i]({}) }));
+        return await response.svg(ctx, async () => Icon({ c, t, children: SimpleIcons[i]({}) }));
       })
   )
 
@@ -218,9 +216,7 @@ export default new Hono()
   .route(
     '/icon-button',
     (() => {
-      const IconButtonElementSchema = v.optional(v.string([v.length(1)]), 'x');
-
-      const getValidIconButtonElementQuery = (query: Record<string, string>, key: string = 'e') => v.parse(IconButtonElementSchema, query[key]);
+      const getValidIconButtonElementQuery = createQueryKeyParser(v.optional(v.string([v.length(1)]), 'x'), 'e');
 
       return (
         new Hono()
@@ -238,7 +234,7 @@ export default new Hono()
             const t = getValidThemeQuery(query);
             const e = getValidIconButtonElementQuery(query);
 
-            return await svg(ctx, async () => Button({ c, t, children: e }));
+            return await response.svg(ctx, async () => Button({ c, t, children: e }));
           })
 
           /**
@@ -255,7 +251,7 @@ export default new Hono()
             const t = getValidThemeQuery(query);
             const i = getValidLucideIconFromQuery(query);
 
-            return await svg(ctx, async () => Button({ c, t, children: LucideIcons[i]({}) }));
+            return await response.svg(ctx, async () => Button({ c, t, children: LucideIcons[i]({}) }));
           })
 
           /**
@@ -272,7 +268,7 @@ export default new Hono()
             const t = getValidThemeQuery(query);
             const i = getValidSimpleIconFromQuery(query);
 
-            return await svg(ctx, async () => Button({ c, t, children: SimpleIcons[i]({}) }));
+            return await response.svg(ctx, async () => Button({ c, t, children: SimpleIcons[i]({}) }));
           })
       );
     })()

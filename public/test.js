@@ -40,12 +40,17 @@ await FETCH.GET('/bundlejs/api/item/@klass/core', 200);
 await FETCH.GET('/bundlejs/m/@klass/core', 200);
 await FETCH.GET('/bundlejs/mz/@klass/core', 200);
 
+await FETCH.GET('/github/api/user-item/flamrdevs', 200);
 await FETCH.GET('/github/api/repo-item/flamrdevs/none', 200);
 await FETCH.GET('/github/repo/fc/flamrdevs/none', 200);
 await FETCH.GET('/github/repo/sc/flamrdevs/none', 200);
 await FETCH.GET('/github/repo/l/flamrdevs/none', 200);
 
 await FETCH.GET('/npm/api/item/propsplit', 200);
+await FETCH.GET('/npm/api/downloads/point/week/propsplit', 200);
+await FETCH.GET('/npm/api/downloads/point/month/propsplit', 200);
+await FETCH.GET('/npm/api/downloads/range/week/propsplit', 200);
+await FETCH.GET('/npm/api/downloads/range/month/propsplit', 200);
 await FETCH.GET('/npm/v/propsplit', 200);
 await FETCH.GET('/npm/l/propsplit', 200);
 await FETCH.GET('/npm/dw/propsplit', 200);

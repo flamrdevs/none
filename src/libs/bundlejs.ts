@@ -1,9 +1,8 @@
 import * as v from 'valibot';
 
-import * as ftch from './ftch';
+import { ftch, memo, url } from './@internal';
 
 import { getPackageItem } from './npm';
-import { memo } from './utils';
 
 type BundleItem = v.Output<typeof BundleItemSchema>;
 
@@ -21,6 +20,8 @@ const BundleItemSchema = v.object({
 
 const loadBundleItem = memo<BundleItem>();
 
+const api = url('https://deno.bundlejs.com');
+
 const getBundleItem = (name: string): Promise<BundleItem> =>
   loadBundleItem(name, async () => {
     const npm = await getPackageItem(name);
@@ -30,7 +31,7 @@ const getBundleItem = (name: string): Promise<BundleItem> =>
     if (npm.peerDependencies) external.push(...Object.keys(npm.peerDependencies));
     const config = { esbuild: { external } };
 
-    return v.parse(BundleItemSchema, await ftch.get.json(`https://deno.bundlejs.com/?q=${name}&config=${JSON.stringify(config)}`));
+    return v.parse(BundleItemSchema, await ftch.get.json(api`/?q=${name}&config=${JSON.stringify(config)}`));
   });
 
 export { getBundleItem };

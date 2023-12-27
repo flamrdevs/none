@@ -1,4 +1,4 @@
-import type { Children, RootComponent } from '~/libs/svg';
+import type { Children, RootComponent } from '~/libs/image';
 
 import { tag } from './utils';
 import type { BaseProps, SizeProps } from './utils';
