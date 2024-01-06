@@ -6,14 +6,14 @@ settings:
 
 devDependencies:
   '@types/node':
-    specifier: ^20.10.5
-    version: 20.10.5
+    specifier: ^20.10.6
+    version: 20.10.6
   hono:
-    specifier: ^3.11.11
-    version: 3.11.11
+    specifier: ^3.12.0
+    version: 3.12.0
   lucide:
-    specifier: ^0.302.0
-    version: 0.302.0
+    specifier: ^0.306.0
+    version: 0.306.0
   satori:
     specifier: ^0.10.11
     version: 0.10.11
@@ -620,8 +620,8 @@ packages:
       string.prototype.codepointat: 0.2.1
     dev: true
 
-  /@types/node@20.10.5:
-    resolution: {integrity: sha512-nNPsNE65wjMxEKI93yOP+NPGGBJz/PoN3kZsVLee0XMiJolxSekEVD8wRwBUBqkwc7UWop0edW50yrCQW4CyRw==}
+  /@types/node@20.10.6:
+    resolution: {integrity: sha512-Vac8H+NlRNNlAmDfGUP7b5h/KA+AtWIzuXy0E6OyP8f1tCLYAtPvKRRDJjAPqhpCb0t6U2j7/xqAuLEebW2kiw==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -951,8 +951,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /hono@3.11.11:
-    resolution: {integrity: sha512-E3Xv7LnOjg7VXiu+t+YplDEYXvkxpcTCzZ3RUFQlcNXclSME8aiQAYwWpJPT6MQRRpa4TG5RlOolqeYEDEK3wg==}
+  /hono@3.12.0:
+    resolution: {integrity: sha512-UPEtZuLY7Wo7g0mqKWSOjLFdT8t7wJ60IYEcxKl3AQNU4u+R2QqU2fJMPmSu24C+/ag20Z8mOTQOErZzK4DMvA==}
     engines: {node: '>=16.0.0'}
     dev: true
 
@@ -1040,8 +1040,8 @@ packages:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
     dev: true
 
-  /lucide@0.302.0:
-    resolution: {integrity: sha512-EM1u7oXDPz5sL0zvVbbjQNeqCkAt3SyPCJ2YtlNyXlEQR5wJqn0dholS+S+adzrqyaZrCw8Q1KwlSGhrBMGBGQ==}
+  /lucide@0.306.0:
+    resolution: {integrity: sha512-asGEYqknMo601yhxaFafTXa97E0joe/iHN6j8kyQrOJpgHregJ5kZK30OOknQppTMuutrRRQnU0efdueSZl8gg==}
     dev: true
 
   /merge-stream@2.0.0:
