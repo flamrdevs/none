@@ -13,21 +13,21 @@ type SimpleProps = {
 
 type SimpleIcon = keyof typeof icons;
 
-const SimpleIcons = {} as { [key in SimpleIcon]: Component<SimpleProps> };
-
-for (const key in icons) {
-  SimpleIcons[key as SimpleIcon] = ({ s = 20, c = 'currentColor' }) => {
-    return tag('svg', {
-      role: 'img',
-      viewBox: '0 0 24 24',
-      width: s,
-      height: s,
-      fill: c,
-      stroke: 'none',
-      children: tag('path', { d: icons[key as SimpleIcon] }),
+const SimpleIcons = new Proxy({} as { [key in SimpleIcon]: Component<SimpleProps> }, {
+  get(object, key: SimpleIcon) {
+    return (object[key] ??= ({ s = 20, c = 'currentColor' }) => {
+      return tag('svg', {
+        role: 'img',
+        viewBox: '0 0 24 24',
+        width: s,
+        height: s,
+        fill: c,
+        stroke: 'none',
+        children: tag('path', { d: icons[key] }),
+      });
     });
-  };
-}
+  },
+});
 
 const ICON = Object.keys(icons) as [SimpleIcon, ...SimpleIcon[]];
 
