@@ -14,13 +14,14 @@ export default defineConfig(({ env = {} }) => {
     watch: DEV,
     clean: PROD,
     minify: PROD && 'terser',
+    define: {
+      __DEV__: `${DEV}`,
+      __PROD__: `${PROD}`,
+    },
     splitting: true,
     publicDir: true,
-    platform: 'browser',
-    bundle: true,
+    platform: 'node',
     target: 'esnext',
-    skipNodeModulesBundle: false,
-    external: createNodeExternal(),
     terserOptions: { format: { comments: false } },
     ...(DEV ? createDenoDevRun() : {}),
   };
@@ -38,53 +39,4 @@ const createDenoDevRun = (): Options => {
       e.on('exit', (code) => process.exit(typeof code === 'number' ? code : 1));
     },
   };
-};
-
-const createNodeExternal = () => {
-  const modules = [
-    'assert',
-    'async_hooks',
-    'buffer',
-    'child_process',
-    'cluster',
-    'console',
-    'constants',
-    'crypto',
-    'dgram',
-    'diagnostics_channel',
-    'dns',
-    'domain',
-    'events',
-    'fs',
-    'http',
-    'http2',
-    'https',
-    'inspector',
-    'module',
-    'net',
-    'os',
-    'path',
-    'perf_hooks',
-    'process',
-    'punycode',
-    'querystring',
-    'readline',
-    'repl',
-    'stream',
-    'string_decoder',
-    'test',
-    'timers',
-    'tls',
-    'trace_events',
-    'tty',
-    'url',
-    'util',
-    'v8',
-    'vm',
-    'wasi',
-    'worker_threads',
-    'zlib',
-  ];
-
-  return modules.concat(modules.map((x) => `node:${x}`));
 };

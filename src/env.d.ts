@@ -4,6 +4,9 @@ declare global {
       readonly NODE_ENV: 'development' | 'production';
     }
   }
+
+  var __DEV__: boolean;
+  var __PROD__: boolean;
 }
 
 export {};

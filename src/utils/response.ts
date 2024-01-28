@@ -6,7 +6,7 @@ import { image } from '~/libs/dynamic';
 
 const CACHE: Record<string, Response> = {};
 
-const CACHE_CONTROL = `public, max-age=${process.env.NODE_ENV === 'production' ? 86400 : 1}`;
+const CACHE_CONTROL = `public, max-age=${__PROD__ ? 86400 : 1}`;
 
 const svg = async (context: Context, element: () => Promise<RootElement>) => {
   const key = context.req.url;

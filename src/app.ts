@@ -13,7 +13,7 @@ const app = new Hono();
 
 app.use('*', cors({ origin: '*' }), compress(), secureHeaders({ crossOriginResourcePolicy: false }));
 
-if (process.env.NODE_ENV === 'development') {
+if (__DEV__) {
   app.use('*', logger());
 }
 
@@ -28,6 +28,8 @@ app
   .get('/', (ctx) => ctx.json({ name: 'none' }))
   .notFound((ctx) => ctx.json({ message: 'Not found' }, 404))
   .onError((error, ctx) => {
+    if (__DEV__) console.error(error);
+
     let status: number = 500;
     let message: string = 'Internal server error';
 
