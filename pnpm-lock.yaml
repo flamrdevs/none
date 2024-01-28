@@ -6,20 +6,20 @@ settings:
 
 devDependencies:
   '@types/node':
-    specifier: ^20.11.6
-    version: 20.11.6
+    specifier: ^20.11.9
+    version: 20.11.9
   hono:
-    specifier: ^3.12.6
-    version: 3.12.6
+    specifier: ^3.12.8
+    version: 3.12.8
   lucide:
-    specifier: ^0.314.0
-    version: 0.314.0
+    specifier: ^0.316.0
+    version: 0.316.0
   satori:
     specifier: ^0.10.11
     version: 0.10.11
   simple-icons:
-    specifier: ^11.2.0
-    version: 11.2.0
+    specifier: ^11.3.0
+    version: 11.3.0
   string-ts:
     specifier: ^2.0.0
     version: 2.0.0
@@ -627,8 +627,8 @@ packages:
       string.prototype.codepointat: 0.2.1
     dev: true
 
-  /@types/node@20.11.6:
-    resolution: {integrity: sha512-+EOokTnksGVgip2PbYbr3xnR7kZigh4LbybAfBAw5BpnQ+FqBYUsvCEjYd70IXKlbohQ64mzEYmMtlWUY8q//Q==}
+  /@types/node@20.11.9:
+    resolution: {integrity: sha512-CQXNuMoS/VcoAMISe5pm4JnEd1Br5jildbQEToEMQvutmv+EaQr90ry9raiudgpyDuqFiV9e4rnjSfLNq12M5w==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -958,8 +958,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /hono@3.12.6:
-    resolution: {integrity: sha512-nnLMJbBA8k+tW8XD1Xt0BfNmJswppYF2pSOVo5U3DdU72SPYUjFkPg7/Q9KfkNcsrXzxFdJQ00JYjPGancmOOA==}
+  /hono@3.12.8:
+    resolution: {integrity: sha512-vnOEIRdqsp4uHE/dkOBr9EYmTsR86sD/FyG2xhfAQzR9udDRglN1nuO7SGc/7U3HfSorc6PSCNGN6upnVtCmfg==}
     engines: {node: '>=16.0.0'}
     dev: true
 
@@ -1047,8 +1047,8 @@ packages:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
     dev: true
 
-  /lucide@0.314.0:
-    resolution: {integrity: sha512-MErc+Ku1tZMSUrDNw67jxF/Yj0e+CBFYo43/i4A2Isz6WMHBi+VWZ+9nnK36LOvEZ+GDxHeA4m93OR1hKlPZTg==}
+  /lucide@0.316.0:
+    resolution: {integrity: sha512-SEdWzsaScYxP+H9E7yGcGETdDWOrtsJX0JwQqDrTG9EvT46PZ0ips1hGfyRlxLPDsGEpJ71Fs6kmhIHq6i7Aqw==}
     dev: true
 
   /merge-stream@2.0.0:
@@ -1266,8 +1266,8 @@ packages:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
 
-  /simple-icons@11.2.0:
-    resolution: {integrity: sha512-ZT/+2+pSg7kGaWBorPxaktwb3pK18R945XnPU895qPzGDN1LxkHfDbejbBnAvIElYYPgUPstqUIjyPSvZPSfTg==}
+  /simple-icons@11.3.0:
+    resolution: {integrity: sha512-dr178hpEoy8ZtPKEQvmFcQbbOfqMHGDQ0Mt8BOqZ8lqIvbQ8X7kHdznIIwDVn4yKRPtP8wXGPpMJ/2/1xjjhVA==}
     engines: {node: '>=0.12.18'}
     dev: true
 
