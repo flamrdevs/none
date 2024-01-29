@@ -1,8 +1,10 @@
 import type { Children, RootComponent } from '~/libs/image';
 
-import { tag } from './utils';
-import type { BaseProps, SizeProps } from './utils';
-import { select } from '../utils';
+import el from './el';
+import { select } from '../style';
+import type { BaseProps, SizeProps } from './types';
+
+const validSizeValue = (val: unknown, min: number) => (typeof val !== 'number' || isNaN(val) || val < min ? min : val);
 
 const calcBadgeWidth = (str: string) => str.length * 9 + 11;
 const calcBadgeIconWidth = (str: string) => str.length * 9 + 24;
@@ -10,16 +12,13 @@ const calcBadgeIconWidth = (str: string) => str.length * 9 + 24;
 const Badge: RootComponent<BaseProps & SizeProps & { children: Children }> = ({ c, t, w, h, children }) => {
   const color = select(c, t);
 
-  const width = 20;
-  const height = 20;
-
-  return tag('div', {
+  return el('div', {
     style: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      width: typeof w !== 'number' || isNaN(w) || w < width ? width : w,
-      height: typeof h !== 'number' || isNaN(h) || h < height ? height : h,
+      width: validSizeValue(w, 20),
+      height: validSizeValue(h, 20),
       backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
       color: color[11],
       border: `1px solid ${color[7]}`,
@@ -32,9 +31,9 @@ const Badge: RootComponent<BaseProps & SizeProps & { children: Children }> = ({ 
 };
 
 const BadgeChildIcon = ({ c, e }: { c: Children; e: string }) => {
-  return tag('div', {
+  return el('div', {
     style: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, paddingRight: 1 },
-    children: [tag('div', { style: { display: 'flex' }, children: c }), tag('div', { style: { display: 'flex' }, children: e })],
+    children: [el('div', { style: { display: 'flex' }, children: c }), el('div', { style: { display: 'flex' }, children: e })],
   });
 };
 
@@ -44,17 +43,14 @@ const calcButtonIconWidth = (str: string) => str.length * 10 + 58;
 const Button: RootComponent<BaseProps & SizeProps & { children: Children }> = ({ c, t, w, h, children }) => {
   const color = select(c, t);
 
-  const width = 32;
-  const height = 32;
-
-  return tag('div', {
+  return el('div', {
     style: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       padding: '0.1rem 0.4rem',
-      width: typeof w !== 'number' || isNaN(w) || w < width ? width : w,
-      height: typeof h !== 'number' || isNaN(h) || h < height ? height : h,
+      width: validSizeValue(w, 32),
+      height: validSizeValue(h, 32),
       backgroundImage: `linear-gradient(135deg, ${color[4]}, ${color[3]}, ${color[2]})`,
       color: color[11],
       border: `1px solid ${color[7]}`,
@@ -67,25 +63,22 @@ const Button: RootComponent<BaseProps & SizeProps & { children: Children }> = ({
 };
 
 const ButtonChildIcon = ({ c, e }: { c: Children; e: string }) => {
-  return tag('div', {
+  return el('div', {
     style: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, paddingRight: 2 },
-    children: [tag('div', { style: { display: 'flex' }, children: c }), tag('div', { style: { display: 'flex' }, children: e })],
+    children: [el('div', { style: { display: 'flex' }, children: c }), el('div', { style: { display: 'flex' }, children: e })],
   });
 };
 
 const Icon: RootComponent<BaseProps & SizeProps & { children: Children }> = ({ c, t, w, h, children }) => {
   const color = select(c, t);
 
-  const width = 22;
-  const height = 22;
-
-  return tag('div', {
+  return el('div', {
     style: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      width: typeof w !== 'number' || isNaN(w) || w < width ? width : w,
-      height: typeof h !== 'number' || isNaN(h) || h < height ? height : h,
+      width: validSizeValue(w, 22),
+      height: validSizeValue(h, 22),
       color: color[11],
     },
     children,

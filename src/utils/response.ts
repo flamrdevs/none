@@ -2,7 +2,7 @@ import type { Context } from 'hono';
 
 import type { RootElement } from '~/libs/image';
 
-import { image } from '~/libs/dynamic';
+import { image } from '~/libs';
 
 const CACHE: Record<string, Response> = {};
 

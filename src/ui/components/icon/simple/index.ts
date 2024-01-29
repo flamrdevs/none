@@ -2,7 +2,7 @@ import * as v from 'valibot';
 
 import type { Component } from '~/libs/image';
 
-import { tag } from '../../utils';
+import el from '../../el';
 
 import icons from './icons';
 
@@ -16,14 +16,14 @@ type SimpleIcon = keyof typeof icons;
 const SimpleIcons = new Proxy({} as { [key in SimpleIcon]: Component<SimpleProps> }, {
   get(object, key: SimpleIcon) {
     return (object[key] ??= ({ s = 20, c = 'currentColor' }) => {
-      return tag('svg', {
+      return el('svg', {
         role: 'img',
         viewBox: '0 0 24 24',
         width: s,
         height: s,
         fill: c,
         stroke: 'none',
-        children: tag('path', { d: icons[key] }),
+        children: el('path', { d: icons[key] }),
       });
     });
   },

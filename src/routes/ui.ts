@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import * as v from 'valibot';
 
-import { components, utils } from '~/ui/dynamic';
+import { getValidColorQuery, getValidThemeQuery, components } from '~/ui';
 
 import * as response from '~/utils/response';
 import { createQueryKeyParser } from '~/utils/valibot';
@@ -24,7 +24,6 @@ export default new Hono()
            */
           .get('/', async (ctx) => {
             const { Badge, calcBadgeWidth } = await components.core();
-            const { getValidColorQuery, getValidThemeQuery } = await utils();
 
             const query = ctx.req.query();
 
@@ -41,7 +40,6 @@ export default new Hono()
           .get('/lucide', async (ctx) => {
             const { Badge, BadgeChildIcon, calcBadgeIconWidth } = await components.core();
             const { LucideIcons, getValidLucideIconFromQuery } = await components.icon.lucide();
-            const { getValidColorQuery, getValidThemeQuery } = await utils();
 
             const query = ctx.req.query();
 
@@ -66,7 +64,6 @@ export default new Hono()
           .get('/simple', async (ctx) => {
             const { Badge, BadgeChildIcon, calcBadgeIconWidth } = await components.core();
             const { SimpleIcons, getValidSimpleIconFromQuery } = await components.icon.simple();
-            const { getValidColorQuery, getValidThemeQuery } = await utils();
 
             const query = ctx.req.query();
 
@@ -104,7 +101,6 @@ export default new Hono()
            */
           .get('/', async (ctx) => {
             const { Button, calcButtonWidth } = await components.core();
-            const { getValidColorQuery, getValidThemeQuery } = await utils();
 
             const query = ctx.req.query();
 
@@ -121,7 +117,6 @@ export default new Hono()
           .get('/lucide', async (ctx) => {
             const { Button, ButtonChildIcon, calcButtonIconWidth } = await components.core();
             const { LucideIcons, getValidLucideIconFromQuery } = await components.icon.lucide();
-            const { getValidColorQuery, getValidThemeQuery } = await utils();
 
             const query = ctx.req.query();
 
@@ -146,7 +141,6 @@ export default new Hono()
           .get('/simple', async (ctx) => {
             const { Button, ButtonChildIcon, calcButtonIconWidth } = await components.core();
             const { SimpleIcons, getValidSimpleIconFromQuery } = await components.icon.simple();
-            const { getValidColorQuery, getValidThemeQuery } = await utils();
 
             const query = ctx.req.query();
 
@@ -181,7 +175,6 @@ export default new Hono()
       .get('/lucide', async (ctx) => {
         const { Icon } = await components.core();
         const { LucideIcons, getValidLucideIconFromQuery } = await components.icon.lucide();
-        const { getValidColorQuery, getValidThemeQuery } = await utils();
 
         const query = ctx.req.query();
 
@@ -198,7 +191,6 @@ export default new Hono()
       .get('/simple', async (ctx) => {
         const { Icon } = await components.core();
         const { SimpleIcons, getValidSimpleIconFromQuery } = await components.icon.simple();
-        const { getValidColorQuery, getValidThemeQuery } = await utils();
 
         const query = ctx.req.query();
 
@@ -226,7 +218,6 @@ export default new Hono()
            */
           .get('/', async (ctx) => {
             const { Button } = await components.core();
-            const { getValidColorQuery, getValidThemeQuery } = await utils();
 
             const query = ctx.req.query();
 
@@ -243,7 +234,6 @@ export default new Hono()
           .get('/lucide', async (ctx) => {
             const { Button } = await components.core();
             const { LucideIcons, getValidLucideIconFromQuery } = await components.icon.lucide();
-            const { getValidColorQuery, getValidThemeQuery } = await utils();
 
             const query = ctx.req.query();
 
@@ -260,7 +250,6 @@ export default new Hono()
           .get('/simple', async (ctx) => {
             const { Button } = await components.core();
             const { SimpleIcons, getValidSimpleIconFromQuery } = await components.icon.simple();
-            const { getValidColorQuery, getValidThemeQuery } = await utils();
 
             const query = ctx.req.query();
 

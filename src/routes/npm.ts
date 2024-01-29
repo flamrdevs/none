@@ -1,8 +1,8 @@
 import { Hono } from 'hono';
 
-import { npm } from '~/libs/dynamic';
+import { npm } from '~/libs';
 
-import { components, utils } from '~/ui/dynamic';
+import { getValidColorQuery, getValidThemeQuery, components } from '~/ui';
 
 import * as response from '~/utils/response';
 
@@ -60,7 +60,6 @@ export default new Hono()
     const { getPackageItem, getValidPackageNameParam } = await npm();
 
     const { Badge, calcBadgeWidth } = await components.core();
-    const { getValidColorQuery, getValidThemeQuery } = await utils();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
@@ -82,7 +81,6 @@ export default new Hono()
     const { getPackageItem, getValidPackageNameParam } = await npm();
 
     const { Badge, calcBadgeWidth } = await components.core();
-    const { getValidColorQuery, getValidThemeQuery } = await utils();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
@@ -104,7 +102,6 @@ export default new Hono()
     const { getDownloadPointWeekItem, getValidPackageNameParam, formatDownloads } = await npm();
 
     const { Badge, calcBadgeWidth } = await components.core();
-    const { getValidColorQuery, getValidThemeQuery } = await utils();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
@@ -126,7 +123,6 @@ export default new Hono()
     const { getDownloadPointMonthItem, getValidPackageNameParam, formatDownloads } = await npm();
 
     const { Badge, calcBadgeWidth } = await components.core();
-    const { getValidColorQuery, getValidThemeQuery } = await utils();
 
     const param = ctx.req.param();
     const query = ctx.req.query();

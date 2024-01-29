@@ -1,8 +1,8 @@
 import { Hono } from 'hono';
 
-import { github } from '~/libs/dynamic';
+import { github } from '~/libs';
 
-import { components, utils } from '~/ui/dynamic';
+import { getValidColorQuery, getValidThemeQuery, components } from '~/ui';
 
 import * as response from '~/utils/response';
 
@@ -36,7 +36,6 @@ export default new Hono()
 
     const { Badge, BadgeChildIcon, calcBadgeIconWidth } = await components.core();
     const { LucideIcons } = await components.icon.lucide();
-    const { getValidColorQuery, getValidThemeQuery } = await utils();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
@@ -60,7 +59,6 @@ export default new Hono()
 
     const { Badge, BadgeChildIcon, calcBadgeIconWidth } = await components.core();
     const { LucideIcons } = await components.icon.lucide();
-    const { getValidColorQuery, getValidThemeQuery } = await utils();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
@@ -84,7 +82,6 @@ export default new Hono()
 
     const { Badge, BadgeChildIcon, calcBadgeIconWidth } = await components.core();
     const { LucideIcons } = await components.icon.lucide();
-    const { getValidColorQuery, getValidThemeQuery } = await utils();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
