@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 
 import { npm } from '~/libs';
 
-import { getValidColorQuery, getValidThemeQuery, components } from '~/ui';
+import { getValidColorQuery, getValidThemeQuery, core } from '~/ui';
 
 import * as response from '~/utils/response';
 
@@ -59,8 +59,6 @@ export default new Hono()
   .get('/v/:name{.+$}', async (ctx) => {
     const { getPackageItem, getValidPackageNameParam } = await npm();
 
-    const { Badge, calcBadgeWidth } = await components.core();
-
     const param = ctx.req.param();
     const query = ctx.req.query();
 
@@ -71,7 +69,7 @@ export default new Hono()
 
     const v = (await getPackageItem(n)).version;
 
-    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(v), children: v }));
+    return await response.svg(ctx, async () => core.Badge({ c, t, w: core.calcBadgeWidth(v), children: v }));
   })
 
   /**
@@ -79,8 +77,6 @@ export default new Hono()
    */
   .get('/l/:name{.+$}', async (ctx) => {
     const { getPackageItem, getValidPackageNameParam } = await npm();
-
-    const { Badge, calcBadgeWidth } = await components.core();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
@@ -92,7 +88,7 @@ export default new Hono()
 
     const l = (await getPackageItem(n)).license ?? 'UNLICENSED';
 
-    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(l), children: l }));
+    return await response.svg(ctx, async () => core.Badge({ c, t, w: core.calcBadgeWidth(l), children: l }));
   })
 
   /**
@@ -100,8 +96,6 @@ export default new Hono()
    */
   .get('/dw/:name{.+$}', async (ctx) => {
     const { getDownloadPointWeekItem, getValidPackageNameParam, formatDownloads } = await npm();
-
-    const { Badge, calcBadgeWidth } = await components.core();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
@@ -113,7 +107,7 @@ export default new Hono()
 
     const text = `${formatDownloads((await getDownloadPointWeekItem(n)).downloads)}/W`;
 
-    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(text), children: text }));
+    return await response.svg(ctx, async () => core.Badge({ c, t, w: core.calcBadgeWidth(text), children: text }));
   })
 
   /**
@@ -121,8 +115,6 @@ export default new Hono()
    */
   .get('/dm/:name{.+$}', async (ctx) => {
     const { getDownloadPointMonthItem, getValidPackageNameParam, formatDownloads } = await npm();
-
-    const { Badge, calcBadgeWidth } = await components.core();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
@@ -134,5 +126,5 @@ export default new Hono()
 
     const text = `${formatDownloads((await getDownloadPointMonthItem(n)).downloads)}/M`;
 
-    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(text), children: text }));
+    return await response.svg(ctx, async () => core.Badge({ c, t, w: core.calcBadgeWidth(text), children: text }));
   });

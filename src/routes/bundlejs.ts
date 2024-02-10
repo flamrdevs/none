@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 
 import { bundlejs, npm } from '~/libs';
 
-import { getValidColorQuery, getValidThemeQuery, components } from '~/ui';
+import { getValidColorQuery, getValidThemeQuery, core } from '~/ui';
 
 import * as response from '~/utils/response';
 
@@ -28,8 +28,6 @@ export default new Hono()
     const { getBundleItem } = await bundlejs();
     const { getValidPackageNameParam } = await npm();
 
-    const { Badge, calcBadgeWidth } = await components.core();
-
     const param = ctx.req.param();
     const query = ctx.req.query();
 
@@ -40,7 +38,7 @@ export default new Hono()
 
     const s = (await getBundleItem(n)).size.uncompressedSize;
 
-    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
+    return await response.svg(ctx, async () => core.Badge({ c, t, w: core.calcBadgeWidth(s), children: s }));
   })
 
   /**
@@ -49,8 +47,6 @@ export default new Hono()
   .get('/mz/:name{.+$}', async (ctx) => {
     const { getBundleItem } = await bundlejs();
     const { getValidPackageNameParam } = await npm();
-
-    const { Badge, calcBadgeWidth } = await components.core();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
@@ -62,5 +58,5 @@ export default new Hono()
 
     const s = (await getBundleItem(n)).size.compressedSize;
 
-    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(s), children: s }));
+    return await response.svg(ctx, async () => core.Badge({ c, t, w: core.calcBadgeWidth(s), children: s }));
   });

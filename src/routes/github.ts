@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 
 import { github } from '~/libs';
 
-import { getValidColorQuery, getValidThemeQuery, components } from '~/ui';
+import { getValidColorQuery, getValidThemeQuery, core, icon } from '~/ui';
 
 import * as response from '~/utils/response';
 
@@ -34,8 +34,7 @@ export default new Hono()
   .get('/repo/fc/:user/:repo', async (ctx) => {
     const { getRepoItem, getValidUsernameParam, getValidReponameParam, formatCount } = await github();
 
-    const { Badge, BadgeChildIcon, calcBadgeIconWidth } = await components.core();
-    const { LucideIcons } = await components.icon.lucide();
+    const { LucideIcons } = await icon.lucide();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
@@ -48,7 +47,7 @@ export default new Hono()
 
     const children = `${formatCount((await getRepoItem(user, repo)).forks_count)}`;
 
-    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeIconWidth(children), children: BadgeChildIcon({ c: LucideIcons['git-fork']({ s: 12 }), e: children }) }));
+    return await response.svg(ctx, async () => core.Badge({ c, t, w: core.calcBadgeIconWidth(children), children: core.BadgeChildIcon({ c: LucideIcons['git-fork']({ s: 12 }), e: children }) }));
   })
 
   /**
@@ -57,8 +56,7 @@ export default new Hono()
   .get('/repo/sc/:user/:repo', async (ctx) => {
     const { getRepoItem, getValidUsernameParam, getValidReponameParam, formatCount } = await github();
 
-    const { Badge, BadgeChildIcon, calcBadgeIconWidth } = await components.core();
-    const { LucideIcons } = await components.icon.lucide();
+    const { LucideIcons } = await icon.lucide();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
@@ -71,7 +69,7 @@ export default new Hono()
 
     const children = `${formatCount((await getRepoItem(user, repo)).stargazers_count)}`;
 
-    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeIconWidth(children), children: BadgeChildIcon({ c: LucideIcons['star']({ s: 12 }), e: children }) }));
+    return await response.svg(ctx, async () => core.Badge({ c, t, w: core.calcBadgeIconWidth(children), children: core.BadgeChildIcon({ c: LucideIcons['star']({ s: 12 }), e: children }) }));
   })
 
   /**
@@ -80,8 +78,7 @@ export default new Hono()
   .get('/repo/l/:user/:repo', async (ctx) => {
     const { getRepoItem, getValidUsernameParam, getValidReponameParam } = await github();
 
-    const { Badge, BadgeChildIcon, calcBadgeIconWidth } = await components.core();
-    const { LucideIcons } = await components.icon.lucide();
+    const { LucideIcons } = await icon.lucide();
 
     const param = ctx.req.param();
     const query = ctx.req.query();
@@ -95,5 +92,5 @@ export default new Hono()
     const item = await getRepoItem(user, repo);
     const children = item.license ? `${item.license.spdx_id}` : 'Null';
 
-    return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeIconWidth(children), children: BadgeChildIcon({ c: LucideIcons['scale']({ s: 12 }), e: children }) }));
+    return await response.svg(ctx, async () => core.Badge({ c, t, w: core.calcBadgeIconWidth(children), children: core.BadgeChildIcon({ c: LucideIcons['scale']({ s: 12 }), e: children }) }));
   });

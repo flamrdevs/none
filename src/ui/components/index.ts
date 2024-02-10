@@ -1,2 +1,2 @@
-export const core = () => import('./core');
+export * as core from './core';
 export * as icon from './icon';

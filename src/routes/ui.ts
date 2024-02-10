@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import * as v from 'valibot';
 
-import { getValidColorQuery, getValidThemeQuery, components } from '~/ui';
+import { getValidColorQuery, getValidThemeQuery, core, icon } from '~/ui';
 
 import * as response from '~/utils/response';
 import { createQueryKeyParser } from '~/utils/valibot';
@@ -23,23 +23,20 @@ export default new Hono()
            * text
            */
           .get('/', async (ctx) => {
-            const { Badge, calcBadgeWidth } = await components.core();
-
             const query = ctx.req.query();
 
             const c = getValidColorQuery(query);
             const t = getValidThemeQuery(query);
             const e = getValidBadgeElementQuery(query);
 
-            return await response.svg(ctx, async () => Badge({ c, t, w: calcBadgeWidth(e), children: e }));
+            return await response.svg(ctx, async () => core.Badge({ c, t, w: core.calcBadgeWidth(e), children: e }));
           })
 
           /**
            * lucide
            */
           .get('/lucide', async (ctx) => {
-            const { Badge, BadgeChildIcon, calcBadgeIconWidth } = await components.core();
-            const { LucideIcons, getValidLucideIconFromQuery } = await components.icon.lucide();
+            const { LucideIcons, getValidLucideIconFromQuery } = await icon.lucide();
 
             const query = ctx.req.query();
 
@@ -49,11 +46,11 @@ export default new Hono()
             const e = getValidBadgeElementQuery(query);
 
             return await response.svg(ctx, async () =>
-              Badge({
+              core.Badge({
                 c,
                 t,
-                w: calcBadgeIconWidth(e),
-                children: BadgeChildIcon({ c: LucideIcons[i]({ s: 12 }), e }),
+                w: core.calcBadgeIconWidth(e),
+                children: core.BadgeChildIcon({ c: LucideIcons[i]({ s: 12 }), e }),
               })
             );
           })
@@ -62,8 +59,7 @@ export default new Hono()
            * simple
            */
           .get('/simple', async (ctx) => {
-            const { Badge, BadgeChildIcon, calcBadgeIconWidth } = await components.core();
-            const { SimpleIcons, getValidSimpleIconFromQuery } = await components.icon.simple();
+            const { SimpleIcons, getValidSimpleIconFromQuery } = await icon.simple();
 
             const query = ctx.req.query();
 
@@ -73,11 +69,11 @@ export default new Hono()
             const e = getValidBadgeElementQuery(query);
 
             return await response.svg(ctx, async () =>
-              Badge({
+              core.Badge({
                 c,
                 t,
-                w: calcBadgeIconWidth(e),
-                children: BadgeChildIcon({ c: SimpleIcons[i]({ s: 12 }), e }),
+                w: core.calcBadgeIconWidth(e),
+                children: core.BadgeChildIcon({ c: SimpleIcons[i]({ s: 12 }), e }),
               })
             );
           })
@@ -100,23 +96,20 @@ export default new Hono()
            * text
            */
           .get('/', async (ctx) => {
-            const { Button, calcButtonWidth } = await components.core();
-
             const query = ctx.req.query();
 
             const c = getValidColorQuery(query);
             const t = getValidThemeQuery(query);
             const e = getValidButtonElementQuery(query);
 
-            return await response.svg(ctx, async () => Button({ c, t, w: calcButtonWidth(e), children: e }));
+            return await response.svg(ctx, async () => core.Button({ c, t, w: core.calcButtonWidth(e), children: e }));
           })
 
           /**
            * lucide
            */
           .get('/lucide', async (ctx) => {
-            const { Button, ButtonChildIcon, calcButtonIconWidth } = await components.core();
-            const { LucideIcons, getValidLucideIconFromQuery } = await components.icon.lucide();
+            const { LucideIcons, getValidLucideIconFromQuery } = await icon.lucide();
 
             const query = ctx.req.query();
 
@@ -126,11 +119,11 @@ export default new Hono()
             const e = getValidButtonElementQuery(query);
 
             return await response.svg(ctx, async () =>
-              Button({
+              core.Button({
                 c,
                 t,
-                w: calcButtonIconWidth(e),
-                children: ButtonChildIcon({ c: LucideIcons[i]({}), e }),
+                w: core.calcButtonIconWidth(e),
+                children: core.ButtonChildIcon({ c: LucideIcons[i]({}), e }),
               })
             );
           })
@@ -139,8 +132,7 @@ export default new Hono()
            * simple
            */
           .get('/simple', async (ctx) => {
-            const { Button, ButtonChildIcon, calcButtonIconWidth } = await components.core();
-            const { SimpleIcons, getValidSimpleIconFromQuery } = await components.icon.simple();
+            const { SimpleIcons, getValidSimpleIconFromQuery } = await icon.simple();
 
             const query = ctx.req.query();
 
@@ -150,11 +142,11 @@ export default new Hono()
             const e = getValidButtonElementQuery(query);
 
             return await response.svg(ctx, async () =>
-              Button({
+              core.Button({
                 c,
                 t,
-                w: calcButtonIconWidth(e),
-                children: ButtonChildIcon({ c: SimpleIcons[i]({}), e }),
+                w: core.calcButtonIconWidth(e),
+                children: core.ButtonChildIcon({ c: SimpleIcons[i]({}), e }),
               })
             );
           })
@@ -173,8 +165,7 @@ export default new Hono()
        * lucide
        */
       .get('/lucide', async (ctx) => {
-        const { Icon } = await components.core();
-        const { LucideIcons, getValidLucideIconFromQuery } = await components.icon.lucide();
+        const { LucideIcons, getValidLucideIconFromQuery } = await icon.lucide();
 
         const query = ctx.req.query();
 
@@ -182,15 +173,14 @@ export default new Hono()
         const t = getValidThemeQuery(query);
         const i = getValidLucideIconFromQuery(query);
 
-        return await response.svg(ctx, async () => Icon({ c, t, children: LucideIcons[i]({}) }));
+        return await response.svg(ctx, async () => core.Icon({ c, t, children: LucideIcons[i]({}) }));
       })
 
       /**
        * simple
        */
       .get('/simple', async (ctx) => {
-        const { Icon } = await components.core();
-        const { SimpleIcons, getValidSimpleIconFromQuery } = await components.icon.simple();
+        const { SimpleIcons, getValidSimpleIconFromQuery } = await icon.simple();
 
         const query = ctx.req.query();
 
@@ -198,7 +188,7 @@ export default new Hono()
         const t = getValidThemeQuery(query);
         const i = getValidSimpleIconFromQuery(query);
 
-        return await response.svg(ctx, async () => Icon({ c, t, children: SimpleIcons[i]({}) }));
+        return await response.svg(ctx, async () => core.Icon({ c, t, children: SimpleIcons[i]({}) }));
       })
   )
 
@@ -217,23 +207,20 @@ export default new Hono()
            * text
            */
           .get('/', async (ctx) => {
-            const { Button } = await components.core();
-
             const query = ctx.req.query();
 
             const c = getValidColorQuery(query);
             const t = getValidThemeQuery(query);
             const e = getValidIconButtonElementQuery(query);
 
-            return await response.svg(ctx, async () => Button({ c, t, children: e }));
+            return await response.svg(ctx, async () => core.Button({ c, t, children: e }));
           })
 
           /**
            * lucide
            */
           .get('/lucide', async (ctx) => {
-            const { Button } = await components.core();
-            const { LucideIcons, getValidLucideIconFromQuery } = await components.icon.lucide();
+            const { LucideIcons, getValidLucideIconFromQuery } = await icon.lucide();
 
             const query = ctx.req.query();
 
@@ -241,15 +228,14 @@ export default new Hono()
             const t = getValidThemeQuery(query);
             const i = getValidLucideIconFromQuery(query);
 
-            return await response.svg(ctx, async () => Button({ c, t, children: LucideIcons[i]({}) }));
+            return await response.svg(ctx, async () => core.Button({ c, t, children: LucideIcons[i]({}) }));
           })
 
           /**
            * simple
            */
           .get('/simple', async (ctx) => {
-            const { Button } = await components.core();
-            const { SimpleIcons, getValidSimpleIconFromQuery } = await components.icon.simple();
+            const { SimpleIcons, getValidSimpleIconFromQuery } = await icon.simple();
 
             const query = ctx.req.query();
 
@@ -257,7 +243,7 @@ export default new Hono()
             const t = getValidThemeQuery(query);
             const i = getValidSimpleIconFromQuery(query);
 
-            return await response.svg(ctx, async () => Button({ c, t, children: SimpleIcons[i]({}) }));
+            return await response.svg(ctx, async () => core.Button({ c, t, children: SimpleIcons[i]({}) }));
           })
       );
     })()
