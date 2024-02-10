@@ -2,7 +2,7 @@ import * as v from 'valibot';
 
 import type { Component } from '~/libs/image';
 
-import el from '../../el';
+import * as el from '../../el';
 
 import icons from './icons';
 
@@ -13,12 +13,12 @@ type LucideProps = {
 
 type LucideIcon = keyof typeof icons;
 
-const mapFn = (child: (typeof icons)[LucideIcon][number]) => el(child[0], child[1]);
+const mapFn = (child: (typeof icons)[LucideIcon][number]) => el.create(child[0], child[1]);
 
 const LucideIcons = new Proxy({} as { [key in LucideIcon]: Component<LucideProps> }, {
   get(object, key: LucideIcon) {
     return (object[key] ??= ({ s = 20, c = 'currentColor' }) => {
-      return el('svg', {
+      return el.svg({
         role: 'img',
         viewBox: '0 0 24 24',
         width: s,
