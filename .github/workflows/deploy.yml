@@ -39,7 +39,7 @@ jobs:
         run: echo auto-install-peers=false >> .npmrc
 
       - name: Run "pnpm install"
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: Run "pnpm build"
         run: pnpm build
