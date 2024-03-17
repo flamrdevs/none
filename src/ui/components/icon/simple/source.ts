@@ -28,6 +28,7 @@ const icons = [
   si.siClerk,
   si.siCloudflare,
   si.siCloudflarepages,
+  si.siCloudflareworkers,
   si.siCodeberg,
   si.siCodecov,
   si.siCodeigniter,
@@ -172,6 +173,7 @@ const icons = [
   si.siXampp,
   si.siYarn,
   si.siYoutube,
+  si.siZedindustries,
   si.siZig,
   si.siZod,
 ];

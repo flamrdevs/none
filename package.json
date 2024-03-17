@@ -12,20 +12,20 @@
     "setup-icons": "cd src/ui/components/icon && tsx lucide/setup.ts && tsx simple/setup.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.11.24",
-    "hono": "^4.0.9",
+    "@types/node": "^20.11.28",
+    "hono": "^4.1.1",
     "satori": "^0.10.13",
     "string-ts": "^2.0.0",
-    "terser": "^5.28.1",
+    "terser": "^5.29.2",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
-    "typescript": "^5.3.3",
-    "valibot": "^0.29.0",
+    "typescript": "^5.4.2",
+    "valibot": "^0.30.0",
     "yoga-wasm-web": "^0.3.3"
   },
   "peerDependencies": {
-    "lucide": "^0.344.0",
-    "simple-icons": "^11.7.0"
+    "lucide": "^0.358.0",
+    "simple-icons": "^11.9.0"
   },
   "peerDependenciesMeta": {
     "lucide": {
