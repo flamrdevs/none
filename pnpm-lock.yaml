@@ -4,6 +4,14 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  lucide:
+    specifier: ^0.344.0
+    version: 0.344.0
+  simple-icons:
+    specifier: ^11.7.0
+    version: 11.9.0
+
 devDependencies:
   '@types/node':
     specifier: ^20.11.24
@@ -11,15 +19,9 @@ devDependencies:
   hono:
     specifier: ^4.0.9
     version: 4.0.9
-  lucide:
-    specifier: ^0.344.0
-    version: 0.344.0
   satori:
     specifier: ^0.10.13
     version: 0.10.13
-  simple-icons:
-    specifier: ^11.7.0
-    version: 11.7.0
   string-ts:
     specifier: ^2.0.0
     version: 2.0.0
@@ -912,7 +914,7 @@ packages:
 
   /lucide@0.344.0:
     resolution: {integrity: sha512-oK7jwtKJs6U+O4IMrDWMj+d27uJ2ERb84R0tNXqhnG/gBsEiqKrAW5zw4+tZnqZ9qcFsW3Ui8MItCLmomH8CPQ==}
-    dev: true
+    dev: false
 
   /merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
@@ -1139,10 +1141,10 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /simple-icons@11.7.0:
-    resolution: {integrity: sha512-ecsOO6vPi3tf21BMZDw4gYI8ouaSq9mfFlBxBU8WEfcA+8Pz217jxM29K6YkGfO0dszakrcfHK1rrAr9vIfpkQ==}
+  /simple-icons@11.9.0:
+    resolution: {integrity: sha512-l7WNzIxw0H4SBqrzpVCqXyrU7r/xlDRhcEAz+HBB47904x3N9c6bV0smG86WwAaiEpjrMYsKruZZq5ieZ1dHhQ==}
     engines: {node: '>=0.12.18'}
-    dev: true
+    dev: false
 
   /slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}

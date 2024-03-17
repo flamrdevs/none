@@ -14,9 +14,7 @@
   "devDependencies": {
     "@types/node": "^20.11.24",
     "hono": "^4.0.9",
-    "lucide": "^0.344.0",
     "satori": "^0.10.13",
-    "simple-icons": "^11.7.0",
     "string-ts": "^2.0.0",
     "terser": "^5.28.1",
     "tsup": "^8.0.2",
@@ -24,5 +22,17 @@
     "typescript": "^5.3.3",
     "valibot": "^0.29.0",
     "yoga-wasm-web": "^0.3.3"
+  },
+  "peerDependencies": {
+    "lucide": "^0.344.0",
+    "simple-icons": "^11.7.0"
+  },
+  "peerDependenciesMeta": {
+    "lucide": {
+      "optional": true
+    },
+    "simple-icons": {
+      "optional": true
+    }
   }
 }
