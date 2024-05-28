@@ -12,15 +12,15 @@
     "setup-icons": "cd src/ui/components/icon && tsx lucide/setup.ts && tsx simple/setup.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.11.28",
-    "hono": "^4.1.1",
+    "@types/node": "^20.12.12",
+    "hono": "^4.4.0",
     "satori": "^0.10.13",
-    "string-ts": "^2.0.0",
-    "terser": "^5.29.2",
+    "string-ts": "^2.1.1",
+    "terser": "^5.31.0",
     "tsup": "^8.0.2",
-    "tsx": "^4.7.1",
-    "typescript": "^5.4.2",
-    "valibot": "^0.30.0",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5",
+    "valibot": "0.31.0-rc.5",
     "yoga-wasm-web": "^0.3.3"
   },
   "peerDependencies": {
