@@ -62,6 +62,9 @@ await FETCH.GET('/npm/l/@klass/core', 200);
 await FETCH.GET('/npm/dw/@klass/core', 200);
 await FETCH.GET('/npm/dm/@klass/core', 200);
 
+await FETCH.GET('/jsr/api/item/@hono/hono', 200);
+await FETCH.GET('/jsr/v/@hono/hono', 200);
+
 await FETCH.GET('/ui/badge', 200);
 await FETCH.GET('/ui/badge/lucide', 200);
 await FETCH.GET('/ui/badge/simple', 200);

@@ -23,6 +23,7 @@ app
   .route('/bundlejs', routes.bundlejs)
   .route('/github', routes.github)
   .route('/npm', routes.npm)
+  .route('/jsr', routes.jsr)
   .route('/ui', routes.ui);
 
 app
