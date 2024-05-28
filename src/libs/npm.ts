@@ -2,13 +2,13 @@ import * as v from 'valibot';
 
 import { ftch, memo, url } from './@internal';
 
-const PackageNameSchema = v.string([v.regex(/^(?:@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/), v.regex(/^(?!.*-$)[\s\S]*$/)]);
+const PackageNameSchema = v.pipe(v.string(), v.regex(/^(?:@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/), v.regex(/^(?!.*-$)[\s\S]*$/));
 
 const getValidPackageNameParam = (param: Record<string, string>, key: string = 'name') => v.parse(PackageNameSchema, param[key]);
 
-type PackageItem = v.Output<typeof PackageItemSchema>;
+type PackageItem = v.InferOutput<typeof PackageItemSchema>;
 
-const PackageItemSchema = v.object({
+const PackageItemSchema = v.looseObject({
   name: v.string(),
   version: v.string(),
   description: v.optional(v.nullable(v.string())),
@@ -18,23 +18,23 @@ const PackageItemSchema = v.object({
   peerDependencies: v.optional(v.record(v.string(), v.string())),
 });
 
-type DownloadPointItem = v.Output<typeof DownloadPointItemSchema>;
+type DownloadPointItem = v.InferOutput<typeof DownloadPointItemSchema>;
 
-const DownloadPointItemSchema = v.object({
+const DownloadPointItemSchema = v.looseObject({
   package: v.string(),
   start: v.string(),
   end: v.string(),
   downloads: v.number(),
 });
 
-type DownloadRangeItem = v.Output<typeof DownloadRangeItemSchema>;
+type DownloadRangeItem = v.InferOutput<typeof DownloadRangeItemSchema>;
 
-const DownloadRangeItemSchema = v.object({
+const DownloadRangeItemSchema = v.looseObject({
   package: v.string(),
   start: v.string(),
   end: v.string(),
   downloads: v.array(
-    v.object({
+    v.looseObject({
       downloads: v.number(),
       day: v.string(),
     })

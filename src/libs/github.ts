@@ -2,16 +2,16 @@ import * as v from 'valibot';
 
 import { ftch, memo, url } from './@internal';
 
-const UsernameSchema = v.string([v.regex(/^[a-zA-Z\d](?:[a-zA-Z\d]|-(?=[a-zA-Z\d])){1,38}$/), v.regex(/^(?!.*-$)[\s\S]*$/)]);
+const UsernameSchema = v.pipe(v.string(), v.regex(/^[a-zA-Z\d](?:[a-zA-Z\d]|-(?=[a-zA-Z\d])){1,38}$/), v.regex(/^(?!.*-$)[\s\S]*$/));
 
-const ReponameSchema = v.string([v.regex(/^[a-zA-Z\d](?:[a-zA-Z\d]|-(?=[a-zA-Z\d])){1,99}$/), v.regex(/^(?!.*-$)[\s\S]*$/)]);
+const ReponameSchema = v.pipe(v.string(), v.regex(/^[a-zA-Z\d](?:[a-zA-Z\d]|-(?=[a-zA-Z\d])){1,99}$/), v.regex(/^(?!.*-$)[\s\S]*$/));
 
 const getValidUsernameParam = (param: Record<string, string>, key: string = 'user') => v.parse(UsernameSchema, param[key]);
 const getValidReponameParam = (param: Record<string, string>, key: string = 'repo') => v.parse(ReponameSchema, param[key]);
 
-type UserItem = v.Output<typeof UserItemSchema>;
+type UserItem = v.InferOutput<typeof UserItemSchema>;
 
-const UserItemSchema = v.object({
+const UserItemSchema = v.looseObject({
   login: v.string(),
   name: v.nullable(v.string()),
   bio: v.nullable(v.string()),
@@ -22,15 +22,15 @@ const UserItemSchema = v.object({
   following: v.number(),
 });
 
-type RepoItem = v.Output<typeof RepoItemSchema>;
+type RepoItem = v.InferOutput<typeof RepoItemSchema>;
 
-const RepoItemSchema = v.object({
+const RepoItemSchema = v.looseObject({
   name: v.string(),
   description: v.nullable(v.string()),
   homepage: v.nullable(v.string()),
   forks_count: v.number(),
   stargazers_count: v.number(),
-  license: v.nullable(v.object({ key: v.string(), name: v.string(), spdx_id: v.string() })),
+  license: v.nullable(v.looseObject({ key: v.string(), name: v.string(), spdx_id: v.string() })),
   size: v.number(),
 });
 

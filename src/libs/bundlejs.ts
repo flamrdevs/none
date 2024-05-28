@@ -4,9 +4,9 @@ import { ftch, memo, url } from './@internal';
 
 import { getPackageItem } from './npm';
 
-type BundleItem = v.Output<typeof BundleItemSchema>;
+type BundleItem = v.InferOutput<typeof BundleItemSchema>;
 
-const BundleItemSchema = v.object({
+const BundleItemSchema = v.looseObject({
   version: v.string(),
   size: v.object({
     size: v.string(),

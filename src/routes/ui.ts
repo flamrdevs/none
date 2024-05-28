@@ -14,7 +14,7 @@ export default new Hono()
   .route(
     '/badge',
     (() => {
-      const getValidBadgeElementQuery = createQueryKeyParser(v.optional(v.string([v.minLength(2), v.maxLength(48)]), 'badge'), 'e');
+      const getValidBadgeElementQuery = createQueryKeyParser(v.optional(v.pipe(v.string(), v.minLength(2), v.maxLength(48)), 'badge'), 'e');
 
       return (
         new Hono()
@@ -87,7 +87,7 @@ export default new Hono()
   .route(
     '/button',
     (() => {
-      const getValidButtonElementQuery = createQueryKeyParser(v.optional(v.string([v.minLength(2), v.maxLength(48)]), 'button'), 'e');
+      const getValidButtonElementQuery = createQueryKeyParser(v.optional(v.pipe(v.string(), v.minLength(2), v.maxLength(48)), 'button'), 'e');
 
       return (
         new Hono()
@@ -198,7 +198,7 @@ export default new Hono()
   .route(
     '/icon-button',
     (() => {
-      const getValidIconButtonElementQuery = createQueryKeyParser(v.optional(v.string([v.length(1)]), 'x'), 'e');
+      const getValidIconButtonElementQuery = createQueryKeyParser(v.optional(v.pipe(v.string(), v.length(1)), 'x'), 'e');
 
       return (
         new Hono()
