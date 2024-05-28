@@ -14,43 +14,43 @@ jobs:
       contents: read
 
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+      - name: setup pnpm
+        uses: pnpm/action-setup@v3
         with:
-          version: 8.11.0
+          version: 9
 
-      - name: Setup node
+      - name: setup node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
 
-      - name: Setup deno
+      - name: setup deno
         uses: denoland/setup-deno@v1
         with:
-          deno-version: '1.38.3'
+          deno-version: v1.x
 
-      - name: Write npmrc
+      - name: write npmrc
         run: echo auto-install-peers=false >> .npmrc
 
-      - name: Run "pnpm install"
+      - name: run "pnpm install"
         run: pnpm install --no-frozen-lockfile
 
-      - name: Run "pnpm build"
+      - name: run "pnpm build"
         run: pnpm build
 
-      - name: Run "pnpm test"
+      - name: run "pnpm test"
         run: pnpm test
 
-      - name: Run "pnpm script:clean"
+      - name: run "pnpm script:clean"
         run: pnpm script:clean
 
-      - name: Upload to Deno Deploy
+      - name: upload
         uses: denoland/deployctl@v1
         with:
           project: 'none'
