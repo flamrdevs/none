@@ -20,9 +20,7 @@ jobs:
           fetch-depth: 2
 
       - name: setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
+        uses: pnpm/action-setup@v4
 
       - name: setup node
         uses: actions/setup-node@v4
@@ -33,7 +31,7 @@ jobs:
       - name: setup deno
         uses: denoland/setup-deno@v1
         with:
-          deno-version: v1.x
+          deno-version: v2.x
 
       - name: write npmrc
         run: echo auto-install-peers=false >> .npmrc
