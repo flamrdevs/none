@@ -18,7 +18,7 @@ const loadPackageItem = memo<PackageItem>();
 
 const registry = url('https://jsr.io');
 
-const getPackageItem = (name: string): Promise<PackageItem> => loadPackageItem(name, async () => v.parse(PackageItemSchema, await ftch.get.json(registry`/${name}/meta.json`, { Accept: 'json' })));
+const getPackageItem = (name: string): Promise<PackageItem> => loadPackageItem(name, async () => v.parse(PackageItemSchema, await ftch.get.json(registry(`/${name}/meta.json`), { Accept: 'json' })));
 
 export type { PackageItem };
 export { PackageNameSchema };

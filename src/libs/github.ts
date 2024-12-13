@@ -39,8 +39,8 @@ const loadRepoItem = memo<RepoItem>();
 
 const api = url('https://api.github.com');
 
-const getUserItem = (user: string): Promise<UserItem> => loadUserItem(user, async () => v.parse(UserItemSchema, await ftch.get.json(api`/users/${user}`)));
-const getRepoItem = (user: string, repo: string): Promise<RepoItem> => loadRepoItem(`${user}/${repo}`, async () => v.parse(RepoItemSchema, await ftch.get.json(api`/repos/${user}/${repo}`)));
+const getUserItem = (user: string): Promise<UserItem> => loadUserItem(user, async () => v.parse(UserItemSchema, await ftch.get.json(api(`/users/${user}`))));
+const getRepoItem = (user: string, repo: string): Promise<RepoItem> => loadRepoItem(`${user}/${repo}`, async () => v.parse(RepoItemSchema, await ftch.get.json(api(`/repos/${user}/${repo}`))));
 
 const formatCount = (number: number): string => (number < 1000 ? number.toString() : number < 1000000 ? (number / 1000).toFixed(1) + 'K' : (number / 1000000).toFixed(1) + 'M');
 

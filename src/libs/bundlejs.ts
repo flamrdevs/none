@@ -31,7 +31,7 @@ const getBundleItem = (name: string): Promise<BundleItem> =>
     if (npm.peerDependencies) external.push(...Object.keys(npm.peerDependencies));
     const config = { esbuild: { external } };
 
-    return v.parse(BundleItemSchema, await ftch.get.json(api`/?q=${name}&config=${JSON.stringify(config)}`));
+    return v.parse(BundleItemSchema, await ftch.get.json(api(`/?q=${name}&config=${JSON.stringify(config)}`)));
   });
 
 export { getBundleItem };

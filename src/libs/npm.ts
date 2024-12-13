@@ -50,15 +50,15 @@ const loadDownloadRangeMonthItem = memo<DownloadRangeItem>();
 const registry = url('https://registry.npmjs.org');
 const api = url('https://api.npmjs.org');
 
-const getPackageItem = (name: string): Promise<PackageItem> => loadPackageItem(name, async () => v.parse(PackageItemSchema, await ftch.get.json(registry`/${name}/latest`)));
+const getPackageItem = (name: string): Promise<PackageItem> => loadPackageItem(name, async () => v.parse(PackageItemSchema, await ftch.get.json(registry(`/${name}/latest`))));
 const getDownloadPointWeekItem = (name: string): Promise<DownloadPointItem> =>
-  loadDownloadPointWeekItem(name, async () => v.parse(DownloadPointItemSchema, await ftch.get.json(api`/downloads/point/last-week/${name}`)));
+  loadDownloadPointWeekItem(name, async () => v.parse(DownloadPointItemSchema, await ftch.get.json(api(`/downloads/point/last-week/${name}`))));
 const getDownloadPointMonthItem = (name: string): Promise<DownloadPointItem> =>
-  loadDownloadPointMonthItem(name, async () => v.parse(DownloadPointItemSchema, await ftch.get.json(api`/downloads/point/last-month/${name}`)));
+  loadDownloadPointMonthItem(name, async () => v.parse(DownloadPointItemSchema, await ftch.get.json(api(`/downloads/point/last-month/${name}`))));
 const getDownloadRangeWeekItem = (name: string): Promise<DownloadRangeItem> =>
-  loadDownloadRangeWeekItem(name, async () => v.parse(DownloadRangeItemSchema, await ftch.get.json(api`/downloads/range/last-week/${name}`)));
+  loadDownloadRangeWeekItem(name, async () => v.parse(DownloadRangeItemSchema, await ftch.get.json(api(`/downloads/range/last-week/${name}`))));
 const getDownloadRangeMonthItem = (name: string): Promise<DownloadRangeItem> =>
-  loadDownloadRangeMonthItem(name, async () => v.parse(DownloadRangeItemSchema, await ftch.get.json(api`/downloads/range/last-month/${name}`)));
+  loadDownloadRangeMonthItem(name, async () => v.parse(DownloadRangeItemSchema, await ftch.get.json(api(`/downloads/range/last-month/${name}`))));
 
 const formatDownloads = (number: number): string => (number < 1000 ? number.toString() : number < 1000000 ? (number / 1000).toFixed(1) + 'K' : (number / 1000000).toFixed(1) + 'M');
 
