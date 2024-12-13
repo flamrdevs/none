@@ -56,6 +56,7 @@ Colorful SVG generation service
   - GitHub
   - BundleJS
   - NPM
+  - JSR
 
 ## UI
 
@@ -688,6 +689,36 @@ Colorful SVG generation service
         <picture>
           <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/dm/@klass/core?t=dark">
           <img alt="monthly downloads" src="https://none.deno.dev/npm/dm/@klass/core?t=light" hspace="1">
+        </picture>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## JSR
+
+### Package
+
+<table>
+  <thead>
+    <tr>
+      <th>
+        -
+      </th>
+      <th>
+        <code>@hono/hono</code>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Version
+      </td>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/jsr/v/@hono/hono?t=dark">
+          <img alt="version" src="https://none.deno.dev/jsr/v/@hono/hono?t=light" hspace="1">
         </picture>
       </td>
     </tr>
