@@ -13,19 +13,19 @@
   },
   "devDependencies": {
     "@types/node": "20.17.10",
-    "hono": "4.6.16",
+    "hono": "4.6.17",
     "satori": "0.12.1",
     "string-ts": "2.2.0",
     "terser": "5.37.0",
     "tsup": "8.3.5",
     "tsx": "4.19.2",
     "typescript": "5.7.3",
-    "valibot": "1.0.0-beta.11",
+    "valibot": "1.0.0-beta.12",
     "yoga-wasm-web": "0.3.3"
   },
   "peerDependencies": {
-    "lucide": "0.468.0",
-    "simple-icons": "13.20.0"
+    "lucide": "0.473.0",
+    "simple-icons": "14.3.0"
   },
   "peerDependenciesMeta": {
     "lucide": {
@@ -35,5 +35,5 @@
       "optional": true
     }
   },
-  "packageManager": "pnpm@9.15.3"
+  "packageManager": "pnpm@9.15.4"
 }
