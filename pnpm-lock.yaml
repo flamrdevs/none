@@ -42,9 +42,6 @@ importers:
       valibot:
         specifier: 1.0.0-rc.1
         version: 1.0.0-rc.1(typescript@5.7.3)
-      yoga-wasm-web:
-        specifier: 0.3.3
-        version: 0.3.3
 
 packages:
 

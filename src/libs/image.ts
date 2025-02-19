@@ -1,9 +1,7 @@
 import fs from 'node:fs/promises';
 
-import satori, { init } from 'satori/wasm';
-import type { Font } from 'satori/wasm';
-
-import yoga from 'yoga-wasm-web';
+import satori from 'satori';
+import type { Font } from 'satori';
 
 type Tag = 'div' | 'span' | 'svg' | (string & {});
 
@@ -114,7 +112,6 @@ type RootComponent<P extends {} = {}> = (props: P) => RootElement;
 
 type SVGFunction = (element: RootElement) => Promise<string>;
 
-init(await yoga((await fs.readFile('./assets/yoga.wasm')).buffer));
 const font = async (name: Font['name'], path: string, style: Font['style'], weight: Font['weight']): Promise<Font> => ({
   name,
   style,
