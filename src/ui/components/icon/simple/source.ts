@@ -118,6 +118,7 @@ const icons = [
   si.siProducthunt,
   si.siPwa,
   si.siPython,
+  si.siQwik,
   si.siRadixui,
   si.siRaycast,
   si.siReact,

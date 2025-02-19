@@ -16,7 +16,7 @@ const build = async () => {
   for (const { slug, path } of source) {
     template.push(`\t"${kebabCase(slug)}": "${path}",`);
   }
-  template.push('} satisfies Record<string,string>;');
+  template.push('} satisfies Record<string, string>;');
   template.push('export default icons;');
 
   await fs.writeFile(icons, template.join('\n'));
