@@ -1,7 +1,7 @@
 import { exec } from 'node:child_process';
 
-import { defineConfig } from 'tsup';
-import type { Options } from 'tsup';
+import { defineConfig } from 'tsdown';
+import type { Options } from 'tsdown';
 
 export default defineConfig(({ env = {} }) => {
   const DEV = env.NODE_ENV === 'development';
@@ -11,18 +11,16 @@ export default defineConfig(({ env = {} }) => {
     env,
     entry: ['src/app.ts'],
     format: ['esm'],
+    target: 'esnext',
+    platform: 'node',
     watch: DEV,
     clean: PROD,
-    minify: PROD && 'terser',
+    minify: PROD,
     define: {
       __DEV__: `${DEV}`,
       __PROD__: `${PROD}`,
     },
-    splitting: true,
-    publicDir: true,
-    platform: 'node',
-    target: 'esnext',
-    terserOptions: { format: { comments: false } },
+    copy: [{ from: 'public', to: 'dist' }],
     ...(DEV ? createDenoDevRun() : {}),
   };
 });

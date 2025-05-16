@@ -7,7 +7,7 @@ const scope = `[clean]`;
 
 try {
   const cwd = process.cwd();
-  const del = async (file) => {
+  const del = async (file: string) => {
     const target = path.resolve(cwd, 'dist', file);
     await fs.access(target);
     await fs.rm(target);

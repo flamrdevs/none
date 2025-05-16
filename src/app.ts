@@ -4,7 +4,7 @@ import { cors } from 'hono/cors';
 import { compress } from 'hono/compress';
 import { logger } from 'hono/logger';
 import { secureHeaders } from 'hono/secure-headers';
-import type { StatusCode } from 'hono/utils/http-status';
+import type { ContentfulStatusCode } from 'hono/utils/http-status';
 
 import * as v from 'valibot';
 
@@ -45,7 +45,7 @@ app
       message = error.message;
     }
 
-    return ctx.json({ message }, status as StatusCode);
+    return ctx.json({ message }, status as ContentfulStatusCode);
   });
 
 export default app;

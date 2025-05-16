@@ -3,7 +3,7 @@ import path from 'node:path';
 
 import { kebabCase } from 'string-ts';
 
-import source from './source';
+import source from './source.ts';
 
 const build = async () => {
   const cwd = process.cwd();

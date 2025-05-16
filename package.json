@@ -3,36 +3,26 @@
   "version": "0.0.0",
   "description": "Colorful SVG generation",
   "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "tsup --env.NODE_ENV development",
-    "build": "tsup --env.NODE_ENV production",
-    "test": "tsup --env.NODE_ENV production && cd dist && deno test -A test.js",
+    "dev": "tsdown --env.NODE_ENV development",
+    "build": "tsdown --env.NODE_ENV production",
+    "test": "cd dist && deno test -A test.js",
     "preview": "cd dist && deno run -A main.js",
-    "script:clean": "node scripts/clean.js",
-    "setup-icons": "cd src/ui/components/icon && tsx lucide/setup.ts && tsx simple/setup.ts"
+    "script:clean": "node --experimental-strip-types scripts/clean.ts",
+    "setup-icons": "cd src/ui/components/icon && pnpm run setup"
   },
   "devDependencies": {
-    "@types/node": "20.17.10",
-    "hono": "4.7.2",
-    "satori": "0.12.1",
+    "@types/node": "22.15.18",
+    "hono": "4.7.9",
+    "satori": "0.13.1",
     "string-ts": "2.2.1",
-    "terser": "5.39.0",
-    "tsup": "8.3.6",
-    "tsx": "4.19.3",
-    "typescript": "5.7.3",
-    "valibot": "1.0.0-rc.1"
+    "tsdown": "0.11.9",
+    "typescript": "5.8.3",
+    "valibot": "1.1.0"
   },
-  "peerDependencies": {
-    "lucide": "0.475.0",
-    "simple-icons": "14.7.0"
-  },
-  "peerDependenciesMeta": {
-    "lucide": {
-      "optional": true
-    },
-    "simple-icons": {
-      "optional": true
-    }
-  },
-  "packageManager": "pnpm@10.2.0"
+  "packageManager": "pnpm@10.10.0",
+  "engines": {
+    "node": ">=23.0.0"
+  }
 }

@@ -1,0 +1,31 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      lucide:
+        specifier: 0.511.0
+        version: 0.511.0
+      simple-icons:
+        specifier: 14.13.0
+        version: 14.13.0
+
+packages:
+
+  lucide@0.511.0:
+    resolution: {integrity: sha512-3ppKPYcCJFXBloeM1H8OyIGjzINNQgsYvAYBTYOSKO45DF/5vbTQrCvwnvMDAGgDnUlI1uFxe0gJj52jdb1JAg==}
+
+  simple-icons@14.13.0:
+    resolution: {integrity: sha512-RUe7J0SDDBAh9Py1ANOA8LkDKJSL+TleDB3+FIaihqf2cNsjeM+V6Pkr3hXX4ug0ZQXToWikdjMMKSFIN2Tc/g==}
+    engines: {node: '>=0.12.18'}
+
+snapshots:
+
+  lucide@0.511.0: {}
+
+  simple-icons@14.13.0: {}

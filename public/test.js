@@ -1,4 +1,4 @@
-import { assertEquals } from 'https://deno.land/std@0.210.0/assert/assert_equals.ts';
+import { assertEquals } from 'jsr:@std/assert@1.0.13';
 
 import app from './app.js';
 

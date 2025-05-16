@@ -25,7 +25,7 @@ jobs:
       - name: setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 23
           cache: 'pnpm'
 
       - name: setup deno
@@ -33,11 +33,8 @@ jobs:
         with:
           deno-version: v2.x
 
-      - name: write npmrc
-        run: echo auto-install-peers=false >> .npmrc
-
       - name: run "pnpm install"
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install
 
       - name: run "pnpm build"
         run: pnpm build
